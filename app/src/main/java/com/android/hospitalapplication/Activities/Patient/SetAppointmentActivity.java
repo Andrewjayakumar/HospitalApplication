@@ -71,6 +71,7 @@ typeofproblem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             doctordetails.setVisibility(View.VISIBLE);
 
+
         }
         else if (problem.equals("Ear,Nose and Throat Problem"))
         {
