@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#47f9e8e8"
 
-    tools:context="com.android.hospitalapplication.RegistrationActivity">
+    tools:context="com.android.hospitalapplication.Activities.RegistrationActivity">
 
     <include
         android:id="@+id/register_app_bar_layout"

@@ -1,4 +1,4 @@
-package com.android.hospitalapplication;
+package com.android.hospitalapplication.Activities.Patient;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.hospitalapplication.Activities.LoginActivity;
+import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
@@ -34,7 +36,7 @@ public class PatientActivity extends AppCompatActivity {
         set_appointement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,set_appointmentActivity.class));
+                startActivity(new Intent(PatientActivity.this,SetAppointmentActivity.class));
             }
         });
         profile_info.setOnClickListener(new View.OnClickListener() {
@@ -46,20 +48,20 @@ public class PatientActivity extends AppCompatActivity {
         upload_report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,upload_reportActivity.class));
+                startActivity(new Intent(PatientActivity.this,UploadReportActivity.class));
 
             }
         });
         view_prescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,view_prescriptionActivity.class));
+                startActivity(new Intent(PatientActivity.this,ViewPrescriptionActivity.class));
             }
         });
         dietplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,dietplan.class));
+                startActivity(new Intent(PatientActivity.this,DietPlanActivity.class));
 
             }
         });

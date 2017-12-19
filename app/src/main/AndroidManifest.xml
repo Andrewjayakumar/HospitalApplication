@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,23 +25,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PatientActivity"
+            android:name=".Activities.Patient.PatientActivity"
             android:label="@string/title_activity_patient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DoctorActivity"
+            android:name=".Activities.Doctor.DoctorActivity"
             android:label="@string/title_activity_doctor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".RegistrationActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".set_appointmentActivity" />
-        <activity android:name=".upload_reportActivity" />
-        <activity android:name=".view_prescriptionActivity" />
-        <activity android:name=".dietplan"></activity>
+            android:name=".Activities.RegistrationActivity"
+            android:parentActivityName=".Activities.LoginActivity" />
+
+        <activity android:name=".Activities.Patient.SetAppointmentActivity" />
+        <activity android:name=".Activities.Patient.UploadReportActivity" />
+        <activity android:name=".Activities.Patient.ViewPrescriptionActivity" />
+        <activity android:name=".Activities.Patient.DietPlanActivity"></activity>
     </application>
 
 </manifest>

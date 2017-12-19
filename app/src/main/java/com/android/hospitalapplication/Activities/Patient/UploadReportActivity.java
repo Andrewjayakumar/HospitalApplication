@@ -1,9 +1,11 @@
-package com.android.hospitalapplication;
+package com.android.hospitalapplication.Activities.Patient;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class upload_reportActivity extends AppCompatActivity {
+import com.android.hospitalapplication.R;
+
+public class UploadReportActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

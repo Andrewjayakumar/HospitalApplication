@@ -1,4 +1,4 @@
-package com.android.hospitalapplication;
+package com.android.hospitalapplication.Activities.Patient;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
@@ -16,7 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class set_appointmentActivity extends AppCompatActivity {
+import com.android.hospitalapplication.R;
+
+public class SetAppointmentActivity extends AppCompatActivity {
 Spinner Doctor_speciality,Doctor_list;
 Button request_Appointment;
 EditText preferred_appointment_date;
@@ -45,7 +47,7 @@ EditText preferred_appointment_date;
         preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datepicker=new DatePickerDialog(set_appointmentActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datepicker=new DatePickerDialog(SetAppointmentActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         preferred_appointment_date.setText(dayOfMonth+"/"+(month+1)+"/"+year);
@@ -69,9 +71,9 @@ EditText preferred_appointment_date;
                         preferred_appointment_date.setFocusable(true);
                     }
                     else {
-                        startActivity(new Intent(set_appointmentActivity.this, PatientActivity.class));
+                        startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
                         finish();
-                        Toast.makeText(set_appointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SetAppointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
                     }
 
                 }

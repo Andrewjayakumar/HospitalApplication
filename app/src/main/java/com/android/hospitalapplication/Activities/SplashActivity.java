@@ -1,4 +1,4 @@
-package com.android.hospitalapplication;
+package com.android.hospitalapplication.Activities;
 
 import android.content.Intent;
 import android.os.Build;
@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.android.hospitalapplication.Activities.Doctor.DoctorActivity;
+import com.android.hospitalapplication.Activities.Patient.PatientActivity;
+import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
