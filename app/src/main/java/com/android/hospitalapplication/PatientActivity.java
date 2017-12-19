@@ -12,7 +12,8 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
-public Button set_appointement,profile_info,view_precaution,upload_report,dietplan;
+
+    public Button set_appointement,profile_info,view_prescription,upload_report,dietplan;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
@@ -27,18 +28,38 @@ public Button set_appointement,profile_info,view_precaution,upload_report,dietpl
         set_appointement=findViewById(R.id.set_appointment);
         profile_info=findViewById(R.id.profile_info);
         upload_report=findViewById(R.id.upload_report);
-        view_precaution=findViewById(R.id.view_precaution);
+        view_prescription=findViewById(R.id.view_prescription);
         dietplan=findViewById(R.id.dietplan);
 
         set_appointement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,set_appointment.class));
+                startActivity(new Intent(PatientActivity.this,set_appointmentActivity.class));
             }
         });
         profile_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startActivity(new Intent(PatientActivity.this,Patient_profile.class));
+            }
+        });
+        upload_report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PatientActivity.this,upload_reportActivity.class));
+
+            }
+        });
+        view_prescription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PatientActivity.this,view_prescriptionActivity.class));
+            }
+        });
+        dietplan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PatientActivity.this,dietplan.class));
 
             }
         });
@@ -46,7 +67,6 @@ public Button set_appointement,profile_info,view_precaution,upload_report,dietpl
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
 
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
