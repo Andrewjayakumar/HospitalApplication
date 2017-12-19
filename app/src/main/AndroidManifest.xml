@@ -35,8 +35,13 @@
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".RegistrationActivity"
-            android:parentActivityName=".LoginActivity"></activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".set_appointmentActivity" />
+        <activity android:name=".upload_reportActivity" />
+        <activity android:name=".view_prescriptionActivity" />
+        <activity android:name=".dietplan"></activity>
     </application>
 
 </manifest>

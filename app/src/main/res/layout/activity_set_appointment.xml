@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.hospitalapplication.set_appointmentActivity">
+
+    <Spinner
+        android:id="@+id/doctor_speciality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:layout_above="@id/doctor_list"
+        android:spinnerMode="dialog"
+        android:textAlignment="center" />
+    <Spinner
+        android:id="@+id/doctor_list"
+        android:padding="20dp"
+        android:layout_margin="10dp"
+        android:spinnerMode="dialog"
+        android:layout_above="@id/preferred_appointment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
+
+    <EditText
+
+        android:id="@+id/preferred_appointment_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:hint="Preferred Appointment date" />
+
+    <Button
+        android:layout_below="@+id/preferred_appointment_date"
+        android:id="@+id/Request_Appointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="20dp"
+        android:text="Request Appointment" />
+</RelativeLayout>
