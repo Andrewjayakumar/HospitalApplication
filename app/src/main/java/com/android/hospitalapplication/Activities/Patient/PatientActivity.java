@@ -79,7 +79,7 @@ public class PatientActivity extends AppCompatActivity {
         switch(item.getItemId()){
             case R.id.sign_out :
                 auth.signOut();
-                startActivity(new Intent(this,LoginActivity.class));
+                startActivity(new Intent(PatientActivity.this,LoginActivity.class));
 
         }
         return true;
