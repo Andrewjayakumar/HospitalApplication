@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
-    android:weightSum="6"
     tools:context="com.android.hospitalapplication.Activities.Patient.SetAppointmentActivity">
 
     <Spinner
+        android:layout_above="@id/doctordetails"
         android:id="@+id/typeofproblem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_weight="1"
         android:padding="20dp"
         android:spinnerMode="dialog"
         android:textAlignment="center" />
-
+<LinearLayout
+    android:visibility="gone"
+    android:layout_centerInParent="true"
+    android:id="@+id/doctordetails"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <Spinner
         android:id="@+id/doctor_list"
         android:layout_width="match_parent"
@@ -28,9 +33,11 @@
         android:layout_weight="1"
         android:padding="20dp"
         android:spinnerMode="dialog"
-        android:visibility="gone" />
+         />
 
     <TextView
+        android:clickable="false"
+        android:contextClickable="false"
         android:id="@+id/doctorcontactnumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,9 +49,11 @@
         android:text="Doctor Contact Number"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:visibility="gone" />
+        />
 
     <TextView
+        android:clickable="false"
+        android:contextClickable="false"
         android:id="@+id/doctoraddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,23 +65,24 @@
         android:text="Doctor Address"
         android:textAlignment="center"
         android:textAllCaps="true"
-        android:visibility="gone" />
-
+         />
+</LinearLayout>
     <Button
+        android:layout_above="@id/button"
         android:id="@+id/preferred_appointment_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_weight="1"
         android:hint="Preferred Appointment date"
         android:maxLines="1"
         android:padding="20dp"
         android:singleLine="true" />
 
     <LinearLayout
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -90,4 +100,4 @@
             android:layout_weight="1"
             android:text="call doctor" />
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

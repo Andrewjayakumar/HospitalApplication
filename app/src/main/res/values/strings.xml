@@ -43,11 +43,11 @@
         <item>Plastic Surgeon </item>
         <item>Allergist </item>
     </string-array>
-    <string-array name="typeofproblem">
+    <string-array name="problem">
         <item>Type Of Problem</item>
         <item>Cough and Cold</item>
         <item>Fever</item>
-        <Item>Migrane</Item>
+        <item>Migrane</item>
         <item>Ear,Nose and Throat Problem</item>
         <item>female reproductive System Related Problem</item>
         <item>infant related Problem</item>
@@ -57,7 +57,7 @@
         <item>Brain and nervous system related problem</item>
         <item>Tooth Problem</item>
         <item>Stomach related Problem</item>
-        <item>Male reproductive System Related Problem  </item>
+        <item>Male reproductive System Related Problem</item>
         <item>Muscular Related Problem</item>
         <item>Mental and Emotion Disorder Related Problem</item>
         <item>Face Related Problem</item>
@@ -65,6 +65,8 @@
     </string-array>
     <string-array name="doctorname">
         <item>Doctor Name</item>
+        <item>xyz</item>
+        <item>abc</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
