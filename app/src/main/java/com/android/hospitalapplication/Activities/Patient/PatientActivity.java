@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
 
-    public Button set_appointement,profile_info,view_prescription,upload_report,dietplan;
+    public ImageButton set_appointement,profile_info,view_prescription,upload_report,dietplan;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
 

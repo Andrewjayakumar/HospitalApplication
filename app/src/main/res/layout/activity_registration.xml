@@ -197,7 +197,7 @@
                 <Spinner
                     android:id="@+id/blood_group"
                     android:layout_width="wrap_content"
-                    android:background="@color/md_deep_orange_500"
+                    android:background="@color/md_red_400"
                     android:layout_height="match_parent"
                     android:spinnerMode="dropdown"
                     android:textAlignment="center"
@@ -232,7 +232,7 @@
                     <Spinner
                         android:id="@+id/doctor_speciality"
                         android:layout_width="wrap_content"
-                        android:background="@color/md_deep_orange_500"
+                        android:background="@color/md_red_400"
                         android:layout_height="match_parent"
                         android:textAlignment="center"
                         android:gravity="center"
@@ -292,7 +292,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/md_deep_orange_500"
+        android:background="@color/md_red_400"
         android:text="Register"
         android:textColor="@color/md_white_1000"
         android:id="@+id/register_button"/>

@@ -1,63 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.android.hospitalapplication.Activities.Patient.PatientActivity"
-    tools:showIn="@layout/activity_patient">
-
-    <Button
-        android:id="@+id/set_appointment"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/view_prescription"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="Set Appointment" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.android.hospitalapplication.PatientActivity"
+        tools:showIn="@layout/activity_patient">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            >
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
 
-    <Button
-        android:id="@+id/view_prescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/upload_report"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="View Prescription" />
 
-    <Button
-        android:id="@+id/upload_report"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="Upload Report" />
+                <ImageButton
+                    android:id="@+id/set_appointment"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/shedule"
+                    android:text="Profile Info"
+                    />
 
-    <Button
-        android:id="@+id/profile_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/upload_report"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="Profile_Info" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set Appointment"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="20dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/dietplan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profile_info"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="Diet Plan" />
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
 
-    <Button
-        android:id="@+id/app"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/dietplan"
-        android:layout_margin="10dp"
-        android:padding="20dp" />
-</RelativeLayout>
+
+                <ImageButton
+                    android:id="@+id/profile_info"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/profile_pic"
+                    android:text="Profile Info"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Profile"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="35dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            >
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
+
+
+                <ImageButton
+                    android:id="@+id/upload_report"
+                    android:layout_width="130dp"
+                    android:layout_height="135dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/upload"
+                    android:text="Profile Info"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Reports"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="25dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
+
+
+                <ImageButton
+                    android:id="@+id/view_prescription"
+                    android:layout_width="130dp"
+                    android:layout_height="135dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/view"
+                    android:text="Profile Info"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Prescription"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="20dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            >
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
+
+
+                <ImageButton
+                    android:id="@+id/dietplan"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/diet"
+                    android:text="Profile Info"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diet Plan"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="35dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:textAlignment="center">
+
+
+                <ImageButton
+                    android:id="@+id/app"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_above="@+id/upload_report"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/logo"
+                    android:text="Profile Info"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Something Usefull"
+                    android:layout_margin="1dp"
+                    android:layout_gravity="bottom"
+                    android:textAlignment="center"
+                    android:paddingLeft="5dp"
+                    android:textStyle="bold"
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
