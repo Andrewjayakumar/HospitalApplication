@@ -31,14 +31,40 @@
         <item>ENT</item>
         <item>Gynecology</item>
         <item>Pediatrics</item>
-        <item>Opthalmology</item>
+        <item>Ophthalmologist</item>
         <item>Dermatology</item>
         <item>Cardiology</item>
         <item>Neurology</item>
         <item>Dentistry</item>
-        <item>Gatrology</item>
+        <item>Gastroenterologist</item>
         <item>Urology</item>
         <item>Orthopedics</item>
+        <item>Psychiatrist </item>
+        <item>Plastic Surgeon </item>
+        <item>Allergist </item>
+    </string-array>
+    <string-array name="typeofproblem">
+        <item>Type Of Problem</item>
+        <item>Cough and Cold</item>
+        <item>Fever</item>
+        <Item>Migrane</Item>
+        <item>Ear,Nose and Throat Problem</item>
+        <item>female reproductive System Related Problem</item>
+        <item>infant related Problem</item>
+        <item>Eyes Problem</item>
+        <item>Skin Problem</item>
+        <item>Heart related Problem</item>
+        <item>Brain and nervous system related problem</item>
+        <item>Tooth Problem</item>
+        <item>Stomach related Problem</item>
+        <item>Male reproductive System Related Problem  </item>
+        <item>Muscular Related Problem</item>
+        <item>Mental and Emotion Disorder Related Problem</item>
+        <item>Face Related Problem</item>
+        <item>Allergy</item>
+    </string-array>
+    <string-array name="doctorname">
+        <item>Doctor Name</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

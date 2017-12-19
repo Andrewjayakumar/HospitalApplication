@@ -1,47 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="6"
     tools:context="com.android.hospitalapplication.Activities.Patient.SetAppointmentActivity">
 
     <Spinner
-        android:id="@+id/doctor_speciality"
+        android:id="@+id/typeofproblem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:padding="20dp"
-        android:layout_above="@id/doctor_list"
         android:spinnerMode="dialog"
         android:textAlignment="center" />
+
     <Spinner
         android:id="@+id/doctor_list"
-        android:padding="20dp"
-        android:layout_margin="10dp"
-        android:spinnerMode="dialog"
-        android:layout_above="@id/preferred_appointment_date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:padding="20dp"
+        android:spinnerMode="dialog"
+        android:visibility="gone" />
 
-    <EditText
+    <TextView
+        android:id="@+id/doctorcontactnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:padding="20dp"
+        android:singleLine="true"
+        android:text="Doctor Contact Number"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:visibility="gone" />
 
+    <TextView
+        android:id="@+id/doctoraddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:padding="20dp"
+        android:singleLine="true"
+        android:text="Doctor Address"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:visibility="gone" />
+
+    <Button
         android:id="@+id/preferred_appointment_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:layout_margin="10dp"
-        android:padding="20dp"
-        android:singleLine="true"
+        android:layout_weight="1"
+        android:hint="Preferred Appointment date"
         android:maxLines="1"
-        android:hint="Preferred Appointment date" />
+        android:padding="20dp"
+        android:singleLine="true" />
 
-    <Button
-        android:layout_below="@+id/preferred_appointment_date"
-        android:id="@+id/Request_Appointment"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:padding="20dp"
-        android:text="Request Appointment" />
-</RelativeLayout>
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/Request_Appointment"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Request Appointment" />
+
+        <Button
+            android:id="@+id/calldoctor"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="call doctor" />
+    </LinearLayout>
+</LinearLayout>

@@ -12,17 +12,16 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
 
 public class SetAppointmentActivity extends AppCompatActivity {
-Spinner Doctor_speciality,Doctor_list;
-Button request_Appointment;
-EditText preferred_appointment_date;
-
+Spinner typeofproblem,doctor_list;
+Button request_Appointment,calldoctor,preferred_appointment_date;
+TextView doctorcontactnumber,doctoraddress;
     @TargetApi(Build.VERSION_CODES.N)
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -31,18 +30,21 @@ EditText preferred_appointment_date;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_appointment);
 
-        Doctor_list=findViewById(R.id.doctor_list);
-        Doctor_speciality=findViewById(R.id.doctor_speciality);
+        doctor_list=findViewById(R.id.doctor_list);
+        typeofproblem=findViewById(R.id.doctor_speciality);
         request_Appointment=findViewById(R.id.Request_Appointment);
         preferred_appointment_date=findViewById(R.id.preferred_appointment_date);
+        doctoraddress=findViewById(R.id.doctoraddress);
+        doctorcontactnumber=findViewById(R.id.doctorcontactnumber);
+        calldoctor=findViewById(R.id.calldoctor);
 
             Calendar cal = Calendar.getInstance();
             final int year = cal.get(cal.YEAR);
             final int month = cal.get(cal.MONTH);
             final int day = cal.get(cal.DAY_OF_MONTH);
 
-        initSpinner(Doctor_speciality, R.array.speciality);
-        //initSpinner(Doctor_list,R.array.Doctor_list);
+        initSpinner(typeofproblem, R.array.typeofproblem);
+        initSpinner(doctor_list,R.array.doctorname);
 
         preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,20 +62,43 @@ EditText preferred_appointment_date;
 
 
 
+
         request_Appointment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     String preferred_appointmentdate=preferred_appointment_date.getText().toString();
-                    if(preferred_appointmentdate.equals(""))
+                    String doctorcontactno=doctorcontactnumber.getText().toString();
+                    String doctorsaddress=doctoraddress.getText().toString();
+                    String typesofproblem=typeofproblem.getSelectedItem().toString();
+                    String doctorname=doctor_list.getSelectedItem().toString();
+
+                    if(preferred_appointmentdate.equals("")||doctorcontactno.equals("")||doctorsaddress.equals("")||typesofproblem.equals("Type of problem")||doctorname.equals("Doctor name"))
                     {
-                        preferred_appointment_date.setError("Set Preferred Date");
-                        preferred_appointment_date.setFocusable(true);
+                        Toast.makeText(SetAppointmentActivity.this, "Enter All The fields", Toast.LENGTH_SHORT).show();
+
                     }
-                    else {
+                    else if (typesofproblem.equals("Type Of Problem"))
+                    {
+                        typeofproblem.setFocusable(true);
+                    }
+                    else if(preferred_appointmentdate.equals(""))
+                    { preferred_appointment_date.setError("Set Preferred Date");
+                        preferred_appointment_date.setFocusable(true);
                         startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
                         finish();
                         Toast.makeText(SetAppointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(doctorname.equals("Doctor Name"))
+                    {
+                        doctor_list.setFocusable(true);
+                    }
+                    else
+                    {
+                        startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
+                        finish();
+                        Toast.makeText(SetAppointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }
@@ -87,4 +112,5 @@ EditText preferred_appointment_date;
         adapter.setDropDownViewResource(R.layout.spinner_style);
         s.setAdapter(adapter);
     }
+
 }
