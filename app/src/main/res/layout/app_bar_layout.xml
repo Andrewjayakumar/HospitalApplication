@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     app:contentInsetLeft="0dp"
-    android:backgroundTint="@color/md_deep_orange_500"
+    android:backgroundTint="@color/md_red_400"
     app:contentInsetStart="0dp"
     app:contentInsetStartWithNavigation="0dp">
 
