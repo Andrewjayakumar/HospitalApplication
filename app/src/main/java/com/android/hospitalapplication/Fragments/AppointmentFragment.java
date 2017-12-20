@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
+import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,11 @@ import com.android.hospitalapplication.Adapters.UserAdapter;
 import com.android.hospitalapplication.ModelClasses.Patient;
 import com.android.hospitalapplication.R;
 
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class AppointmentFragment extends Fragment {
@@ -84,17 +90,20 @@ public class AppointmentFragment extends Fragment {
         date=v.findViewById(R.id.date_cal);
         appointments=v.findViewById(R.id.appointment_list);
         appointments.setLayoutManager(new LinearLayoutManager(getContext()));
-        patients.add(new Patient("Patient 1 ","25","F","test address","245684313","B+"));
 
-        UserAdapter adapter = new UserAdapter(patients,getContext());
-        Log.d("Arraylist Length :",""+adapter.getItemCount());
-        appointments.setAdapter(adapter);
         return v;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        String currDate = getCurrentDate();
+        date.setText(currDate);
+        patients.add(new Patient("Patient 1 ","25","F","test address","245684313","B+"));
+        UserAdapter adapter = new UserAdapter(patients,getContext());
+        Log.d("Arraylist Length :",""+adapter.getItemCount());
+        appointments.setAdapter(adapter);
 
     }
 
@@ -137,5 +146,11 @@ public class AppointmentFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public String getCurrentDate(){
+        Date d = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd,MMM yyyy");
+        return df.format(d);
     }
 }
