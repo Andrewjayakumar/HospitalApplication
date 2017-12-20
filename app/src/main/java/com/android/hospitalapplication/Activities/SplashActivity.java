@@ -35,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.acitivity_splash);
 
         fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-        LinearLayout = (LinearLayout) findViewById(R.id.splash_layout);
+        LinearLayout =  findViewById(R.id.splash_layout);
 
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);

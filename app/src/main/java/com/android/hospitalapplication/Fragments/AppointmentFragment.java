@@ -4,21 +4,31 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.android.hospitalapplication.Adapters.UserAdapter;
+import com.android.hospitalapplication.ModelClasses.Patient;
 import com.android.hospitalapplication.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link AppointmentFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link AppointmentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class AppointmentFragment extends Fragment {
+
+    View v;
+    ImageView rightNav,leftNav;
+    TextView date;
+    RecyclerView appointments;
+    ArrayList<Patient> patients = new ArrayList<Patient>();
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,13 +69,33 @@ public class AppointmentFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_appointment, container, false);
+        v= inflater.inflate(R.layout.fragment_appointment, container, false);
+        rightNav=v.findViewById(R.id.right_nav);
+        leftNav=v.findViewById(R.id.left_nav);
+        date=v.findViewById(R.id.date_cal);
+        appointments=v.findViewById(R.id.appointment_list);
+        appointments.setLayoutManager(new LinearLayoutManager(getContext()));
+        patients.add(new Patient("Patient 1 ","25","F","test address","245684313","B+"));
+
+        UserAdapter adapter = new UserAdapter(patients,getContext());
+        Log.d("Arraylist Length :",""+adapter.getItemCount());
+        appointments.setAdapter(adapter);
+        return v;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,11 +108,13 @@ public class AppointmentFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+          //  throw new RuntimeException(context.toString()
+              //      + " must implement OnFragmentInteractionListener");
         }
     }
 
