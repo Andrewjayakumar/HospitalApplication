@@ -39,9 +39,9 @@
         <item>Gastroenterologist</item>
         <item>Urology</item>
         <item>Orthopedics</item>
-        <item>Psychiatrist </item>
-        <item>Plastic Surgeon </item>
-        <item>Allergist </item>
+        <item>Psychiatrist</item>
+        <item>Plastic Surgeon</item>
+        <item>Allergist</item>
     </string-array>
     <string-array name="problem">
         <item>Select Your Problem</item>

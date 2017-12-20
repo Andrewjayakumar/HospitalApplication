@@ -56,7 +56,8 @@ EditText describe_problem;
 
         initSpinner(typeofproblem, R.array.problem);
         initSpinner(doctor_list, R.array.doctorname);
-      //date picker is set
+
+        //date picker is set
         preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,10 +121,11 @@ typeofproblem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         else if(problem.equals("Allergy"))
         {doctordetails.setVisibility(View.VISIBLE);
         }
-    }
+}
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
 
     }
 });
