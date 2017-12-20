@@ -73,16 +73,52 @@ typeofproblem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        String problem=typeofproblem.getSelectedItem().toString();
-        if(problem.equals("Cough and Cold")||problem.equals("Fever")||problem.equals("Migrane"))
+        String problem = typeofproblem.getSelectedItem().toString();
+        if (problem.equals("Cough and Cold") || problem.equals("Fever") || problem.equals("Migrane"))
         {
             doctordetails.setVisibility(View.VISIBLE);
-
-
         }
-        else if (problem.equals("Ear,Nose and Throat Problem"))
-        {
-
+        else if (problem.equals("Ear,Nose and Throat Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("female reproductive System Related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("infant related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Eyes Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Skin Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Heart related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Brain and nervous system related problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Tooth Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if (problem.equals("Stomach related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if(problem.equals("Male reproductive System Related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if(problem.equals("Muscular Related Problem")) {
+            doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if(problem.equals("Mental and Emotion Disorder Related Problem"))
+        {doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if(problem.equals("Face Related Problem"))
+        {doctordetails.setVisibility(View.VISIBLE);
+        }
+        else if(problem.equals("Allergy"))
+        {doctordetails.setVisibility(View.VISIBLE);
         }
     }
 
