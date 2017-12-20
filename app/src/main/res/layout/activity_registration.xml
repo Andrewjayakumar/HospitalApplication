@@ -292,7 +292,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/md_red_400"
+        android:background="@color/md_orange_400"
         android:text="Register"
         android:textColor="@color/md_white_1000"
         android:id="@+id/register_button"/>

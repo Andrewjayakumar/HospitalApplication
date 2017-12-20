@@ -44,7 +44,7 @@
         <item>Allergist </item>
     </string-array>
     <string-array name="problem">
-        <item>Type Of Problem</item>
+        <item>Select Your Problem</item>
         <item>Cough and Cold</item>
         <item>Fever</item>
         <item>Migrane</item>
@@ -64,7 +64,7 @@
         <item>Allergy</item>
     </string-array>
     <string-array name="doctorname">
-        <item>Doctor Name</item>
+        <item>Choose your Doctor</item>
         <item>xyz</item>
         <item>abc</item>
     </string-array>

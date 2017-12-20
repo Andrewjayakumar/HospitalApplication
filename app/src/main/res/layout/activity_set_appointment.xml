@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,17 +7,28 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:background="#01ed0b0b"
     tools:context="com.android.hospitalapplication.Activities.Patient.SetAppointmentActivity">
 
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/pat_app_bar_layout"/>
+
+
+
     <Spinner
-        android:layout_above="@id/doctordetails"
         android:id="@+id/typeofproblem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:padding="20dp"
+        android:padding="10dp"
         android:spinnerMode="dialog"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:background="@drawable/rounded_corner"
+        android:layout_below="@+id/pat_app_bar_layout"/>
+
+
+
 <LinearLayout
     android:visibility="gone"
     android:layout_centerInParent="true"
@@ -31,7 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:padding="20dp"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corner"
         android:spinnerMode="dialog"
          />
 
@@ -47,6 +60,7 @@
         android:padding="20dp"
         android:singleLine="true"
         android:text="Doctor Contact Number"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textAllCaps="true"
         />
@@ -64,40 +78,73 @@
         android:singleLine="true"
         android:text="Doctor Address"
         android:textAlignment="center"
+        android:textStyle="italic"
         android:textAllCaps="true"
          />
 </LinearLayout>
+
+        <EditText
+            android:id="@+id/describe"
+            android:layout_above="@+id/preferred_appointment_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Describe Your Problem(Optional)"
+            android:inputType="textCapWords"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/md_black_1000"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:lines="2"
+            android:textColorHint="#80000000"
+            android:minLines="2"/>
+
     <Button
         android:layout_above="@id/button"
         android:id="@+id/preferred_appointment_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Preferred Appointment date"
+        android:hint="Select Date"
         android:maxLines="1"
         android:padding="20dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:background="@color/md_red_200"
+        android:textColor="@color/md_white_1000"/>
 
     <LinearLayout
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/Request_Appointment"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="Request Appointment" />
+        android:weightSum="2"
+        >
 
         <Button
             android:id="@+id/calldoctor"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:text="call doctor" />
+            android:text="call doctor"
+            android:background="@color/md_green_400"
+            android:textColor="@color/md_grey_100"
+            android:padding="10dp"
+            />
+
+        <Button
+            android:id="@+id/Request_Appointment"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="Request Appointment"
+            android:background="@color/md_blue_400"
+            android:textColor="@color/md_grey_100"
+            />
+
+
     </LinearLayout>
+
 </RelativeLayout>
+

@@ -9,11 +9,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ Spinner typeofproblem,doctor_list;
 LinearLayout doctordetails;
 Button request_Appointment,calldoctor,preferred_appointment_date;
 TextView doctorcontactnumber,doctoraddress;
+EditText describe_problem;
     @TargetApi(Build.VERSION_CODES.N)
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -34,6 +37,9 @@ TextView doctorcontactnumber,doctoraddress;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_appointment);
            doctordetails=findViewById(R.id.doctordetails);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Set Appointment");
         doctor_list = findViewById(R.id.doctor_list);
         typeofproblem = findViewById(R.id.typeofproblem);
         request_Appointment = findViewById(R.id.Request_Appointment);
@@ -41,6 +47,7 @@ TextView doctorcontactnumber,doctoraddress;
         doctoraddress = findViewById(R.id.doctoraddress);
         doctorcontactnumber = findViewById(R.id.doctorcontactnumber);
         calldoctor = findViewById(R.id.calldoctor);
+        describe_problem = findViewById(R.id.describe);
 
         Calendar cal = Calendar.getInstance();
         final int year = cal.get(cal.YEAR);
@@ -105,6 +112,7 @@ typeofproblem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                     String doctorsaddress=doctoraddress.getText().toString();
                     String typesofproblem=typeofproblem.getSelectedItem().toString();
                     String doctorname=doctor_list.getSelectedItem().toString();
+                    String describe=describe_problem.getText().toString();
 
                     if(preferred_appointmentdate.equals("")||doctorcontactno.equals("")||doctorsaddress.equals("")||typesofproblem.equals("Type of problem")||doctorname.equals("Doctor name"))
                     {
