@@ -12,17 +12,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.ModelClasses.Doctor;
+import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -40,7 +44,8 @@ public class SetAppointmentActivity extends AppCompatActivity {
 
     Spinner typeofproblem, doctor_list;
     LinearLayout doctordetails;
-    Button request_Appointment, calldoctor, preferred_appointment_date;
+    Button request_Appointment,  preferred_appointment_date;
+    ImageButton calldoctor;
     TextView doctorcontactnumber, doctoraddress;
     EditText describe_problem;
     ArrayList<Doctor> docs;
@@ -105,28 +110,34 @@ public class SetAppointmentActivity extends AppCompatActivity {
                         fetchDoctor("ENT");
                         break;
                     case 5:
-                         fetchDoctor("Ophthalmologist");
+                         fetchDoctor("Gynecology");
                         break;
                     case 6:
-                         fetchDoctor("Dermatologist");
+                         fetchDoctor("Pediatrics");
                         break;
                     case 7:
-                         fetchDoctor("Cardiology");
+                         fetchDoctor("Ophthalmologist");
                         break;
                     case 8:
-                         fetchDoctor("Neurology");
+                         fetchDoctor("Dermatology");
                         break;
                     case 9:
-                        fetchDoctor("Dentistry");
+                        fetchDoctor("Cardiology");
                         break;
                     case 10:
-                        fetchDoctor("Gastroenterologist");
+                        fetchDoctor("Neurology");
                         break;
                     case 11:
-                         fetchDoctor("Urology");
+                         fetchDoctor("Dentistry");
                         break;
                     case 12:
+                        fetchDoctor("Gastroenterologist");
+                        break;
+                    case 13:
                         fetchDoctor("Urology");
+                        break;
+                    case 14:
+                        fetchDoctor("Orthopedics");
                         break;
                     default:
                         Toast.makeText(SetAppointmentActivity.this, "No Doctor Found", Toast.LENGTH_SHORT);
@@ -134,85 +145,54 @@ public class SetAppointmentActivity extends AppCompatActivity {
 
                 }
             }
-       /* if(problem.equals("Cough and Cold")||problem.equals("Fever")||problem.equals("Migrane"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Ear,Nose and Throat Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("female reproductive System Related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("infant related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Eyes Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Skin Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Heart related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Brain and nervous system related problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Tooth Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Stomach related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Male reproductive System Related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Muscular Related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Mental and Emotion Disorder Related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Face Related Problem"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        else if(problem.equals("Allergy"))
-
-            {
-                doctordetails.setVisibility(View.VISIBLE);
-            }
-        }*/
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //doc spinner
+        doctor_list.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
+                String docName = adapterView.getItemAtPosition(i).toString().trim();
+
+                dbrefUser.orderByChild("name").equalTo(docName).addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        String contact = dataSnapshot.child("phone").getValue().toString();
+                        String address = dataSnapshot.child("address").getValue().toString();
+                        doctoraddress.setText(address);
+                        doctorcontactnumber.setText(contact);
+
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -278,36 +258,17 @@ public class SetAppointmentActivity extends AppCompatActivity {
 
     public void fetchDoctor(final String spec) {
         final DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
-        dbrefUsers.addChildEventListener(new ChildEventListener() {
+        final ArrayList<String> doctors = new ArrayList<>();
+
+        dbrefUsers.orderByChild("speciality").equalTo(spec).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                final String uid = dataSnapshot.getKey();
-                if (!uid.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                    dbrefUsers.child(uid).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            List<CharSequence> docNames = new ArrayList<>();
-                            String type = dataSnapshot.child("type").getValue().toString();
-                            if (type.equals("Doctor")) {
-
-                                String speciality = dataSnapshot.child("speciality").getValue().toString();
-                                if (speciality.equals(spec)) {
-                                  docNames.add(dataSnapshot.child("name").getValue().toString());
-
-                                }
-                            }
-                            Log.d("User ID :", ""+docNames.size());
-                            ArrayAdapter<CharSequence> adapter = new ArrayAdapter<CharSequence>(getApplicationContext(),R.layout.spinner_style,docNames);
-                            adapter.setDropDownViewResource(R.layout.spinner_style);
-                            doctor_list.setAdapter(adapter);
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
+                doctors.add(dataSnapshot.child("name").getValue().toString());
+                Log.d("No. of Docs :",""+doctors.size());
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.spinner_style,doctors);
+                adapter.setDropDownViewResource(R.layout.spinner_style);
+                doctor_list.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -329,8 +290,8 @@ public class SetAppointmentActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
 
+        });
     }
 
 }
