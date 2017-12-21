@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,11 +53,8 @@ public class UploadReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
                 startActivityForResult(intent, 2);
 
-                // String selectedImage= fileUri.getPath();
-                //upload(selectedImage);
             }
         });
         capturePhoto.setOnClickListener(new View.OnClickListener() {
@@ -68,13 +66,10 @@ public class UploadReportActivity extends AppCompatActivity {
                                 5);
                     }
                 }
-
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                String capturedImage = f.getPath().toString();
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
                 startActivityForResult(intent, 1);
-                upload(capturedImage);
             }
 
 
@@ -84,10 +79,11 @@ public class UploadReportActivity extends AppCompatActivity {
     }
 
 
-    void upload(String filepath) {
-        Uri file = Uri.fromFile(new File(filepath));
+    void upload(Uri f) {
+        final Uri file = f;
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        StorageReference report = FirebaseStorage.getInstance().getReference().child("report").child(uid);
+        long timestamp=System.currentTimeMillis();
+        StorageReference report = FirebaseStorage.getInstance().getReference().child("report").child(uid).child("timestamp");
         report.putFile(file)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -102,7 +98,7 @@ public class UploadReportActivity extends AppCompatActivity {
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
                         // ...
-
+                        Log.d("file",""+file);
                         Toast.makeText(UploadReportActivity.this, "Error Uploading Report", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -124,7 +120,8 @@ public class UploadReportActivity extends AppCompatActivity {
                     if (temp.getName().equals("temp.jpg")) {
 
                         f = temp;
-
+                        Uri fileUri= Uri.fromFile(f);
+                        upload(fileUri);
                         break;
 
                     }
@@ -194,7 +191,6 @@ public class UploadReportActivity extends AppCompatActivity {
 
 
                 Uri selectedImage = data.getData();
-                String path=selectedImage.getPath().toString();
 
                 String[] filePath = {MediaStore.Images.Media.DATA};
 
@@ -211,7 +207,7 @@ public class UploadReportActivity extends AppCompatActivity {
                 Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
 
                 img.setImageBitmap(thumbnail);
-                upload(path);
+                upload(selectedImage);
 
             }
 
