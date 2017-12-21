@@ -90,7 +90,7 @@ public class UploadReportActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         String downloadurl = taskSnapshot.getDownloadUrl().toString();
-                        Toast.makeText(UploadReportActivity.this, "Report Uploaded Successfully" + downloadurl, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UploadReportActivity.this, "Report Uploaded Successfully", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
