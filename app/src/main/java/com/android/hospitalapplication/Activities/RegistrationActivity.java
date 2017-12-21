@@ -2,15 +2,16 @@ package com.android.hospitalapplication.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -70,14 +71,40 @@ public class RegistrationActivity extends AppCompatActivity {
         name_user = findViewById(R.id.name);
         pass = findViewById(R.id.password);
         confirmPass = findViewById(R.id.confirm_password);
-        contact = findViewById(R.id.contact);
+        contact = findViewById(R.id.phone);
         add = findViewById(R.id.address);
         regId = findViewById(R.id.registration_no);
 
         register = findViewById(R.id.register_button);
 
-        initSpinner(blood_group, R.array.blood_groups);
-        initSpinner(speciality, R.array.speciality);
+        blood_group=initSpinner(blood_group, R.array.blood_groups);
+        speciality=initSpinner(speciality, R.array.speciality);
+
+        blood_group.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                bloodGroup = adapterView.getItemAtPosition(i).toString();
+                Log.d("Blood Group :",""+bloodGroup);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        speciality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                specialisation = speciality.getSelectedItem().toString();
+                Log.d("Speciality :",""+specialisation);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,16 +124,23 @@ public class RegistrationActivity extends AppCompatActivity {
                        if (genderButtons.getCheckedRadioButtonId() < 0) {
                             Toast.makeText(RegistrationActivity.this, "Please Select A Gender", Toast.LENGTH_SHORT).show();
                         } else if (patient.isChecked()) {
-                                    bloodGroup = blood_group.getSelectedItem().toString().trim();
-                            createAccount(name, email, password, phone, address, gender, bloodGroup);
-                        } else if (doctor.isChecked()) {
-                             specialisation = speciality.getSelectedItem().toString();
+                           if(!bloodGroup.equals(null)) {
+                               createAccount(name, email, password, phone, address, gender, bloodGroup);
+                           }
+                           else{
+                               Toast.makeText(RegistrationActivity.this,"Please Select A Blood Group !",Toast.LENGTH_SHORT).show();
+                           }
+                       } else if (doctor.isChecked()) {
                             registrationId = regId.getText().toString().trim();
-                            if (!registrationId.startsWith("DOC"))
-                            {
+                            if (!(registrationId.startsWith("DOC") && registrationId.length()==5)) {
                                 regId.setError("PLease Enter a Valid Registration Id");
                             } else {
-                                createAccount(name, email, password, phone, address, gender, specialisation, registrationId);
+                                if(!specialisation.equals(null)) {
+                                    createAccount(name, email, password, phone, address, gender, specialisation, registrationId);
+                                }
+                                else{
+                                    Toast.makeText(RegistrationActivity.this,"Please Select A Blood Group !",Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     }
@@ -117,10 +151,11 @@ public class RegistrationActivity extends AppCompatActivity {
 
     }
 
-    public void initSpinner(Spinner s, int arrayId) {
+    public Spinner initSpinner(Spinner s, int arrayId) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), arrayId, R.layout.spinner_style);
         adapter.setDropDownViewResource(R.layout.spinner_style);
         s.setAdapter(adapter);
+        return s;
     }
 
     public void isSelected(View v) {

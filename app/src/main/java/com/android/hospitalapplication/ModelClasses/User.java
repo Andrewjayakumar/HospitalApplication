@@ -5,18 +5,18 @@ package com.android.hospitalapplication.ModelClasses;
  */
 
 public class User {
-    private String name,gender,type,age,address,contact;
+    private String name,gender,type,age,address, phone;
 
     public User() {
     }
 
-    public User(String name, String age, String gender, String address, String type, String contact) {
+    public User(String name, String age, String gender, String address, String type, String phone) {
         this.name = name;
         this.gender = gender;
         this.type = type;
         this.age = age;
         this.address = address;
-        this.contact = contact;
+        this.phone = phone;
     }
 
     public String getName() {
@@ -59,11 +59,11 @@ public class User {
         this.address = address;
     }
 
-    public String getContact() {
-        return contact;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

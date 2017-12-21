@@ -14,7 +14,16 @@
         layout="@layout/app_bar_layout"
         android:id="@+id/pat_app_bar_layout"/>
 
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pat_app_bar_layout"
+        android:id="@+id/tv1"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:text="Choose Illness/Symptoms"
+        />
 
     <Spinner
         android:id="@+id/typeofproblem"
@@ -25,7 +34,7 @@
         android:spinnerMode="dialog"
         android:textAlignment="center"
         android:background="@drawable/rounded_corner"
-        android:layout_below="@+id/pat_app_bar_layout"/>
+        android:layout_below="@+id/tv1"/>
 
 
 
@@ -36,26 +45,53 @@
     android:orientation="vertical"
     android:weightSum="3"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:layout_below="@+id/typeofproblem"
+    android:layout_above="@+id/preferred_appointment_date">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pat_app_bar_layout"
+        android:id="@+id/tv2"
+        android:layout_margin="4dp"
+        android:padding="4dp"
+        android:textSize="16sp"
+        android:text="Choose Doctor"
+        />
     <Spinner
         android:id="@+id/doctor_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_weight="1"
-        android:padding="10dp"
+
         android:background="@drawable/rounded_corner"
         android:spinnerMode="dialog"
          />
 
+    <!--Number-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pat_app_bar_layout"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Contact No."
+            />
     <TextView
         android:clickable="false"
         android:contextClickable="false"
         android:id="@+id/doctorcontactnumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:maxLines="1"
         android:padding="20dp"
         android:singleLine="true"
@@ -64,23 +100,49 @@
         android:textAlignment="center"
         android:textAllCaps="true"
         />
+        <ImageButton
+            android:id="@+id/calldoctor"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@drawable/ic_call_black_24dp"
+            android:padding="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            />
+    </LinearLayout>
 
+    <!--Address-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/pat_app_bar_layout"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:text="Room No."
+            />
     <TextView
         android:clickable="false"
         android:contextClickable="false"
         android:id="@+id/doctoraddress"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:maxLines="1"
         android:padding="20dp"
         android:singleLine="true"
         android:text="Doctor Address"
-        android:textAlignment="center"
+        android:gravity="center_vertical"
         android:textStyle="italic"
         android:textAllCaps="true"
          />
+    </LinearLayout>
 </LinearLayout>
 
         <EditText
@@ -104,7 +166,10 @@
         android:id="@+id/preferred_appointment_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="10dp"
         android:hint="Select Date"
         android:maxLines="1"
         android:padding="20dp"
@@ -118,32 +183,16 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2"
         >
-
-        <Button
-            android:id="@+id/calldoctor"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:text="call doctor"
-            android:background="@color/md_green_400"
-            android:textColor="@color/md_grey_100"
-            android:padding="10dp"
-            />
-
         <Button
             android:id="@+id/Request_Appointment"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="10dp"
             android:text="Request Appointment"
             android:background="@color/md_blue_400"
             android:textColor="@color/md_grey_100"
             />
-
-
     </LinearLayout>
 
 </RelativeLayout>
