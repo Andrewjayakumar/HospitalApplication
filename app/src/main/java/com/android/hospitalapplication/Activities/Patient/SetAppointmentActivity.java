@@ -218,7 +218,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
                 String doctorname = doctor_list.getSelectedItem().toString();
                 String describe = describe_problem.getText().toString();
 
-                if (preferred_appointmentdate.equals("") || doctorcontactno.equals("") || doctorsaddress.equals("") || typesofproblem.equals("Type of problem") || doctorname.equals("Doctor name")) {
+                if (preferred_appointmentdate.equals("") || doctorcontactno.equals("") || doctorsaddress.equals("") || typesofproblem.equals("Type of problem") || doctorname.equals("Doctor name")||describe.equals("")) {
                     Toast.makeText(SetAppointmentActivity.this, "Enter All The fields", Toast.LENGTH_SHORT).show();
 
                 } else if (typesofproblem.equals("Type Of Problem")) {
