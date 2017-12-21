@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,20 +24,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.ModelClasses.Doctor;
-import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SetAppointmentActivity extends AppCompatActivity {
 
@@ -61,6 +54,8 @@ public class SetAppointmentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Set Appointment");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         doctor_list = findViewById(R.id.doctor_list);
         typeofproblem = findViewById(R.id.typeofproblem);
