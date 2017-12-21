@@ -83,7 +83,7 @@ public class UploadReportActivity extends AppCompatActivity {
         final Uri file = f;
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         long timestamp=System.currentTimeMillis();
-        StorageReference report = FirebaseStorage.getInstance().getReference().child("report").child(uid).child("timestamp");
+        StorageReference report = FirebaseStorage.getInstance().getReference().child("report").child(uid).child(String.valueOf(timestamp));
         report.putFile(file)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
