@@ -13,9 +13,10 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 public class UploadReportActivity extends AppCompatActivity {
-    Button capturePhoto, choosePhone;
+    ImageButton capturePhoto, choosePhone;
     private Uri fileUri;
     ImageView img;
     private StorageReference mStorageRef;
@@ -48,6 +49,12 @@ public class UploadReportActivity extends AppCompatActivity {
         choosePhone = findViewById(R.id.choosePhone);
         img = findViewById(R.id.img);
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Upload Reports");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         choosePhone.setOnClickListener(new View.OnClickListener() {
             @Override
