@@ -1,5 +1,8 @@
 package com.android.hospitalapplication.Activities.Patient;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -77,23 +80,39 @@ public class AppointmentStatusActivity extends AppCompatActivity {
                                         viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
-                                                Map remove = new HashMap();
-                                                remove.put("Requests/"+pat+"/"+u_id,null);
-                                                remove.put("Requests/"+u_id+"/"+pat,null);
-                                                dbrefRoot.updateChildren(remove, new DatabaseReference.CompletionListener() {
+                                                AlertDialog.Builder bd = new AlertDialog.Builder(AppointmentStatusActivity.this);
+                                                bd.setTitle("Cancel Request").setMessage("Are you sure you want to cancel the request ?");
+                                                bd.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                                     @Override
-                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                                        if(databaseError==null){
-                                                            Toast.makeText(getApplicationContext(),"Request Cancelled",Toast.LENGTH_LONG).show();
-                                                        }
-                                                        else
-                                                        {
-                                                            Toast.makeText(getApplicationContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        Map remove = new HashMap();
+                                                        remove.put("Requests/"+pat+"/"+u_id,null);
+                                                        remove.put("Requests/"+u_id+"/"+pat,null);
+                                                        dbrefRoot.updateChildren(remove, new DatabaseReference.CompletionListener() {
+                                                            @Override
+                                                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                                if(databaseError==null){
+                                                                    Toast.makeText(getApplicationContext(),"Request Cancelled",Toast.LENGTH_LONG).show();
+                                                                }
+                                                                else
+                                                                {
+                                                                    Toast.makeText(getApplicationContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
-                                                        }
+                                                                }
 
+                                                            }
+                                                        });
                                                     }
                                                 });
+                                                bd.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        dialogInterface.dismiss();
+                                                    }
+                                                });
+                                                AlertDialog ad = bd.create();
+                                                ad.show();
+
                                             }
                                         });
 
