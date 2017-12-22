@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.Fragments.AppointmentFragment;
+import com.android.hospitalapplication.Fragments.ProfileInfoFragment;
 import com.android.hospitalapplication.Fragments.RequestAppointmentFragment;
 import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +49,9 @@ public class DoctorActivity extends AppCompatActivity {
                        return true;
                    case R.id.action_new_requests :
                        ft.replace(R.id.content_doc,new RequestAppointmentFragment()).commit();
+                       return true;
+                   case R.id.action_profile :
+                       ft.replace(R.id.content_doc,new ProfileInfoFragment()).commit();
                        return true;
                        default:
                            Toast.makeText(DoctorActivity.this,"No Fragment Found",Toast.LENGTH_SHORT).show();
