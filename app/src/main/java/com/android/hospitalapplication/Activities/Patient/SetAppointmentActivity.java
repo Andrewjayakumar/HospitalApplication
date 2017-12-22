@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.android.hospitalapplication.ModelClasses.Doctor;
 import com.android.hospitalapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +33,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SetAppointmentActivity extends AppCompatActivity {
 
@@ -41,7 +44,9 @@ public class SetAppointmentActivity extends AppCompatActivity {
     ImageButton calldoctor;
     TextView doctorcontactnumber, doctoraddress;
     EditText describe_problem;
-    ArrayList<Doctor> docs;
+
+    private int requestStatus =-1;                     //-1=no request 0=sent 1=received(pending)
+
 
     @TargetApi(Build.VERSION_CODES.N)
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -72,6 +77,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
         final int day = cal.get(cal.DAY_OF_MONTH);
 
         typeofproblem = initSpinner(typeofproblem, R.array.problem);
+
         //date picker is set
         preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +95,10 @@ public class SetAppointmentActivity extends AppCompatActivity {
         typeofproblem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // String problem = typeofproblem.getSelectedItem().toString();
                 Log.d("Position", "" + position);
                 if (!(position == 0)) {
                     doctordetails.setVisibility(View.VISIBLE);
                 }
-
                 switch (position) {
                     case 1:
                     case 2:
@@ -136,8 +140,6 @@ public class SetAppointmentActivity extends AppCompatActivity {
                         break;
                     default:
                         Toast.makeText(SetAppointmentActivity.this, "No Doctor Found", Toast.LENGTH_SHORT);
-
-
                 }
             }
             @Override
@@ -218,7 +220,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
                 String doctorname = doctor_list.getSelectedItem().toString();
                 String describe = describe_problem.getText().toString();
 
-                if (preferred_appointmentdate.equals("") || doctorcontactno.equals("") || doctorsaddress.equals("") || typesofproblem.equals("Type of problem") || doctorname.equals("Doctor name")||describe.equals("")) {
+                if (preferred_appointmentdate.equals("") || doctorcontactno.equals("") || doctorsaddress.equals("") || typesofproblem.equals("Type of problem") || doctorname.equals("Doctor name")) {
                     Toast.makeText(SetAppointmentActivity.this, "Enter All The fields", Toast.LENGTH_SHORT).show();
 
                 } else if (typesofproblem.equals("Type Of Problem")) {
@@ -226,16 +228,12 @@ public class SetAppointmentActivity extends AppCompatActivity {
                 } else if (preferred_appointmentdate.equals("")) {
                     preferred_appointment_date.setError("Set Preferred Date");
                     preferred_appointment_date.setFocusable(true);
-                    startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
-                    finish();
-                    Toast.makeText(SetAppointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
                 } else if (doctorname.equals("Doctor Name")) {
                     doctor_list.setFocusable(true);
-                } else {
-                    startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
-                    finish();
-                    Toast.makeText(SetAppointmentActivity.this, "Request For The Appointment Is Successfully Sent ", Toast.LENGTH_SHORT).show();
-
+                } else if(requestStatus==-1){
+                        sendAppointmentRequest(doctorname,preferred_appointmentdate,describe);
+                        startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
+                        finish();
                 }
 
             }
@@ -289,4 +287,63 @@ public class SetAppointmentActivity extends AppCompatActivity {
         });
     }
 
+    public void sendAppointmentRequest(String name, final String preferredDate, final String description){
+
+        final String patient_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
+        final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
+
+        dbrefUser.orderByChild("name").equalTo(name).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String doctorId = dataSnapshot.getKey();
+                Log.d("Doctor id",doctorId);
+                Map requestDetails = new HashMap();
+
+                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_date",preferredDate);
+                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_date",preferredDate);
+                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_status","sent");
+                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_status","requested");
+                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_desc",description);
+                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_desc",description);
+                dbrefRoot.updateChildren(requestDetails, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                        if(databaseError==null){
+                            requestStatus=0;
+                            Toast.makeText(SetAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(SetAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                    }
+                });
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
 }

@@ -199,7 +199,7 @@
 
 
                 <ImageButton
-                    android:id="@+id/app"
+                    android:id="@+id/view_status"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_above="@+id/upload_report"
@@ -208,13 +208,12 @@
                     android:background="@drawable/maintaitenance"
                     android:backgroundTint="@color/md_orange_400"
                     android:layout_marginLeft="5dp"
-                    android:text="Profile Info"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Something Usefull"
+                    android:text="View Appointments Status"
                     android:layout_margin="1dp"
                     android:layout_gravity="bottom"
                     android:textAlignment="center"
