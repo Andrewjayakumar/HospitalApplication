@@ -1,25 +1,22 @@
 package com.android.hospitalapplication.Activities.Patient;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.hospitalapplication.ModelClasses.Doctor;
 import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -141,7 +138,7 @@ public class AppointmentStatusActivity extends AppCompatActivity {
     }
     public static class RequestsViewHolder extends RecyclerView.ViewHolder {
          View view;
-        Button cancel;
+        ImageButton cancel;
 
 
         public RequestsViewHolder(View itemView) {

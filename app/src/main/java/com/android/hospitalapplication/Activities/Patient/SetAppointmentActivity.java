@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,7 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.hospitalapplication.ModelClasses.Doctor;
 import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -39,11 +39,14 @@ import java.util.Map;
 public class SetAppointmentActivity extends AppCompatActivity {
 
     Spinner typeofproblem, doctor_list;
+    View bottomSheet;
     LinearLayout doctordetails;
     Button request_Appointment,  preferred_appointment_date;
-    ImageButton calldoctor;
+    ImageButton calldoctor,info;
     TextView doctorcontactnumber, doctoraddress;
     EditText describe_problem;
+    private BottomSheetBehavior mBottomSheetBehavior1;
+
 
     private int requestStatus =-1;                     //-1=no request 0=sent 1=received(pending)
 
@@ -55,6 +58,12 @@ public class SetAppointmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_appointment);
+        bottomSheet = findViewById(R.id.bottom_sheet1);
+        mBottomSheetBehavior1 = BottomSheetBehavior.from(bottomSheet);
+        mBottomSheetBehavior1.setHideable(true);
+        mBottomSheetBehavior1.setPeekHeight(400);
+        mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_HIDDEN);
+
         doctordetails = findViewById(R.id.doctordetails);
         Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
         setSupportActionBar(toolbar);
@@ -69,6 +78,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
         doctoraddress = findViewById(R.id.doctoraddress);
         doctorcontactnumber = findViewById(R.id.doctorcontactnumber);
         calldoctor = findViewById(R.id.calldoctor);
+        info=findViewById(R.id.more_info);
         describe_problem = findViewById(R.id.describe);
 
         Calendar cal = Calendar.getInstance();
@@ -205,6 +215,20 @@ public class SetAppointmentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+         info.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            }
+            else if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
+                mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_HIDDEN);
+            }
+            else if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+                mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_EXPANDED);
+            }
+        }
+    });
 
         //appointment button is set
         request_Appointment.setOnClickListener(new View.OnClickListener()
