@@ -20,13 +20,13 @@
             <FrameLayout
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
+                android:id="@+id/set_appointment"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:textAlignment="center">
 
 
-                <ImageButton
-                    android:id="@+id/set_appointment"
+                <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_above="@+id/upload_report"
@@ -48,6 +48,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/profile_info"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -55,8 +56,7 @@
                 android:textAlignment="center">
 
 
-                <ImageButton
-                    android:id="@+id/profile_info"
+                <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_above="@+id/upload_report"
@@ -86,6 +86,7 @@
             android:layout_marginTop="20dp"
             >
             <FrameLayout
+                android:id="@+id/upload_report"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -93,14 +94,13 @@
                 android:textAlignment="center">
 
 
-                <ImageButton
-                    android:id="@+id/upload_report"
+                <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_above="@+id/upload_report"
                     android:background="@drawable/upload"
                     android:text="Profile Info"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
                     />
 
@@ -117,6 +117,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/view_prescription"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -125,8 +126,7 @@
                 >
 
 
-                <ImageButton
-                    android:id="@+id/view_prescription"
+                <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_above="@+id/upload_report"
@@ -159,15 +159,16 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp">
             <FrameLayout
+                android:id="@+id/dietplan"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:paddingLeft="5dp"
                 android:textAlignment="center">
 
 
-                <ImageButton
-                    android:id="@+id/dietplan"
+                <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_above="@+id/upload_report"
@@ -191,6 +192,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/view_status"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
@@ -198,8 +200,7 @@
                 android:textAlignment="center">
 
 
-                <ImageButton
-                    android:id="@+id/view_status"
+                <ImageView
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:layout_above="@+id/upload_report"
