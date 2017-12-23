@@ -66,16 +66,35 @@
         android:textSize="16sp"
         android:text="Choose Doctor"
         />
-    <Spinner
-        android:id="@+id/doctor_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
+        android:orientation="horizontal">
 
-        android:background="@drawable/rounded_corner"
-        android:spinnerMode="dialog"
-         />
+        <Spinner
+            android:id="@+id/doctor_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="3"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:background="@drawable/rounded_corner"
+            android:spinnerMode="dialog" />
+
+        <ImageButton
+        android:id="@+id/more_info"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:src="@drawable/ic_info_outline_black_24dp"
+        android:padding="5dp"
+        android:foreground="?attr/selectableItemBackground"
+        />
+
+    </LinearLayout>
+
 
     <!--Number-->
     <LinearLayout
@@ -101,7 +120,7 @@
         android:layout_margin="10dp"
         android:layout_weight="2"
         android:maxLines="1"
-        android:padding="20dp"
+        android:padding="15dp"
         android:singleLine="true"
         android:text="Doctor Contact Number"
         android:textStyle="bold"
@@ -109,16 +128,7 @@
         android:gravity="start"
         android:textAllCaps="true"
         />
-        <ImageButton
-            android:id="@+id/more_info"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/ic_info_outline_black_24dp"
-            android:padding="10dp"
-            android:foreground="?attr/selectableItemBackground"
-            />
+
         <ImageButton
             android:id="@+id/calldoctor"
             android:layout_width="0dp"
@@ -126,7 +136,7 @@
             android:layout_weight="1"
             android:background="@null"
             android:src="@drawable/ic_call_black_24dp"
-            android:padding="10dp"
+            android:padding="5dp"
             android:foreground="?attr/selectableItemBackground"
             />
     </LinearLayout>
@@ -155,7 +165,7 @@
         android:layout_margin="10dp"
         android:layout_weight="3"
         android:maxLines="1"
-        android:padding="20dp"
+        android:padding="15dp"
         android:singleLine="true"
         android:text="Doctor Address"
         android:gravity="center_vertical"

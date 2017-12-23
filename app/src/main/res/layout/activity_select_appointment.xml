@@ -209,11 +209,12 @@
                     android:layout_weight="1"
                     android:background="#fff"
                     android:clickable="false"
+                    android:gravity="end"
                     android:elevation="4dp"
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
-                    android:text="Problem Desc:-"
+                    android:text="Description:-"
                     android:textStyle="italic" />
 
                 <TextView
@@ -253,7 +254,7 @@
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:paddingTop="20dp"
-                    android:text="Preferred Date :-"
+                    android:text="Preferred Date:-"
                     android:textStyle="italic" />
 
                 <TextView
