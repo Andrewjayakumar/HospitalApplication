@@ -1,22 +1,26 @@
 package com.android.hospitalapplication.Activities.Patient;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.hospitalapplication.ModelClasses.Doctor;
 import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -121,6 +125,45 @@ public class AppointmentStatusActivity extends AppCompatActivity {
                                     }
                                 });
                             }
+                            else if(reqStat.equals("declined")){
+                                final String reason = dataSnapshot.child(u_id).child("reason").getValue().toString();
+                                dbrefUsers.child(u_id).addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        String name = dataSnapshot.child("name").getValue().toString();
+                                        viewHolder.setName(name);
+                                        viewHolder.setDate(reason);
+                                        viewHolder.setStatus(reqStat);
+
+                                        viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Map remove = new HashMap();
+                                                remove.put("Requests/"+pat+"/"+u_id,null);
+                                                dbrefRoot.updateChildren(remove, new DatabaseReference.CompletionListener() {
+                                                    @Override
+                                                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                                        if(databaseError==null){
+                                                            Toast.makeText(getApplicationContext(),"Request Removed",Toast.LENGTH_LONG).show();
+                                                        }
+                                                        else
+                                                        {
+                                                            Toast.makeText(getApplicationContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                                        }
+
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+                            }
 
                         }
                     }
@@ -137,8 +180,8 @@ public class AppointmentStatusActivity extends AppCompatActivity {
 
     }
     public static class RequestsViewHolder extends RecyclerView.ViewHolder {
-         View view;
-        ImageButton cancel;
+       public  View view;
+        public ImageButton cancel;
 
 
         public RequestsViewHolder(View itemView) {

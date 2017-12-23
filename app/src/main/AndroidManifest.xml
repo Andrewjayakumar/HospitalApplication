@@ -41,19 +41,22 @@
         <activity
             android:name=".Activities.RegistrationActivity"
             android:parentActivityName=".Activities.LoginActivity" />
-        <activity android:name=".Activities.Patient.SetAppointmentActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-        <activity android:name=".Activities.Patient.UploadReportActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-        <activity android:name=".Activities.Patient.ViewPrescriptionActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-
-        <activity android:name=".Activities.Patient.DietPlanActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-
-        <activity android:name=".Activities.Patient.AppointmentStatusActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-
+        <activity
+            android:name=".Activities.Patient.SetAppointmentActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity
+            android:name=".Activities.Patient.UploadReportActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity
+            android:name=".Activities.Patient.ViewPrescriptionActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity
+            android:name=".Activities.Patient.DietPlanActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity
+            android:name=".Activities.Patient.AppointmentStatusActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity android:name=".Activities.Doctor.SelectAppointmentActivity"></activity>
     </application>
 
 </manifest>

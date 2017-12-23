@@ -31,6 +31,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -314,32 +315,47 @@ public class SetAppointmentActivity extends AppCompatActivity {
     public void sendAppointmentRequest(String name, final String preferredDate, final String description){
 
         final String patient_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
+        final DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
         final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
 
         dbrefUser.orderByChild("name").equalTo(name).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                String doctorId = dataSnapshot.getKey();
+                final String doctorId = dataSnapshot.getKey();
                 Log.d("Doctor id",doctorId);
-                Map requestDetails = new HashMap();
-
-                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_date",preferredDate);
-                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_date",preferredDate);
-                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_status","sent");
-                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_status","requested");
-                requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_desc",description);
-                requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_desc",description);
-                dbrefRoot.updateChildren(requestDetails, new DatabaseReference.CompletionListener() {
+                dbrefUser.child(doctorId).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        if(databaseError==null){
-                            requestStatus=0;
-                            Toast.makeText(SetAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(SetAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String type = dataSnapshot.child("type").getValue().toString();
+                        if(type.equals("Doctor")){
+                            Map requestDetails = new HashMap();
+
+                            requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_date",preferredDate);
+                            requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_date",preferredDate);
+                            requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_status","sent");
+                            requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_status","requested");
+                            requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_desc",description);
+                            requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_desc",description);
+                            dbrefRoot.updateChildren(requestDetails, new DatabaseReference.CompletionListener() {
+                                @Override
+                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                    if(databaseError==null){
+                                        requestStatus=0;
+                                        Toast.makeText(SetAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+                                    }
+                                    else{
+                                        Toast.makeText(SetAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
                 });
 
