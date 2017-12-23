@@ -37,7 +37,7 @@ public class PatientActivity extends AppCompatActivity {
         set_appointement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,SetAppointmentActivity.class));
+                startActivity(new Intent(PatientActivity.this,RequestAppointmentActivity.class));
             }
         });
         profile_info.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +88,7 @@ public class PatientActivity extends AppCompatActivity {
             case R.id.sign_out :
                 auth.signOut();
                 startActivity(new Intent(PatientActivity.this,LoginActivity.class));
-
+                finish();
         }
         return true;
     }

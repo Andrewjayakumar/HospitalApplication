@@ -1,7 +1,7 @@
 package com.android.hospitalapplication.Activities.Patient;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,17 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.hospitalapplication.ModelClasses.Doctor;
+import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,8 +31,10 @@ import java.util.Map;
 public class AppointmentStatusActivity extends AppCompatActivity {
 
     Toolbar mToolBar;
-    RecyclerView aptList;
-    DatabaseReference dbrefRequests = FirebaseDatabase.getInstance().getReference("Requests").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    RecyclerView reqList,aptList;
+    final String pat = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference dbrefRequests = FirebaseDatabase.getInstance().getReference("Requests").child(pat);
+    DatabaseReference dbrefApt = FirebaseDatabase.getInstance().getReference("Appointments").child(pat);
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
 
@@ -49,16 +49,19 @@ public class AppointmentStatusActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Appointment Status");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        aptList=findViewById(R.id.apt_list);
+        reqList =findViewById(R.id.apt_list);
+        aptList=findViewById(R.id.cnf_apt_list);
+        reqList.setLayoutManager(new LinearLayoutManager(this));
         aptList.setLayoutManager(new LinearLayoutManager(this));
 
+
         getStatus();
+        getConfirmedAppointments();
 
     }
 
     public  void getStatus(){
 
-        final String pat = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter= new FirebaseRecyclerAdapter<User,RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,dbrefRequests){
             @Override
             protected void populateViewHolder(final RequestsViewHolder viewHolder, User model, int position) {
@@ -176,7 +179,59 @@ public class AppointmentStatusActivity extends AppCompatActivity {
 
             }
         };
-        aptList.setAdapter(adapter);
+        reqList.setAdapter(adapter);
+
+    }
+
+
+    public void getConfirmedAppointments(){
+                FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter = new FirebaseRecyclerAdapter<User, RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,dbrefApt) {
+                    @Override
+                    protected void populateViewHolder(final RequestsViewHolder viewHolder, User model, int position) {
+                             final String doc_id = getRef(position).getKey();
+                             dbrefApt.addValueEventListener(new ValueEventListener() {
+                                 @Override
+                                 public void onDataChange(DataSnapshot dataSnapshot) {
+                                     if(dataSnapshot.hasChild(doc_id)){
+                                         final String aptDate = dataSnapshot.child(doc_id).child("apt_date").getValue().toString();
+                                         final String aptTime = dataSnapshot.child(doc_id).child("apt_time").getValue().toString();
+                                         dbrefUsers.child(doc_id).addValueEventListener(new ValueEventListener() {
+                                             @Override
+                                             public void onDataChange(DataSnapshot dataSnapshot) {
+                                                 String docName = dataSnapshot.child("name").getValue().toString();
+                                                 Log.d("name of doc :",docName);
+                                                 viewHolder.setName(docName);
+                                                 viewHolder.setDate(aptDate+" "+aptTime);
+                                                 viewHolder.setStatus("");
+                                                 viewHolder.cancel.setVisibility(View.INVISIBLE);
+                                                 viewHolder.view.setOnClickListener(new View.OnClickListener() {
+                                                     @Override
+                                                     public void onClick(View view) {
+                                                         Intent i = new Intent(AppointmentStatusActivity.this, AppointmentReceiptActivity.class);
+                                                         i.putExtra("doc_id",doc_id);
+                                                         i.putExtra("pat_id",pat);
+                                                         startActivity(i);
+                                                     }
+                                                 });
+                                             }
+
+                                             @Override
+                                             public void onCancelled(DatabaseError databaseError) {
+
+                                             }
+                                         });
+
+                                     }
+                                 }
+
+                                 @Override
+                                 public void onCancelled(DatabaseError databaseError) {
+
+                                 }
+                             });
+                    }
+                };
+                aptList.setAdapter(adapter);
 
     }
     public static class RequestsViewHolder extends RecyclerView.ViewHolder {

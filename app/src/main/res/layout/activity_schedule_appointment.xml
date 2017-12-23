@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.android.hospitalapplication.Activities.Doctor.ScheduleAppointmentActivity">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/apt_app_bar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Schedule Time"
+        android:id="@+id/tv1"
+        android:layout_below="@+id/apt_app_bar"
+        android:layout_margin="8dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
+        android:text="Choose Time"
+        android:id="@+id/set_time"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Schedule Date"
+        android:id="@+id/tv2"
+        android:layout_below="@+id/set_time"
+        android:layout_margin="8dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv2"
+        android:id="@+id/set_date"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Remarks"
+        android:id="@+id/remarks"
+        android:layout_below="@+id/set_date"
+        android:lines="3"
+        android:gravity="top"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Schedule Appointment"
+        android:id="@+id/schedule_apt"
+        android:textColor="@color/md_white_1000"
+        android:background="@color/md_blue_600"/>
+</RelativeLayout>

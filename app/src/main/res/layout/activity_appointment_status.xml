@@ -9,11 +9,32 @@
     <include layout="@layout/app_bar_layout"
         android:id="@+id/apt_app_bar"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Requests :"
+        android:layout_below="@+id/apt_app_bar"
+        android:id="@+id/tv1"
+        android:layout_margin="8dp"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/apt_app_bar"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv1"
         android:id="@+id/apt_list">
+    </android.support.v7.widget.RecyclerView>
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Approved Appointments :"
+        android:layout_below="@+id/apt_list"
+        android:layout_margin="8dp"
+        android:id="@+id/tv2"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cnf_apt_list"
+        android:layout_below="@+id/tv2">
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

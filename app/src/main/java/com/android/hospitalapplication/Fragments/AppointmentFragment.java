@@ -17,8 +17,17 @@ import android.widget.TextView;
 
 import com.android.hospitalapplication.Adapters.UserAdapter;
 import com.android.hospitalapplication.ModelClasses.Patient;
+import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -32,7 +41,9 @@ public class AppointmentFragment extends Fragment {
     ImageView rightNav,leftNav;
     TextView date;
     RecyclerView appointments;
-    ArrayList<Patient> patients = new ArrayList<Patient>();
+    String docId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    DatabaseReference dbrefApt = FirebaseDatabase.getInstance().getReference("Appointments").child(docId);
+    DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -100,10 +111,26 @@ public class AppointmentFragment extends Fragment {
 
         String currDate = getCurrentDate();
         date.setText(currDate);
-        patients.add(new Patient("Patient 1 ","25","F","test address","245684313","B+"));
-        UserAdapter adapter = new UserAdapter(patients,getContext());
-        Log.d("Arraylist Length :",""+adapter.getItemCount());
-        appointments.setAdapter(adapter);
+        getAppointments(currDate);
+        rightNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nextDate = increaseDate();
+                date.setText(nextDate);
+                getAppointments(nextDate);
+            }
+        });
+
+        leftNav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String prevDate = decreaseDate();
+                date.setText(prevDate);
+                getAppointments(prevDate);
+            }
+        });
+
+
 
     }
 
@@ -150,7 +177,111 @@ public class AppointmentFragment extends Fragment {
 
     public String getCurrentDate(){
         Date d = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd,MMM yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return df.format(d);
+    }
+
+    public String increaseDate(){
+        String currDate = date.getText().toString();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = df.parse(currDate);
+            c.setTime(date);
+            c.add(Calendar.DAY_OF_MONTH,1);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return df.format(c.getTime());
+    }
+
+    public String decreaseDate(){
+        String currDate = date.getText().toString();
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date date = df.parse(currDate);
+            c.setTime(date);
+            c.add(Calendar.DAY_OF_MONTH,-1);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return df.format(c.getTime());
+    }
+
+    public void getAppointments(final String date){
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Calendar c = Calendar.getInstance();
+
+            Date d = df.parse(date);
+            c.setTime(d);
+            final String newDate = df.format(c.getTime());
+
+            FirebaseRecyclerAdapter<User,PatientViewHolder> adapter = new FirebaseRecyclerAdapter<User, PatientViewHolder>(User.class,R.layout.user_appointment_list,PatientViewHolder.class,dbrefApt) {
+                @Override
+                protected void populateViewHolder(final PatientViewHolder viewHolder, User model, int position) {
+                    final String pat_id = getRef(position).getKey();
+
+                    dbrefApt.orderByChild("apt_date").equalTo(newDate).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.hasChild(pat_id)){
+                                final String time = dataSnapshot.child(pat_id).child("apt_time").getValue().toString();
+                                Log.d("pat id :",""+pat_id);
+                                dbrefUsers.child(pat_id).addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            String name = dataSnapshot.child("name").getValue().toString();
+                                            viewHolder.setName(name);
+                                            viewHolder.setTime(time);
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+                                }
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+            };
+            appointments.setAdapter(adapter);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static class PatientViewHolder extends RecyclerView.ViewHolder{
+
+        private View v;
+        private TextView pName,time;
+        public PatientViewHolder(View itemView) {
+            super(itemView);
+            v=itemView;
+        }
+
+        public void setName(String name){
+            pName=v.findViewById(R.id.name);
+            pName.setText(name);
+        }
+
+        public void setTime(String time){
+            pName=v.findViewById(R.id.appointment_time);
+            pName.setText(time);
+        }
     }
 }

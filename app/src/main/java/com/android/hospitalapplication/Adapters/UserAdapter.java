@@ -44,7 +44,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.PatientViewHol
             super(itemView);
             time=itemView.findViewById(R.id.appointment_time);
             name = itemView.findViewById(R.id.name);
-            desription=itemView.findViewById(R.id.problem_description);
 
         }
     }

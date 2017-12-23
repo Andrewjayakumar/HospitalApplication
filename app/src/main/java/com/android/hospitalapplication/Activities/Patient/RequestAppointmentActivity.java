@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SetAppointmentActivity extends AppCompatActivity {
+public class RequestAppointmentActivity extends AppCompatActivity {
 
     Spinner typeofproblem, doctor_list;
     View bottomSheet;
@@ -58,7 +58,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_appointment);
+        setContentView(R.layout.activity_request_appointment);
         bottomSheet = findViewById(R.id.bottom_sheet1);
         mBottomSheetBehavior1 = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior1.setHideable(true);
@@ -93,7 +93,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
         preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datepicker = new DatePickerDialog(SetAppointmentActivity.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datepicker = new DatePickerDialog(RequestAppointmentActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         preferred_appointment_date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
@@ -150,7 +150,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
                         fetchDoctor("Orthopedics");
                         break;
                     default:
-                        Toast.makeText(SetAppointmentActivity.this, "No Doctor Found", Toast.LENGTH_SHORT);
+                        Toast.makeText(RequestAppointmentActivity.this, "No Doctor Found", Toast.LENGTH_SHORT);
                 }
             }
             @Override
@@ -246,7 +246,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
                 String describe = describe_problem.getText().toString();
 
                 if (preferred_appointmentdate.equals("") || doctorcontactno.equals("") || doctorsaddress.equals("") || typesofproblem.equals("Type of problem") || doctorname.equals("Doctor name")) {
-                    Toast.makeText(SetAppointmentActivity.this, "Enter All The fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RequestAppointmentActivity.this, "Enter All The fields", Toast.LENGTH_SHORT).show();
 
                 } else if (typesofproblem.equals("Type Of Problem")) {
                     typeofproblem.setFocusable(true);
@@ -257,7 +257,7 @@ public class SetAppointmentActivity extends AppCompatActivity {
                     doctor_list.setFocusable(true);
                 } else if(requestStatus==-1){
                         sendAppointmentRequest(doctorname,preferred_appointmentdate,describe);
-                        startActivity(new Intent(SetAppointmentActivity.this, PatientActivity.class));
+                        startActivity(new Intent(RequestAppointmentActivity.this, PatientActivity.class));
                         finish();
                 }
 
@@ -341,10 +341,10 @@ public class SetAppointmentActivity extends AppCompatActivity {
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                     if(databaseError==null){
                                         requestStatus=0;
-                                        Toast.makeText(SetAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RequestAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
-                                        Toast.makeText(SetAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(RequestAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });

@@ -77,6 +77,7 @@ public class DoctorActivity extends AppCompatActivity {
            case R.id.sign_out :
                auth.signOut();
                startActivity(new Intent(this,LoginActivity.class));
+               finish();
        }
        return true;
     }
