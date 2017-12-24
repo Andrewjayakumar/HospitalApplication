@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
@@ -44,7 +43,7 @@ public class PatientActivity extends AppCompatActivity {
         profile_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(PatientActivity.this,Patient_profile.class));
+                startActivity(new Intent(PatientActivity.this,Patient_profile.class));
             }
         });
         upload_report.setOnClickListener(new View.OnClickListener() {
