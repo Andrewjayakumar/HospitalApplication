@@ -36,13 +36,14 @@
                   android:scaleType="centerCrop"
                   android:src="@drawable/avatar"
                   />
+
               <ImageView
                   android:id="@+id/image"
                   android:layout_width="match_parent"
                   android:layout_height="150dp"
-                  android:scaleType="centerCrop"
                   android:layout_marginTop="-70dp"
-                  android:background="@color/md_blue_grey_600"/>
+                  android:background="@color/md_grey_400"
+                  android:scaleType="centerCrop" />
 
 
               <LinearLayout
@@ -189,6 +190,7 @@
                       android:paddingTop="20dp"
                       android:paddingBottom="20dp"
                       android:paddingLeft="20dp"
+                      android:textSize="12sp"
                       android:text="Mobile Number:-"/>
 
                   <TextView

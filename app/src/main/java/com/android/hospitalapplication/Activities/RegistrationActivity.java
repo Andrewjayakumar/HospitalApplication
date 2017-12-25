@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -36,7 +37,8 @@ import java.util.regex.Pattern;
 public class RegistrationActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
-    private LinearLayout genDetails, docDetails, patDetails;
+    private LinearLayout genDetails, docDetails;
+    private RelativeLayout patDetails;
     private Spinner blood_group, speciality;
     private RadioGroup genderButtons;
     private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup, specialisation;

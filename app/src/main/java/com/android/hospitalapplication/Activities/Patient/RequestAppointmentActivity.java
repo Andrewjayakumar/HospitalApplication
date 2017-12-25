@@ -62,7 +62,6 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         bottomSheet = findViewById(R.id.bottom_sheet1);
         mBottomSheetBehavior1 = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior1.setHideable(true);
-        mBottomSheetBehavior1.setPeekHeight(400);
         mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_HIDDEN);
 
         doctordetails = findViewById(R.id.doctordetails);
