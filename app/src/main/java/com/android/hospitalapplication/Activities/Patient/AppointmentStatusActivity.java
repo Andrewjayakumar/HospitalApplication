@@ -28,7 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AppointmentStatusActivity extends AppCompatActivity {
+public class AppointmentStatusActivity extends AppCompatActivity
+{
 
     Toolbar mToolBar;
     RecyclerView reqList,aptList;
@@ -132,8 +133,8 @@ public class AppointmentStatusActivity extends AppCompatActivity {
                                 final String reason = dataSnapshot.child(u_id).child("reason").getValue().toString();
                                 dbrefUsers.child(u_id).addValueEventListener(new ValueEventListener() {
                                     @Override
-                                    public void onDataChange(DataSnapshot dataSnapshot) {
-                                        String name = dataSnapshot.child("name").getValue().toString();
+                                    public void onDataChange(DataSnapshot Snapshot) {
+                                        String name = Snapshot.child("name").getValue().toString();
                                         viewHolder.setName(name);
                                         viewHolder.setDate(reason);
                                         viewHolder.setStatus(reqStat);
@@ -195,10 +196,11 @@ public class AppointmentStatusActivity extends AppCompatActivity {
                                      if(dataSnapshot.hasChild(doc_id)){
                                          final String aptDate = dataSnapshot.child(doc_id).child("apt_date").getValue().toString();
                                          final String aptTime = dataSnapshot.child(doc_id).child("apt_time").getValue().toString();
-                                         dbrefUsers.child(doc_id).addValueEventListener(new ValueEventListener() {
+                                         dbrefUsers.child(doc_id).addValueEventListener(new ValueEventListener()
+                                         {
                                              @Override
-                                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                                 String docName = dataSnapshot.child("name").getValue().toString();
+                                             public void onDataChange(DataSnapshot Snapshot) {
+                                                 String docName = Snapshot.child("name").getValue().toString();
                                                  Log.d("name of doc :",docName);
                                                  viewHolder.setName(docName);
                                                  viewHolder.setDate(aptDate+" "+aptTime);
@@ -247,18 +249,18 @@ public class AppointmentStatusActivity extends AppCompatActivity {
 
 
         public void setName(String name) {
-            TextView docName = (TextView) view.findViewById(R.id.name);
+            TextView docName = view.findViewById(R.id.name);
             docName.setText(name);
         }
 
         public void setDate(String date) {
-            TextView prefDate = (TextView) view.findViewById(R.id.pref_date);
+            TextView prefDate = view.findViewById(R.id.pref_date);
             prefDate.setText(date);
 
         }
 
         public void setStatus(String status) {
-            TextView stat = (TextView) view.findViewById(R.id.req_status);
+            TextView stat = view.findViewById(R.id.req_status);
             stat.setText(status);
         }
 

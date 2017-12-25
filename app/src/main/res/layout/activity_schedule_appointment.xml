@@ -52,6 +52,5 @@
         android:layout_alignParentBottom="true"
         android:text="Schedule Appointment"
         android:id="@+id/schedule_apt"
-        android:textColor="@color/md_white_1000"
         android:background="@color/md_blue_600"/>
 </RelativeLayout>

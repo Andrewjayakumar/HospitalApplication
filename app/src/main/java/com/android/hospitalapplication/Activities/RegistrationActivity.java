@@ -173,7 +173,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 }
                 break;
             case R.id.patient:
-                if (checked) {
+                if (checked)
+                {
                     genDetails.setVisibility(View.VISIBLE);
                     patDetails.setVisibility(View.VISIBLE);
                     docDetails.setVisibility(View.GONE);

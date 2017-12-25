@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.hospitalapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +31,9 @@ public class ProfileInfoFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    View v;
+    TextView user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,mobile,specalize;
+    DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -65,9 +75,47 @@ public class ProfileInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_profile, container, false);
+        v = inflater.inflate(R.layout.fragment_view_profile, container, false);
+        user_profile_name=v.findViewById(R.id.user_profile_name);
+        user_profile_short_bio=v.findViewById(R.id.user_profile_short_bio);
+        exp_value=v.findViewById(R.id.exp_value);
+        room=v.findViewById(R.id.room);
+        registration_id_doc=v.findViewById(R.id.registration_id_doc);
+        mobile=v.findViewById(R.id.mobile);
+        specalize=v.findViewById(R.id.specalize);
+        String u_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        fetchData(u_id);
+        return v;
     }
+    public void fetchData(String u_id){
+        dbrefUsers.child(u_id).addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = dataSnapshot.child("name").getValue().toString();
+                String phone = dataSnapshot.child("phone").getValue().toString();
+               // String Qualify = dataSnapshot.child("Qualification").getValue().toString();
+              //  String expe = dataSnapshot.child("experience").getValue().toString();
+                String address = dataSnapshot.child("address").getValue().toString();
+                String regNo = dataSnapshot.child("doctor_reg_id").getValue().toString();
+                String speciality = dataSnapshot.child("speciality").getValue().toString();
 
+                user_profile_name.setText(name);
+               // user_profile_short_bio.setText(Qualify);
+                mobile.setText(phone);
+              //  exp_value.setText(expe);
+                room.setText(address);
+                registration_id_doc.setText(regNo);
+                specalize.setText(speciality);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

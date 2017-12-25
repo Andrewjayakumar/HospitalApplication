@@ -68,7 +68,7 @@
                       android:text="First Name:-"/>
 
                   <TextView
-                      android:id="@+id/Fname_value"
+                      android:id="@+id/FnameValue"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:layout_weight="2"
@@ -81,53 +81,10 @@
                       android:padding="20dp"
                       android:gravity="start"
                       android:textColor="@color/md_black_1000"
-                      android:text="Fname"/>
+                      android:text="Name"/>
 
 
               </LinearLayout>
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal">
-                  <TextView
-                      android:id="@+id/Lname"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="1"
-                      android:layout_marginTop="5dp"
-                      android:layout_marginBottom="5dp"
-                      android:layout_marginLeft="5dp"
-                      android:background="#fff"
-                      android:gravity="end"
-                      android:clickable="false"
-                      android:textStyle="italic"
-                      android:elevation="4dp"
-                      android:paddingTop="20dp"
-                      android:paddingBottom="20dp"
-                      android:paddingLeft="20dp"
-                      android:text="Last Name:-"/>
-
-                  <TextView
-                      android:id="@+id/Lname_value"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="2"
-                      android:layout_marginTop="5dp"
-                      android:layout_marginBottom="5dp"
-                      android:layout_marginRight="5dp"
-                      android:background="#fff"
-                      android:clickable="false"
-                      android:elevation="4dp"
-                      android:padding="20dp"
-                      android:gravity="start"
-                      android:textColor="@color/md_black_1000"
-                      android:text="Lname"/>
-
-
-              </LinearLayout>
-
-
 
               <LinearLayout
                   android:layout_width="match_parent"
@@ -152,7 +109,7 @@
                       android:text="Gender:-"/>
 
                   <TextView
-                      android:id="@+id/exp_value"
+                      android:id="@+id/genderValue"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:layout_weight="2"
@@ -165,7 +122,7 @@
                       android:padding="20dp"
                       android:gravity="start"
                       android:textColor="@color/md_black_1000"
-                      android:text="Male"/>
+                      android:text="Gender"/>
 
 
               </LinearLayout>
@@ -194,20 +151,20 @@
                       android:text="Blood Group:-"/>
 
                   <TextView
-                      android:id="@+id/bloodgrp_value"
+                      android:id="@+id/bloodgrpValue"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
-                      android:layout_weight="2"
-                      android:layout_marginTop="5dp"
                       android:layout_marginBottom="5dp"
                       android:layout_marginRight="5dp"
+                      android:layout_marginTop="5dp"
+                      android:layout_weight="2"
                       android:background="#fff"
                       android:clickable="false"
                       android:elevation="4dp"
-                      android:padding="20dp"
                       android:gravity="start"
-                      android:textColor="@color/md_black_1000"
-                      android:text="B+"/>
+                      android:padding="20dp"
+                      android:text="BG"
+                      android:textColor="@color/md_black_1000" />
 
 
               </LinearLayout>
@@ -217,7 +174,7 @@
                   android:layout_height="wrap_content"
                   android:orientation="horizontal">
                   <TextView
-                      android:id="@+id/dob"
+                      android:id="@+id/Mobile"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:layout_weight="1"
@@ -232,10 +189,10 @@
                       android:paddingTop="20dp"
                       android:paddingBottom="20dp"
                       android:paddingLeft="20dp"
-                      android:text="Date Of Birth:-"/>
+                      android:text="Mobile Number:-"/>
 
                   <TextView
-                      android:id="@+id/dob_value"
+                      android:id="@+id/MobileValue"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:layout_weight="2"
@@ -248,7 +205,7 @@
                       android:padding="20dp"
                       android:gravity="start"
                       android:textColor="@color/md_black_1000"
-                      android:text="DD/MM/YYYY"/>
+                      android:text="Mobile Number"/>
 
 
               </LinearLayout>
@@ -276,7 +233,7 @@
                       android:text="Address:-"/>
 
                   <TextView
-                      android:id="@+id/Address_value"
+                      android:id="@+id/AddressValue"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:layout_weight="2"
@@ -289,133 +246,11 @@
                       android:padding="20dp"
                       android:gravity="start"
                       android:textColor="@color/md_black_1000"
-                      android:text="A-483,malviya nagar"/>
+                      android:text="Address"/>
 
 
               </LinearLayout>
-
-
-              <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="10dp"
-                android:layout_marginTop="20dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="City"
-                        android:contextClickable="false"
-                        android:clickable="false"
-                        android:textIsSelectable="false"/>
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:text="Udaipur"
-                        android:elevation="4dp"
-                        android:background="#fff"
-                        android:maxLines="1"
-                        android:clickable="false"
-                        android:contextClickable="false"
-                        android:textIsSelectable="false"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="State"
-                        android:clickable="false"
-                        android:contextClickable="false"
-                        android:textIsSelectable="false"/>
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:text="Rajasthan"
-                        android:elevation="4dp"
-                        android:background="#fff"
-                        android:maxLines="1"
-                        android:clickable="false"
-                        android:contextClickable="false"
-                        android:textIsSelectable="false"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="4dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Country"
-                        android:contextClickable="false"
-                        android:clickable="false"
-                        android:textIsSelectable="false"/>
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:text="India"
-                        android:contextClickable="false"
-                        android:elevation="4dp"
-                        android:background="#fff"
-                        android:maxLines="1"
-                        android:clickable="false"
-                        android:textIsSelectable="false"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pincode"
-                        android:contextClickable="false"
-                        android:clickable="false"
-                        android:textIsSelectable="false"/>
-                    <TextView
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:text="302022"
-                        android:background="#fff"
-                        android:maxLines="1"
-                        android:elevation="4dp"
-                        android:contextClickable="false"
-                        android:clickable="false"
-                        android:textIsSelectable="false"
-                        android:layout_marginTop="8dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-
+          </LinearLayout>
     </ScrollView>
 
 </RelativeLayout>
