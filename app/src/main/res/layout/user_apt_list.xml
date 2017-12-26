@@ -7,15 +7,29 @@
     android:background="@drawable/rectangle"
     android:paddingBottom="10dp">
 
+    <ImageView
+        android:id="@+id/experience"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:background="@drawable/doctor"
+        android:padding="5dp" />
+
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="28dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
+        android:layout_alignTop="@+id/experience"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/experience"
+        android:layout_toRightOf="@+id/experience"
         android:gravity="center_vertical"
         android:text="Doctor Name"
         android:textColor="@color/md_black_1000"
@@ -23,14 +37,30 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/datei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/pref_date"
+        android:layout_alignBottom="@+id/pref_date"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name"
+        android:layout_marginLeft="2dp"
+        android:gravity="center_vertical"
+        android:text="Date &amp; Time:-"
+        android:textSize="12sp" />
+
+    <TextView
         android:id="@+id/pref_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="8dp"
+        android:layout_alignBaseline="@+id/req_status"
+        android:layout_alignBottom="@+id/req_status"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/datei"
+        android:layout_toRightOf="@+id/datei"
         android:gravity="center_vertical"
+        android:textStyle="bold"
         android:text="date"
         android:textColor="@color/md_black_1000" />
 
@@ -38,14 +68,15 @@
         android:id="@+id/req_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
-        android:layout_marginTop="8dp"
+        android:layout_alignTop="@+id/cancel_req"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginTop="6dp"
         android:layout_toLeftOf="@+id/cancel_req"
         android:layout_toStartOf="@+id/cancel_req"
         android:gravity="center_vertical"
         android:text="Status"
+        android:textColor="@color/md_black_1000"
         android:textStyle="bold" />
 
     <ImageButton

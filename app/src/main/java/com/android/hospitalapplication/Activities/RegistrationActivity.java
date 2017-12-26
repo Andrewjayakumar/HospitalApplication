@@ -1,11 +1,13 @@
 package com.android.hospitalapplication.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -43,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private RadioGroup genderButtons;
     private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup, specialisation;
     private TextInputEditText e_mail, name_user, pass, confirmPass, contact, add, regId;
-    private Button register;
+    private Button register,preferred_appointment_date;
     private RadioButton doctor, patient;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private DatabaseReference dbref;
@@ -68,6 +71,7 @@ public class RegistrationActivity extends AppCompatActivity {
         genderButtons = findViewById(R.id.gender_buttons);
         doctor = findViewById(R.id.doctor);
         patient = findViewById(R.id.patient);
+        preferred_appointment_date = findViewById(R.id.preferred_appointment_date);
 
         e_mail = findViewById(R.id.email_register);
         name_user = findViewById(R.id.name);
@@ -76,6 +80,11 @@ public class RegistrationActivity extends AppCompatActivity {
         contact = findViewById(R.id.phone);
         add = findViewById(R.id.address);
         regId = findViewById(R.id.registration_no);
+
+        Calendar cal = Calendar.getInstance();
+        final int year = cal.get(cal.YEAR);
+        final int month = cal.get(cal.MONTH);
+        final int day = cal.get(cal.DAY_OF_MONTH);
 
         register = findViewById(R.id.register_button);
 
@@ -105,6 +114,19 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
+            }
+        });
+
+        preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datepicker = new DatePickerDialog(RegistrationActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        preferred_appointment_date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+                }, year, month, day);
+                datepicker.show();
             }
         });
 
