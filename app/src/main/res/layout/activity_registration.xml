@@ -54,21 +54,20 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/buttons"
-        android:layout_above="@id/register_button">
+        android:layout_above="@id/register_button"
+        android:layout_below="@+id/buttons">
 
         <LinearLayout
             android:id="@+id/gen_details"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/buttons"
-            android:padding="10dp"
-            android:orientation="vertical"
-            android:visibility="gone"
             android:background="@drawable/rounded_corner_button"
-            >
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:visibility="gone">
 
-           <!--Name-->
+            <!--Name-->
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -143,34 +142,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
                 <TextView
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Gender :"
                     android:textColor="@color/md_black_1000"
-                    android:text="Gender :"/>
+                    android:textSize="16sp" />
+
                 <RadioGroup
+                    android:id="@+id/gender_buttons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/gender_buttons">
+                    android:orientation="horizontal">
+
                     <RadioButton
                         android:id="@+id/gender_male"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Male"
-                        android:onClick="isSelected"/>
+                        android:onClick="isSelected"
+                        android:text="Male" />
+
                     <RadioButton
                         android:id="@+id/gender_female"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female"
-                        android:onClick="isSelected"/>
+                        android:onClick="isSelected"
+                        android:text="Female" />
                 </RadioGroup>
             </LinearLayout>
 
@@ -180,8 +183,8 @@
                 android:id="@+id/patient_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:visibility="gone"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="5dp"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/bg1"
@@ -197,16 +200,15 @@
                     android:textSize="16sp" />
 
                 <Spinner
-                    android:layout_toRightOf="@+id/bg1"
                     android:id="@+id/blood_group"
                     android:layout_width="wrap_content"
-                    android:background="@color/md_red_400"
                     android:layout_height="match_parent"
-                    android:spinnerMode="dropdown"
-                    android:textAlignment="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/bg1"
+                    android:background="@color/md_red_400"
                     android:gravity="center"
-                    android:layout_marginLeft="20dp">
-                </Spinner>
+                    android:spinnerMode="dropdown"
+                    android:textAlignment="center"></Spinner>
 
                 <TextView
                     android:id="@+id/dob"
@@ -216,35 +218,35 @@
                     android:layout_alignBottom="@+id/preferred_appointment_date"
                     android:layout_alignEnd="@+id/bg1"
                     android:layout_alignRight="@+id/bg1"
+                    android:layout_below="@+id/bg1"
                     android:layout_gravity="center_vertical"
-                    android:text="Date Of Birth:"
                     android:layout_marginTop="10dp"
+                    android:text="Date Of Birth:"
                     android:textColor="@color/md_black_1000"
                     android:textSize="16sp" />
 
                 <Button
-                    android:id="@+id/preferred_appointment_date"
+                    android:id="@+id/dob1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bg1"
+                    android:layout_marginBottom="10dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_below="@+id/bg1"
-                    android:layout_marginBottom="10dp"
-                    android:hint="Select Date"
                     android:layout_toRightOf="@+id/dob"
-                    android:maxLines="1"
-                    android:padding="10dp"
-                    android:singleLine="true"
-                    android:textColorHint="@color/md_white_1000"
                     android:background="@color/md_red_400"
-                    android:textColor="@color/md_white_1000"/>
+                    android:hint="Select Date"
+                    android:padding="10dp"
+                    android:textColor="@color/md_white_1000"
+                    android:textColorHint="@color/md_white_1000" />
 
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/preferred_appointment_date">
+                    android:layout_below="@+id/dob1">
+
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/address"
                         android:layout_width="match_parent"
@@ -253,7 +255,6 @@
                         android:inputType="textCapWords"
                         android:textColorHint="@color/md_black_1000" />
                 </android.support.design.widget.TextInputLayout>
-
 
 
             </RelativeLayout>
@@ -272,32 +273,33 @@
                     android:orientation="horizontal">
 
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_gravity="center_vertical"
-                    android:text="Speciality :"
-                    android:textColor="@color/md_black_1000"
-                    android:textSize="16sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="center_vertical"
+                        android:text="Speciality :"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="16sp" />
 
                     <Spinner
                         android:id="@+id/doctor_speciality"
                         android:layout_width="wrap_content"
-                        android:background="@color/md_red_400"
                         android:layout_height="wrap_content"
-                        android:textAlignment="center"
+                        android:layout_marginLeft="20dp"
+                        android:background="@color/md_red_400"
                         android:gravity="center"
                         android:spinnerMode="dialog"
-                        android:layout_marginLeft="20dp"/>
+                        android:textAlignment="center" />
 
                 </LinearLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/registration_no"
                         android:layout_width="match_parent"
@@ -310,6 +312,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/qualification"
                         android:layout_width="match_parent"
@@ -322,6 +325,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/experience"
                         android:layout_width="match_parent"
@@ -334,6 +338,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <android.support.design.widget.TextInputEditText
                         android:id="@+id/room"
                         android:layout_width="match_parent"
@@ -350,6 +355,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
@@ -368,11 +374,11 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/register_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/md_orange_400"
         android:text="Register"
-        android:textColor="@color/md_white_1000"
-        android:id="@+id/register_button"/>
+        android:textColor="@color/md_white_1000" />
 </RelativeLayout>

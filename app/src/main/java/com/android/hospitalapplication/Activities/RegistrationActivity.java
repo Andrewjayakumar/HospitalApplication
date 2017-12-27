@@ -1,11 +1,15 @@
 package com.android.hospitalapplication.Activities;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -41,13 +46,14 @@ public class RegistrationActivity extends AppCompatActivity {
     private RelativeLayout patDetails;
     private Spinner blood_group, speciality;
     private RadioGroup genderButtons;
-    private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup, specialisation,qualfiy,exper,room;
+    private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup,dob2, specialisation,qualfiy,exper,room;
     private TextInputEditText e_mail, name_user, pass, confirmPass, contact, add, regId,qualification,experience,roomNo;
-    private Button register;
+    private Button register,dob;
     private RadioButton doctor, patient;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private DatabaseReference dbref;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,12 +83,33 @@ public class RegistrationActivity extends AppCompatActivity {
         add = findViewById(R.id.address);
         regId = findViewById(R.id.registration_no);
         roomNo=findViewById(R.id.room);
+        dob=findViewById(R.id.dob1);
         qualification=findViewById(R.id.qualification);
         experience=findViewById(R.id.experience);
         register = findViewById(R.id.register_button);
 
         blood_group=initSpinner(blood_group, R.array.blood_groups);
         speciality=initSpinner(speciality, R.array.speciality);
+
+        Calendar cal = Calendar.getInstance();
+        final int year = cal.get(cal.YEAR);
+        final int month = cal.get(cal.MONTH);
+        final int day = cal.get(cal.DAY_OF_MONTH);
+
+        //date picker is set
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datepicker = new DatePickerDialog(RegistrationActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        dob.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    }
+                }, year, month, day);
+                datepicker.show();
+            }
+        });
+
 
         blood_group.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -128,10 +155,11 @@ public class RegistrationActivity extends AppCompatActivity {
                        if (genderButtons.getCheckedRadioButtonId() < 0) {
                             Toast.makeText(RegistrationActivity.this, "Please Select A Gender", Toast.LENGTH_SHORT).show();
                         } else if (patient.isChecked()) {
+                           dob2 = dob.getText().toString().trim();
                            address = add.getText().toString().trim();
 
-                           if(!bloodGroup.equals(null)) {
-                               createAccount(name, email, password, phone, address, gender, bloodGroup);
+                           if(!bloodGroup.equals(null)&& !dob.equals(null)) {
+                               createAccount(name, email, password, phone, address,dob2, gender, bloodGroup);
                            }
                            else{
                                Toast.makeText(RegistrationActivity.this,"Please Select A Blood Group !",Toast.LENGTH_SHORT).show();
@@ -141,10 +169,10 @@ public class RegistrationActivity extends AppCompatActivity {
                             qualfiy=qualification.getText().toString().trim();
                             exper=experience.getText().toString().trim();
                             room=roomNo.getText().toString().trim();
-                            if (!(registrationId.startsWith("DOC") && registrationId.length()==5)) {
+                            if (!(registrationId.startsWith("DOC") && registrationId.length()==6)) {
                                 regId.setError("PLease Enter a Valid Registration Id");
                             } else {
-                                if(!specialisation.equals(null)) {
+                                if(!specialisation.equals(null)&&!qualfiy.equals(null)&&!room.equals(null)) {
                                     createAccount(name, email, password, phone,gender, specialisation, registrationId,qualfiy,exper,room);
                                 }
                                 else{
@@ -212,7 +240,7 @@ public class RegistrationActivity extends AppCompatActivity {
         }
     }
 
-    public void createAccount(final String name, String email, String password, final String phone, final String address, final String gender, final String bg) {
+    public void createAccount(final String name, String email, String password, final String phone, final String address ,final String dob2, final String gender, final String bg) {
 
         final ProgressDialog loading = ProgressDialog.show(RegistrationActivity.this, "Creating Account", "Please Wait...", false, false);
 
@@ -230,6 +258,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     userDetails.put("name", name);
                     userDetails.put("phone", phone);
                     userDetails.put("address", address);
+                    userDetails.put("Date_of_Birth",dob2);
                     userDetails.put("gender", gender);
                     userDetails.put("blood_group", bg);
                     userDetails.put("type", "Patient");
