@@ -78,7 +78,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                 dbrefUsers.child(u_id).addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-                                        String name = dataSnapshot.child("NAME").getValue().toString();
+                                        String name = dataSnapshot.child("name").getValue().toString();
                                         viewHolder.setName(name);
                                         viewHolder.setDate(date);
                                         viewHolder.setStatus(reqStat);
