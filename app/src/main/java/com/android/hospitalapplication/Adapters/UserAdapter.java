@@ -11,7 +11,6 @@ import com.android.hospitalapplication.ModelClasses.Patient;
 import com.android.hospitalapplication.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Gaurav on 20-12-2017.
@@ -53,7 +52,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.PatientViewHol
               Patient patient = patients.get(position)  ;
               holder.name.setText(patient.getName());
               holder.desription.setText(patient.getBloodGroup());
-              holder.time.setText(patient.getAge());
+            //  holder.time.setText(patient.getAge());
     }
 
 

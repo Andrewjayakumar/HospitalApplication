@@ -14,7 +14,7 @@ public class User {
         this.name = name;
         this.gender = gender;
         this.type = type;
-        this.age = age;
+        //this.age = age;
         this.address = address;
         this.phone = phone;
     }
@@ -43,7 +43,7 @@ public class User {
         this.type = type;
     }
 
-    public String getAge() {
+   /* public String getAge() {
         return age;
     }
 
@@ -51,7 +51,7 @@ public class User {
         this.age = age;
     }
 
-    public String getAddress() {
+    */public String getAddress() {
         return address;
     }
 

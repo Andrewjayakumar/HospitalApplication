@@ -94,17 +94,17 @@ public class ProfileInfoFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
-               // String Qualify = dataSnapshot.child("Qualification").getValue().toString();
-              //  String expe = dataSnapshot.child("experience").getValue().toString();
-                String address = dataSnapshot.child("address").getValue().toString();
+                String Qualify = dataSnapshot.child("Qualification").getValue().toString();
+                String expe = dataSnapshot.child("experience").getValue().toString();
+                String room1 = dataSnapshot.child("room").getValue().toString();
                 String regNo = dataSnapshot.child("doctor_reg_id").getValue().toString();
                 String speciality = dataSnapshot.child("speciality").getValue().toString();
 
                 user_profile_name.setText(name);
-               // user_profile_short_bio.setText(Qualify);
+                user_profile_short_bio.setText(Qualify);
                 mobile.setText(phone);
-              //  exp_value.setText(expe);
-                room.setText(address);
+                exp_value.setText(expe);
+                room.setText(room1);
                 registration_id_doc.setText(regNo);
                 specalize.setText(speciality);
 

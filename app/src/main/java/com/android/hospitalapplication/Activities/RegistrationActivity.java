@@ -1,13 +1,11 @@
 package com.android.hospitalapplication.Activities;
 
-import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -44,9 +41,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private RelativeLayout patDetails;
     private Spinner blood_group, speciality;
     private RadioGroup genderButtons;
-    private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup, specialisation;
-    private TextInputEditText e_mail, name_user, pass, confirmPass, contact, add, regId;
-    private Button register,preferred_appointment_date;
+    private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup, specialisation,qualfiy,exper,room;
+    private TextInputEditText e_mail, name_user, pass, confirmPass, contact, add, regId,qualification,experience,roomNo;
+    private Button register;
     private RadioButton doctor, patient;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private DatabaseReference dbref;
@@ -71,7 +68,6 @@ public class RegistrationActivity extends AppCompatActivity {
         genderButtons = findViewById(R.id.gender_buttons);
         doctor = findViewById(R.id.doctor);
         patient = findViewById(R.id.patient);
-        preferred_appointment_date = findViewById(R.id.preferred_appointment_date);
 
         e_mail = findViewById(R.id.email_register);
         name_user = findViewById(R.id.name);
@@ -80,12 +76,9 @@ public class RegistrationActivity extends AppCompatActivity {
         contact = findViewById(R.id.phone);
         add = findViewById(R.id.address);
         regId = findViewById(R.id.registration_no);
-
-        Calendar cal = Calendar.getInstance();
-        final int year = cal.get(cal.YEAR);
-        final int month = cal.get(cal.MONTH);
-        final int day = cal.get(cal.DAY_OF_MONTH);
-
+        roomNo=findViewById(R.id.room);
+        qualification=findViewById(R.id.qualification);
+        experience=findViewById(R.id.experience);
         register = findViewById(R.id.register_button);
 
         blood_group=initSpinner(blood_group, R.array.blood_groups);
@@ -117,19 +110,6 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        preferred_appointment_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datepicker = new DatePickerDialog(RegistrationActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        preferred_appointment_date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
-                    }
-                }, year, month, day);
-                datepicker.show();
-            }
-        });
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,13 +121,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     name = name_user.getText().toString().trim();
                     password = pass.getText().toString().trim();
                     phone = contact.getText().toString().trim();
-                    address = add.getText().toString().trim();
                     confirmPassword = confirmPass.getText().toString().trim();
 
-                    if (validateDetails(name, email, password, confirmPassword, address, phone)) {
+
+                    if (validateDetails(name, email, password, confirmPassword, phone)) {
                        if (genderButtons.getCheckedRadioButtonId() < 0) {
                             Toast.makeText(RegistrationActivity.this, "Please Select A Gender", Toast.LENGTH_SHORT).show();
                         } else if (patient.isChecked()) {
+                           address = add.getText().toString().trim();
+
                            if(!bloodGroup.equals(null)) {
                                createAccount(name, email, password, phone, address, gender, bloodGroup);
                            }
@@ -156,11 +138,14 @@ public class RegistrationActivity extends AppCompatActivity {
                            }
                        } else if (doctor.isChecked()) {
                             registrationId = regId.getText().toString().trim();
+                            qualfiy=qualification.getText().toString().trim();
+                            exper=experience.getText().toString().trim();
+                            room=roomNo.getText().toString().trim();
                             if (!(registrationId.startsWith("DOC") && registrationId.length()==5)) {
                                 regId.setError("PLease Enter a Valid Registration Id");
                             } else {
                                 if(!specialisation.equals(null)) {
-                                    createAccount(name, email, password, phone, address, gender, specialisation, registrationId);
+                                    createAccount(name, email, password, phone,gender, specialisation, registrationId,qualfiy,exper,room);
                                 }
                                 else{
                                     Toast.makeText(RegistrationActivity.this,"Please Select A Blood Group !",Toast.LENGTH_SHORT).show();
@@ -265,7 +250,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    public void createAccount(final String name, String email, String password, final String phone, final String address, final String gender, final String speciality, final String regId) {
+    public void createAccount(final String name, String email, String password, final String phone, final String gender, final String speciality, final String regId,final String qualify,final String exper,final String room) {
 
         final ProgressDialog loading = ProgressDialog.show(RegistrationActivity.this, "Creating Account", "Please Wait...", false, false);
 
@@ -282,11 +267,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     HashMap<String, String> userDetails = new HashMap<String, String>();
                     userDetails.put("name", name);
                     userDetails.put("phone", phone);
-                    userDetails.put("address", address);
                     userDetails.put("gender", gender);
                     userDetails.put("speciality", speciality);
                     userDetails.put("doctor_reg_id", regId);
                     userDetails.put("type", "Doctor");
+                    userDetails.put("Qualification",qualify);
+                    userDetails.put("Experience",exper);
+                    userDetails.put("Room_no",room);
                     dbref.setValue(userDetails).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -319,7 +306,7 @@ public class RegistrationActivity extends AppCompatActivity {
         else return false;
     }
 
-    public boolean validateDetails(String name, String email, final String password, String confirmPassword, String address, String phone) {
+    public boolean validateDetails(String name, String email, final String password, String confirmPassword, String phone) {
 
         boolean check = true;
 
@@ -336,10 +323,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 contact.setError("Invalid Contact No.(length should be 10)");
                 check = false;
             }
-            if (address.isEmpty()) {
-                add.setError("Address Cannot Be Empty");
-                check = false;
-            }
+
             if (!passIsValid(password)) {
                 Log.d("password", password);
                 pass.setError("Password should have minimum 4 characters");
