@@ -44,7 +44,8 @@ public class RequestAppointmentActivity extends AppCompatActivity {
     LinearLayout doctordetails;
     Button request_Appointment,  preferred_appointment_date;
     ImageButton calldoctor,info;
-    TextView doctorcontactnumber, doctoraddress;
+    String docName;
+    TextView doctorcontactnumber, doctoraddress,bsName,bsQualify,bsExperience,bsSpecialize;
     EditText describe_problem;
     private BottomSheetBehavior mBottomSheetBehavior1;
 
@@ -80,6 +81,10 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         calldoctor = findViewById(R.id.calldoctor);
         info=findViewById(R.id.more_info);
         describe_problem = findViewById(R.id.describe);
+        bsName=findViewById(R.id.bsName);
+        bsQualify=findViewById(R.id.bsQualify);
+        bsExperience=findViewById(R.id.bsExperience);
+        bsSpecialize=findViewById(R.id.bsSpecialize);
 
         final Calendar cal = Calendar.getInstance();
         final int year = cal.get(cal.YEAR);
@@ -224,12 +229,31 @@ public class RequestAppointmentActivity extends AppCompatActivity {
             if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                 mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
-            else if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_COLLAPSED) {
-                mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_HIDDEN);
-            }
             else if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_HIDDEN) {
                 mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
+            final DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
+
+            dbrefUsers.orderByChild("name").equalTo(docName).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String bName=dataSnapshot.child("name").getValue().toString();
+                    String bQualify=dataSnapshot.child("qualification").getValue().toString();
+                    String bSpeciality=dataSnapshot.child("speciality").getValue().toString();
+
+                    bsName.setText(bName);
+                    bsQualify.setText(bQualify);
+                    bsSpecialize.setText(bSpeciality);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         }
     });
 

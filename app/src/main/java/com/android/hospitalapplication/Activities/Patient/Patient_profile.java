@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by hp on 24-12-2017.
  */
 public class Patient_profile extends AppCompatActivity {
-TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue;
+TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,profileDob;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
 
     @Override
@@ -35,6 +35,7 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue;
         bloodgrpValue=findViewById(R.id.bloodgrpValue);
         AddressValue=findViewById(R.id.AddressValue);
         phoneValue=findViewById(R.id.MobileValue);
+        profileDob=findViewById(R.id.profileDob);
            String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
           fetchData(uid);
 
@@ -52,9 +53,8 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue;
                 String gender=dataSnapshot.child("gender").getValue().toString();
                 String bloodgrp=dataSnapshot.child("blood_group").getValue().toString();
                 String phone=dataSnapshot.child("phone").getValue().toString();
-               // String dob=dataSnapshot.child("dob").getValue().toString();
+                String dob=dataSnapshot.child("Date_of_Birth").getValue().toString();
                String Address=dataSnapshot.child("address").getValue().toString();
-
 
                 if(gender.equals("M"))
                 {
@@ -67,7 +67,7 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue;
                 }
 
                 FnameValue.setText(fname);
-
+                profileDob.setText(dob);
                 phoneValue.setText(phone);
                 bloodgrpValue.setText(bloodgrp);
                 AddressValue.setText(Address);
