@@ -70,6 +70,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                         setDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
                 }, year,month,day);
+                datepicker.getDatePicker().setMinDate(Calendar.getInstance().getTime().getTime());
                 datepicker.show();
             }
 
@@ -95,6 +96,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                         setTime.setText(""+(i%12)+":"+i1+AM_PM);
                     }
                 },hourOfDay,minutes,false);
+
                 tp.show();
             }
         });

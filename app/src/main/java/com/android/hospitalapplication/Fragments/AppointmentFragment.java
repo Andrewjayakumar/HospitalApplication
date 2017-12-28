@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.android.hospitalapplication.Adapters.UserAdapter;
 import com.android.hospitalapplication.ModelClasses.Patient;
 import com.android.hospitalapplication.ModelClasses.User;
+import com.android.hospitalapplication.OnSwipeListener;
 import com.android.hospitalapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -154,7 +155,21 @@ public class AppointmentFragment extends Fragment {
             }
 
         });
+        appointments.setOnTouchListener(new OnSwipeListener(getActivity()){
+            @Override
+            public void onSwipeRight() {
+                String prevDate = decreaseDate();
+                date.setText(prevDate);
+                getAppointments(prevDate);
+            }
 
+            @Override
+            public void onSwipeLeft() {
+                String nextDate = increaseDate();
+                date.setText(nextDate);
+                getAppointments(nextDate);
+            }
+        });
 
     }
 

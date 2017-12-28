@@ -81,7 +81,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         info=findViewById(R.id.more_info);
         describe_problem = findViewById(R.id.describe);
 
-        Calendar cal = Calendar.getInstance();
+        final Calendar cal = Calendar.getInstance();
         final int year = cal.get(cal.YEAR);
         final int month = cal.get(cal.MONTH);
         final int day = cal.get(cal.DAY_OF_MONTH);
@@ -98,6 +98,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                         preferred_appointment_date.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
                 }, year, month, day);
+                datepicker.getDatePicker().setMinDate(Calendar.getInstance().getTime().getTime());
                 datepicker.show();
             }
         });
@@ -125,7 +126,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                          fetchDoctor("Pediatrics");
                         break;
                     case 7:
-                         fetchDoctor("Ophthalmologist");
+                         fetchDoctor("Ophthalmology");
                         break;
                     case 8:
                          fetchDoctor("Dermatology");
@@ -140,7 +141,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                          fetchDoctor("Dentistry");
                         break;
                     case 12:
-                        fetchDoctor("Gastroenterologist");
+                        fetchDoctor("Gastroenterology");
                         break;
                     case 13:
                         fetchDoctor("Urology");
@@ -215,6 +216,8 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //doc profile
          info.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
