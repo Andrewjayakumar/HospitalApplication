@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         String name = dataSnapshot.child("name").getValue().toString();
                                         viewHolder.setName(name);
+                                        viewHolder.dateOrDesc.setText("Preferred Date :");
                                         viewHolder.setDate(date);
                                         viewHolder.setStatus(reqStat);
                                         viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
@@ -138,7 +140,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                         viewHolder.setName(name);
                                         viewHolder.setDate(reason);
                                         viewHolder.setStatus(reqStat);
-
+                                        viewHolder.dateOrDesc.setText("Reason :");
                                         viewHolder.cancel.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View view) {
@@ -239,12 +241,15 @@ public class AppointmentStatusActivity extends AppCompatActivity
     public static class RequestsViewHolder extends RecyclerView.ViewHolder {
        public  View view;
         public ImageButton cancel;
-
+        public TextView dateOrDesc;
+        public ImageView photo;
 
         public RequestsViewHolder(View itemView) {
             super(itemView);
             view = itemView;
             cancel=view.findViewById(R.id.cancel_req);
+            dateOrDesc= view.findViewById(R.id.datei);
+            photo = view.findViewById(R.id.photo);
         }
 
 

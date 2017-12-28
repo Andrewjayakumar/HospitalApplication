@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Set Appointment"
+                    android:text="Request Appointment"
                     android:layout_margin="1dp"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textAlignment="center"

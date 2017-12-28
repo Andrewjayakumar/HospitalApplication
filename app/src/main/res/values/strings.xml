@@ -8,6 +8,7 @@
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_field_required">This field is required</string>
+
     <string-array name="blood_groups">
         <item>A+</item>
         <item>A-</item>
@@ -18,20 +19,22 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
+
     <string-array name="speciality">
         <item>General Physician</item>
         <item>ENT</item>
         <item>Gynecology</item>
         <item>Pediatrics</item>
-        <item>Ophthalmologist</item>
+        <item>Ophthalmology</item>
         <item>Dermatology</item>
         <item>Cardiology</item>
         <item>Neurology</item>
         <item>Dentistry</item>
-        <item>Gastroenterologist</item>
+        <item>Gastroenterology</item>
         <item>Urology</item>
         <item>Orthopedics</item>
     </string-array>
+
     <string-array name="problem">
         <item>Select Your Problem</item>
         <item>Cough and Cold</item>

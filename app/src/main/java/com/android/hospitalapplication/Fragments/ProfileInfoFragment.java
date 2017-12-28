@@ -94,9 +94,9 @@ public class ProfileInfoFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
-                String Qualify = dataSnapshot.child("Qualification").getValue().toString();
-                String expe = dataSnapshot.child("Experience").getValue().toString();
-                String room1 = dataSnapshot.child("Room_no").getValue().toString();
+                String Qualify = dataSnapshot.child("qualification").getValue().toString();
+                String expe = dataSnapshot.child("experience").getValue().toString()+" yrs.";
+                String room1 = dataSnapshot.child("room_no").getValue().toString();
                 String regNo = dataSnapshot.child("doctor_reg_id").getValue().toString();
                 String speciality = dataSnapshot.child("speciality").getValue().toString();
 
@@ -107,7 +107,6 @@ public class ProfileInfoFragment extends Fragment {
                 room.setText(room1);
                 registration_id_doc.setText(regNo);
                 specalize.setText(speciality);
-
             }
 
             @Override

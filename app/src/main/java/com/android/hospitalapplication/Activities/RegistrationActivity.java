@@ -82,7 +82,7 @@ public class RegistrationActivity extends AppCompatActivity {
         contact = findViewById(R.id.phone);
         add = findViewById(R.id.address);
         regId = findViewById(R.id.registration_no);
-        roomNo=findViewById(R.id.room);
+        roomNo =findViewById(R.id.room);
         dob=findViewById(R.id.dob1);
         qualification=findViewById(R.id.qualification);
         experience=findViewById(R.id.experience);
@@ -206,7 +206,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     gender = null;
                     genderButtons.clearCheck();
                     Log.d("Gender", "" + gender);
-
                 }
                 break;
             case R.id.patient:
@@ -218,7 +217,6 @@ public class RegistrationActivity extends AppCompatActivity {
                     gender = null;
                     genderButtons.clearCheck();
                     Log.d("Gender", "" + gender);
-
                 }
                 break;
             case R.id.gender_male:
@@ -255,13 +253,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                     HashMap<String, String> userDetails = new HashMap<String, String>();
+
                     userDetails.put("name", name);
                     userDetails.put("phone", phone);
                     userDetails.put("address", address);
-                    userDetails.put("Date_of_Birth",dob2);
+                    userDetails.put("d_o_b",dob2);
                     userDetails.put("gender", gender);
                     userDetails.put("blood_group", bg);
                     userDetails.put("type", "Patient");
+
                     dbref.setValue(userDetails).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -294,15 +294,15 @@ public class RegistrationActivity extends AppCompatActivity {
                     dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                     HashMap<String, String> userDetails = new HashMap<String, String>();
-                    userDetails.put("name", name);
+                    userDetails.put("name","Dr."+ name);
                     userDetails.put("phone", phone);
                     userDetails.put("gender", gender);
                     userDetails.put("speciality", speciality);
                     userDetails.put("doctor_reg_id", regId);
                     userDetails.put("type", "Doctor");
-                    userDetails.put("Qualification",qualify);
-                    userDetails.put("Experience",exper);
-                    userDetails.put("Room_no",room);
+                    userDetails.put("qualification",qualify);
+                    userDetails.put("experience",exper);
+                    userDetails.put("room_no",room);
                     dbref.setValue(userDetails).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

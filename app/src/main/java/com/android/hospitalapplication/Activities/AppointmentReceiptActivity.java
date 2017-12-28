@@ -23,7 +23,6 @@ public class AppointmentReceiptActivity extends AppCompatActivity {
         mToolbar=findViewById(R.id.apt_receipt_toolbar);
 
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Appointment Details");
 
         aptId=findViewById(R.id.apt_id);
@@ -36,12 +35,10 @@ public class AppointmentReceiptActivity extends AppCompatActivity {
         String patId = getIntent().getStringExtra("pat_id");
 
         getDetails(docId,patId);
-
     }
 
     public void getDetails(final String docId, final String patID){
         final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
-
 
         dbrefRoot.child("Appointments").child(docId).child(patID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,7 +77,6 @@ public class AppointmentReceiptActivity extends AppCompatActivity {
 
                     }
                 });
-
             }
 
             @Override

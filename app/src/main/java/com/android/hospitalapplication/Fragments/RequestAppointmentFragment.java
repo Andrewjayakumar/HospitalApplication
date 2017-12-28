@@ -2,6 +2,7 @@ package com.android.hospitalapplication.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -108,9 +109,12 @@ public class RequestAppointmentFragment extends Fragment {
                                                          String name = dataSnapshot.child("name").getValue().toString();
                                                          final String bg = dataSnapshot.child("blood_group").getValue().toString();
                                                          Log.d("name :", name + "\n" + bg);
+
+                                                         viewHolder.photo.setImageResource(R.drawable.avatar);
                                                          viewHolder.setStatus(prefDate);
                                                          viewHolder.setDate(desc);
                                                          viewHolder.setName(name);
+                                                         viewHolder.dateOrDesc.setText("Problem & Pref. Date");
                                                          viewHolder.cancel.setVisibility(View.INVISIBLE);
                                                          viewHolder.view.setOnClickListener(new View.OnClickListener() {
                                                              @Override

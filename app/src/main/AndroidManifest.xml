@@ -57,7 +57,8 @@
             android:name=".Activities.Patient.AppointmentStatusActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity android:name=".Activities.Doctor.SelectAppointmentActivity" />
-        <activity android:name=".Activities.Patient.Patient_profile"/>
+        <activity android:name=".Activities.Patient.Patient_profile"
+            android:parentActivityName=".Activities.Patient.PatientActivity"/>
         <activity android:name=".Activities.Doctor.ScheduleAppointmentActivity" />
         <activity android:name=".Activities.AppointmentReceiptActivity"></activity>
     </application>

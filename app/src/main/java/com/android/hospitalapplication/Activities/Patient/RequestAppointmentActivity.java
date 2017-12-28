@@ -170,7 +170,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         String contact = dataSnapshot.child("phone").getValue().toString();
-                        String address = dataSnapshot.child("Room_no").getValue().toString();
+                        String address = dataSnapshot.child("room_no").getValue().toString();
                         doctoraddress.setText(address);
                         doctorcontactnumber.setText(contact);
 

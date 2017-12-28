@@ -2,6 +2,7 @@ package com.android.hospitalapplication.Activities;
 
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,6 @@ public class SplashActivity extends AppCompatActivity {
                             else if(type.equals("Patient")){
                                 startActivity(new Intent(SplashActivity.this,PatientActivity.class));
                                 finish();
-
                             }
                         }
 

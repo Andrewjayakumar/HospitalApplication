@@ -321,7 +321,7 @@
                         android:inputType="textCapWords"
                         android:textColorHint="@color/md_black_1000" />
                 </android.support.design.widget.TextInputLayout>
-
+                <!-- Experience -->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -330,11 +330,11 @@
                         android:id="@+id/experience"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Experience"
-                        android:inputType="textCapWords"
+                        android:hint="Experience(In Years)"
+                        android:inputType="number"
                         android:textColorHint="@color/md_black_1000" />
                 </android.support.design.widget.TextInputLayout>
-
+                 <!--Room No. -->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

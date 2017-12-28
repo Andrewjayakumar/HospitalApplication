@@ -1,5 +1,6 @@
 package com.android.hospitalapplication.Fragments;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
@@ -101,7 +104,9 @@ public class AppointmentFragment extends Fragment {
         date=v.findViewById(R.id.date_cal);
         appointments=v.findViewById(R.id.appointment_list);
         appointments.setLayoutManager(new LinearLayoutManager(getContext()));
-
+        String currDate = getCurrentDate();
+        date.setText(currDate);
+        getAppointments(currDate);
         return v;
     }
 
@@ -109,9 +114,7 @@ public class AppointmentFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        String currDate = getCurrentDate();
-        date.setText(currDate);
-        getAppointments(currDate);
+
         rightNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,6 +133,27 @@ public class AppointmentFragment extends Fragment {
             }
         });
 
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                int dayOfMonth = c.get(Calendar.DAY_OF_MONTH);
+                int year = c.get(Calendar.YEAR);
+                int month = c.get(Calendar.MONTH);
+                DatePickerDialog dp = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        date.setText(i2 + "/" + (i1 + 1) + "/" + i);
+                        String currDate = date.getText().toString();
+                        Log.d("new Date:",currDate);
+                        getAppointments(currDate);
+                    }
+                },year,month,dayOfMonth);
+                dp.show();
+
+            }
+
+        });
 
 
     }
@@ -222,12 +246,13 @@ public class AppointmentFragment extends Fragment {
             c.setTime(d);
             final String newDate = df.format(c.getTime());
 
-            FirebaseRecyclerAdapter<User,PatientViewHolder> adapter = new FirebaseRecyclerAdapter<User, PatientViewHolder>(User.class,R.layout.user_appointment_list,PatientViewHolder.class,dbrefApt) {
+            Query q = dbrefApt.orderByChild("apt_date").equalTo(newDate);
+            FirebaseRecyclerAdapter<User,PatientViewHolder> adapter = new FirebaseRecyclerAdapter<User, PatientViewHolder>(User.class,R.layout.user_appointment_list,PatientViewHolder.class,q) {
                 @Override
                 protected void populateViewHolder(final PatientViewHolder viewHolder, User model, int position) {
                     final String pat_id = getRef(position).getKey();
 
-                    dbrefApt.orderByChild("apt_date").equalTo(newDate).addValueEventListener(new ValueEventListener() {
+                    dbrefApt.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if(dataSnapshot.hasChild(pat_id)){
@@ -239,6 +264,12 @@ public class AppointmentFragment extends Fragment {
                                             String name = dataSnapshot.child("name").getValue().toString();
                                             viewHolder.setName(name);
                                             viewHolder.setTime(time);
+                                            viewHolder.v.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+
+                                                }
+                                            });
                                         }
 
                                         @Override
@@ -280,8 +311,8 @@ public class AppointmentFragment extends Fragment {
         }
 
         public void setTime(String time){
-            pName=v.findViewById(R.id.appointment_time);
-            pName.setText(time);
+            this.time=v.findViewById(R.id.appointment_time);
+            this.time.setText(time);
         }
     }
 }
