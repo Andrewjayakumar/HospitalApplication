@@ -16,8 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * Created by hp on 24-12-2017.
  */
-public class Patient_profile extends AppCompatActivity {
-TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,profileDob;
+public class PatientProfileActivity extends AppCompatActivity {
+
+    TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,profileDob;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
 
     @Override
@@ -25,8 +26,9 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,p
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_view_profile);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.profileAppBar);
+        Toolbar toolbar =  findViewById(R.id.profileAppBar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle("View profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -36,11 +38,8 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,p
         AddressValue=findViewById(R.id.AddressValue);
         phoneValue=findViewById(R.id.MobileValue);
         profileDob=findViewById(R.id.profileDob);
-           String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-          fetchData(uid);
-
-
-
+        String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
+        fetchData(uid);
     }
 
     private void fetchData(String u_id)
@@ -53,8 +52,8 @@ TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,p
                 String gender=dataSnapshot.child("gender").getValue().toString();
                 String bloodgrp=dataSnapshot.child("blood_group").getValue().toString();
                 String phone=dataSnapshot.child("phone").getValue().toString();
-                String dob=dataSnapshot.child("Date_of_Birth").getValue().toString();
-               String Address=dataSnapshot.child("address").getValue().toString();
+                String dob=dataSnapshot.child("d_o_b").getValue().toString();
+                String Address=dataSnapshot.child("address").getValue().toString();
 
                 if(gender.equals("M"))
                 {

@@ -170,13 +170,21 @@ public class RequestAppointmentActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
-                String docName = adapterView.getItemAtPosition(i).toString().trim();
+                final String docName = adapterView.getItemAtPosition(i).toString().trim();
 
                 dbrefUser.orderByChild("name").equalTo(docName).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         String contact = dataSnapshot.child("phone").getValue().toString();
                         String address = dataSnapshot.child("room_no").getValue().toString();
+                        String bQualify=dataSnapshot.child("qualification").getValue().toString();
+                        String bSpeciality=dataSnapshot.child("speciality").getValue().toString();
+                        String bExp=dataSnapshot.child("experience").getValue().toString();
+
+                        bsName.setText(docName);
+                        bsExperience.setText(bExp);
+                        bsQualify.setText(bQualify);
+                        bsSpecialize.setText(bSpeciality);
                         doctoraddress.setText(address);
                         doctorcontactnumber.setText(contact);
 
@@ -232,29 +240,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
             else if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_HIDDEN) {
                 mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_EXPANDED);
             }
-            final DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
-
-            dbrefUsers.orderByChild("name").equalTo(docName).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    String bName=dataSnapshot.child("name").getValue().toString();
-                    String bQualify=dataSnapshot.child("qualification").getValue().toString();
-                    String bSpeciality=dataSnapshot.child("speciality").getValue().toString();
-
-                    bsName.setText(bName);
-                    bsQualify.setText(bQualify);
-                    bsSpecialize.setText(bSpeciality);
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
-
-
-        }
+          }
     });
 
         //appointment button is set

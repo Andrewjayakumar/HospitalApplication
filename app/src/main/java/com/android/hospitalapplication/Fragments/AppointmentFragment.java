@@ -151,10 +151,10 @@ public class AppointmentFragment extends Fragment {
                     }
                 },year,month,dayOfMonth);
                 dp.show();
-
             }
 
         });
+
         appointments.setOnTouchListener(new OnSwipeListener(getActivity()){
             @Override
             public void onSwipeRight() {

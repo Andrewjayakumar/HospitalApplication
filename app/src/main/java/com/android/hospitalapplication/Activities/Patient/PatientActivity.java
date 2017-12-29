@@ -43,7 +43,7 @@ public class PatientActivity extends AppCompatActivity {
         profile_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,Patient_profile.class));
+                startActivity(new Intent(PatientActivity.this,PatientProfileActivity.class));
             }
         });
         upload_report.setOnClickListener(new View.OnClickListener() {
