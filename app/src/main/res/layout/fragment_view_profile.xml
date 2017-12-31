@@ -51,7 +51,8 @@
                 />
 
 
-            <TextView
+            <EditText
+                android:enabled="false"
                 android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,10 +60,11 @@
                 android:layout_marginTop="76dp"
                 android:text="Name"
                 android:textColor="@color/md_black_1000"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
+                android:enabled="false"
                 android:id="@+id/user_profile_short_bio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
                     android:id="@+id/experience"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -103,9 +105,10 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
+                    android:textSize="14dp"
                     android:text="Experience:-"/>
 
-                <TextView
+                <EditText
                     android:id="@+id/exp_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -114,10 +117,11 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
                     android:background="#fff"
-                    android:clickable="false"
+                    android:enabled="false"
                     android:elevation="4dp"
                     android:padding="20dp"
                     android:gravity="start"
+                    android:textSize="14dp"
                     android:textColor="@color/md_black_1000"
                     android:text="Experience"/>
 
@@ -127,7 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
+                    android:textSize="14dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -143,7 +148,9 @@
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:text="Room No.:-"/>
-                <TextView
+                <EditText
+                    android:textSize="14dp"
+                    android:enabled="false"
                     android:id="@+id/room"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -164,7 +171,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -181,7 +188,9 @@
                     android:paddingLeft="20dp"
                     android:textSize="14sp"
                     android:text="Registration Id:-"/>
-                <TextView
+                <EditText
+                    android:textSize="14dp"
+                    android:enabled="false"
                     android:id="@+id/registration_id_doc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -201,7 +210,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
+                    android:textSize="14dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -217,7 +227,8 @@
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:text="Morning:-"/>
-                <TextView
+                <EditText
+                    android:textSize="14dp"
                     android:id="@+id/morning"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -237,7 +248,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
+                    android:textSize="14dp"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -253,7 +265,8 @@
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
                     android:text="Evening:-"/>
-                <TextView
+                <EditText
+                    android:textSize="14dp"
                     android:id="@+id/evening"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -276,7 +289,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -291,8 +304,12 @@
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
                     android:paddingLeft="20dp"
-                    android:text="Contact No.:-"/>
-                <TextView
+                    android:text="Contact No.:-"
+                    android:textSize="14dp"
+                    />
+                <EditText
+                    android:textSize="14dp"
+
                     android:id="@+id/mobile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -304,6 +321,7 @@
                     android:clickable="false"
                     android:elevation="4dp"
                     android:padding="20dp"
+                    android:enabled="false"
                     android:textColor="@color/md_black_1000"
                     android:text="number" />
 
@@ -315,7 +333,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <TextView
+                <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -329,9 +347,11 @@
                     android:textStyle="italic"
                     android:paddingTop="20dp"
                     android:paddingBottom="20dp"
+                    android:textSize="14dp"
                     android:paddingLeft="20dp"
                     android:text="Specalize:-"/>
-                <TextView
+                <EditText
+                    android:enabled="false"
                     android:id="@+id/specalize"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -340,9 +360,9 @@
                     android:layout_marginBottom="5dp"
                     android:layout_marginRight="5dp"
                     android:background="#fff"
-                    android:clickable="false"
                     android:elevation="4dp"
                     android:padding="20dp"
+                    android:textSize="14dp"
                     android:textColor="@color/md_black_1000"
                     android:text="specalize" />
 
@@ -351,5 +371,13 @@
 
 
         </LinearLayout>
+        <Button
+            android:id="@+id/update"
+            android:visibility="gone"
+            android:text="Update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/md_red_400"
+            android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </ScrollView>

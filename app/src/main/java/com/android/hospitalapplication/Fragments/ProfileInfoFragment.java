@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,6 +19,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,8 +38,9 @@ public class ProfileInfoFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     View v;
-    TextView user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,mobile,specalize;
+    EditText user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,mobile,specalize;
     ImageButton editProfile;
+    Button update;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,9 +91,57 @@ public class ProfileInfoFragment extends Fragment {
         registration_id_doc=v.findViewById(R.id.registration_id_doc);
         mobile=v.findViewById(R.id.mobile);
         specalize=v.findViewById(R.id.specalize);
+        update=v.findViewById(R.id.update);
         editProfile=v.findViewById(R.id.editProfile);
         String u_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
         fetchData(u_id);
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                update.setVisibility(View.VISIBLE);
+                user_profile_name.setEnabled(true);
+                user_profile_short_bio.setEnabled(true);
+                exp_value.setEnabled(true);
+                mobile.setEnabled(true);
+                room.setEnabled(true);
+                specalize.setEnabled(true);
+                update.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+
+                        String name=user_profile_name.getText().toString();
+                        String Qualify=user_profile_short_bio.getText().toString();
+                        String experience=exp_value.getText().toString();
+                        String number=mobile.getText().toString();
+                        String room1=room.getText().toString();
+                        String specalizisation=specalize.getText().toString();
+                        Map info = new HashMap();
+                        info.put("name",name);
+                        info.put("qualification",Qualify);
+                        info.put("phone",number);
+                        info.put("experience",experience);
+                        info.put("room_no",room1);
+                        info.put("speciality",specalizisation);
+                        dbrefUser.updateChildren(info, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if(databaseError==null)
+                                {
+                                    Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(getActivity(), "Error Updating Profile", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
 
         return v;
     }
