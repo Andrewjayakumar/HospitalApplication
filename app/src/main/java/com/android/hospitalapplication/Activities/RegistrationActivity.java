@@ -34,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 import java.util.regex.Matcher;
@@ -290,7 +291,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     FirebaseUser currentUser = auth.getCurrentUser();
                     String uid = currentUser.getUid();
-
+                    String deviceToken = FirebaseInstanceId.getInstance().getToken();
                     dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                     HashMap<String, String> userDetails = new HashMap<String, String>();
@@ -303,6 +304,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     userDetails.put("qualification",qualify);
                     userDetails.put("experience",exper);
                     userDetails.put("room_no",room);
+                    userDetails.put("device_token",deviceToken);
                     dbref.setValue(userDetails).addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

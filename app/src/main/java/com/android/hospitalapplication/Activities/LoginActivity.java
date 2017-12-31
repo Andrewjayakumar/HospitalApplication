@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * A login screen that offers login via email/password.
@@ -137,6 +138,8 @@ public class LoginActivity extends AppCompatActivity  {
                     if(task.isSuccessful()){
                         FirebaseUser user = auth.getCurrentUser();
                         String uid = user.getUid();
+                        String deviceToken = FirebaseInstanceId.getInstance().getToken();
+                        dbrefUser.child(uid).child("device_token").setValue(deviceToken);
                         dbrefUser.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {

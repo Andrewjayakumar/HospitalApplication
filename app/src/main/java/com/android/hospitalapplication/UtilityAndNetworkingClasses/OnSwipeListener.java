@@ -1,4 +1,4 @@
-package com.android.hospitalapplication;
+package com.android.hospitalapplication.UtilityAndNetworkingClasses;
 
 import android.content.Context;
 import android.view.GestureDetector;

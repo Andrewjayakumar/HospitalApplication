@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateUtils;
-import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,8 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.hospitalapplication.Adapters.UserAdapter;
-import com.android.hospitalapplication.ModelClasses.Patient;
 import com.android.hospitalapplication.ModelClasses.User;
-import com.android.hospitalapplication.OnSwipeListener;
+import com.android.hospitalapplication.UtilityAndNetworkingClasses.OnSwipeListener;
 import com.android.hospitalapplication.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,8 +29,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -107,6 +101,21 @@ public class AppointmentFragment extends Fragment {
         appointments.setLayoutManager(new LinearLayoutManager(getContext()));
         String currDate = getCurrentDate();
         date.setText(currDate);
+        appointments.setOnTouchListener(new OnSwipeListener(getContext()){
+            @Override
+            public void onSwipeRight() {
+                String prevDate = decreaseDate();
+                date.setText(prevDate);
+                getAppointments(prevDate);
+            }
+
+            @Override
+            public void onSwipeLeft() {
+                String nextDate = increaseDate();
+                date.setText(nextDate);
+                getAppointments(nextDate);
+            }
+        });
         getAppointments(currDate);
         return v;
     }
@@ -155,21 +164,7 @@ public class AppointmentFragment extends Fragment {
 
         });
 
-        appointments.setOnTouchListener(new OnSwipeListener(getActivity()){
-            @Override
-            public void onSwipeRight() {
-                String prevDate = decreaseDate();
-                date.setText(prevDate);
-                getAppointments(prevDate);
-            }
 
-            @Override
-            public void onSwipeLeft() {
-                String nextDate = increaseDate();
-                date.setText(nextDate);
-                getAppointments(nextDate);
-            }
-        });
 
     }
 

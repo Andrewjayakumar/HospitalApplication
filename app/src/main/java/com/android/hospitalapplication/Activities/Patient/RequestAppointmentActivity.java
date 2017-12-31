@@ -7,6 +7,7 @@ import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -329,6 +332,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         final String patient_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
         final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference dbrefNotif = FirebaseDatabase.getInstance().getReference("Notifications");
 
         dbrefUser.orderByChild("name").equalTo(name).addChildEventListener(new ChildEventListener() {
             @Override
@@ -341,7 +345,6 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                         String type = dataSnapshot.child("type").getValue().toString();
                         if(type.equals("Doctor")){
                             Map requestDetails = new HashMap();
-
                             requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_date",preferredDate);
                             requestDetails.put("Requests/"+doctorId+"/"+patient_id+"/"+"req_date",preferredDate);
                             requestDetails.put("Requests/"+patient_id+"/"+doctorId+"/"+"req_status","sent");
@@ -353,7 +356,19 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                     if(databaseError==null){
                                         requestStatus=0;
-                                        Toast.makeText(RequestAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+                                        HashMap<String,String> notificationDetails = new HashMap<>();
+                                        notificationDetails.put("from",patient_id);
+                                        notificationDetails.put("type","request");
+
+                                        dbrefNotif.child(doctorId).push().setValue(notificationDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    Toast.makeText(RequestAppointmentActivity.this, "Request Sent", Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            }
+                                        });
                                     }
                                     else{
                                         Toast.makeText(RequestAppointmentActivity.this,databaseError.getMessage(), Toast.LENGTH_SHORT).show();
