@@ -39,7 +39,7 @@
 
 
             <ImageButton
-                android:id="@+id/edit_profile"
+                android:id="@+id/editProfile"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="16dp"

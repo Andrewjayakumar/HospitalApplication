@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.android.hospitalapplication.R;
@@ -33,6 +34,7 @@ public class ProfileInfoFragment extends Fragment {
 
     View v;
     TextView user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,mobile,specalize;
+    ImageButton editProfile;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -83,8 +85,10 @@ public class ProfileInfoFragment extends Fragment {
         registration_id_doc=v.findViewById(R.id.registration_id_doc);
         mobile=v.findViewById(R.id.mobile);
         specalize=v.findViewById(R.id.specalize);
+        editProfile=v.findViewById(R.id.editProfile);
         String u_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
         fetchData(u_id);
+
         return v;
     }
     public void fetchData(String u_id){

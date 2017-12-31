@@ -3,7 +3,13 @@ package com.android.hospitalapplication.Activities.Patient;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -13,13 +19,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by hp on 24-12-2017.
  */
 public class PatientProfileActivity extends AppCompatActivity {
 
-    TextView FnameValue,GenderValue,bloodgrpValue,dobValue,AddressValue,phoneValue,profileDob;
+    EditText FnameValue,GenderValue,bloodgrpValue,AddressValue,phoneValue,profileDob;
+    ImageButton EditProfile;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
+    Button Update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +39,73 @@ public class PatientProfileActivity extends AppCompatActivity {
 
         Toolbar toolbar =  findViewById(R.id.profileAppBar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setTitle("View profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FnameValue=findViewById(R.id.FnameValue);
+        EditProfile=findViewById(R.id.EditProfile);
         GenderValue=findViewById(R.id.genderValue);
         bloodgrpValue=findViewById(R.id.bloodgrpValue);
         AddressValue=findViewById(R.id.AddressValue);
         phoneValue=findViewById(R.id.MobileValue);
+        Update=findViewById(R.id.Update);
         profileDob=findViewById(R.id.profileDob);
         String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         fetchData(uid);
+
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.profile,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.EditProfile :
+                Update.setVisibility(View.VISIBLE);
+                FnameValue.setEnabled(true);
+                FnameValue.setCursorVisible(true);
+                AddressValue.setEnabled(true);
+                phoneValue.setEnabled(true);
+                profileDob.setEnabled(true);
+                Update.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+                        DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+
+                        String name=FnameValue.getText().toString();
+                        String address=AddressValue.getText().toString();
+                        String phone=phoneValue.getText().toString();
+                        String dob=profileDob.getText().toString();
+                        Map info = new HashMap();
+                        info.put("name",name);
+                        info.put("address",address);
+                        info.put("phone",phone);
+                        info.put("d_o_b",dob);
+                        dbrefUser.updateChildren(info, new DatabaseReference.CompletionListener() {
+                            @Override
+                            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                                if(databaseError==null)
+                                {
+                                    Toast.makeText(PatientProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    Toast.makeText(PatientProfileActivity.this, "Error Updating Profile", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
+
+        }
+        return true;
+    }
+
 
     private void fetchData(String u_id)
     {
