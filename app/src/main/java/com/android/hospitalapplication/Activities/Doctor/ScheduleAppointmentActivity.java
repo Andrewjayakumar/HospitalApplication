@@ -9,6 +9,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,7 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,7 +110,8 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
         schApt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String date = setDate.getText().toString();
+                String date = formatDate(setDate.getText().toString());
+
                 String time = setTime.getText().toString();
                 String remark = remarks.getText().toString();
                 String doc_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -151,6 +156,10 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                             if(databaseError==null){
                                 Toast.makeText(getApplicationContext(),"Appointment Set",Toast.LENGTH_LONG).show();
+                                HashMap<String,String> notifDetails = new HashMap<>();
+                                notifDetails.put("from",docId);
+                                notifDetails.put("type","confirmed");
+                                dbrefRoot.child("Notifications").child(patId).push().setValue(notifDetails);
                                 Intent i = new Intent(ScheduleAppointmentActivity.this,AppointmentReceiptActivity.class);
                                 i.putExtra("doc_id",docId);
                                 i.putExtra("pat_id",patId);
@@ -169,6 +178,22 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    public String formatDate(String date){
+        Log.d("inc date:",date);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Date d = df.parse(date);
+            c.setTime(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Log.d("new date",df.format(c.getTime()));
+        return df.format(c.getTime());
 
     }
 }

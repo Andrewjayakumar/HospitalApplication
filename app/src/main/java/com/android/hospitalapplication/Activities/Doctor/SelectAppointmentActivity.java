@@ -87,6 +87,10 @@ public class SelectAppointmentActivity extends AppCompatActivity {
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                     if (databaseError == null) {
                                         Toast.makeText(getApplicationContext(), "Request Declined", Toast.LENGTH_LONG).show();
+                                        HashMap<String,String> notifDetails = new HashMap<>();
+                                        notifDetails.put("from",docId);
+                                        notifDetails.put("type","declined");
+                                        dbrefRoot.child("Notifications").child(u_id).push().setValue(notifDetails);
                                         startActivity(new Intent(SelectAppointmentActivity.this, DoctorActivity.class));
                                         finish();
                                     } else {

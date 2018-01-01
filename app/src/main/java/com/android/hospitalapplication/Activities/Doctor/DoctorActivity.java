@@ -32,11 +32,21 @@ public class DoctorActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Doctor");
 
 
-        FragmentManager fm  = getSupportFragmentManager();
-         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.content_doc,new AppointmentFragment()).commit();
-
         btmNav=findViewById(R.id.navigation_doc);
+
+        String notifFragment = getIntent().getStringExtra("notif_frag");
+        if(notifFragment!=null){
+            if(notifFragment.equals("new_req")) {
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.replace(R.id.content_doc, new RequestAppointmentFragment()).commit();
+                btmNav.setSelectedItemId(R.id.action_new_requests);
+            }
+        }else {
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.content_doc, new AppointmentFragment()).commit();
+        }
 
         btmNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

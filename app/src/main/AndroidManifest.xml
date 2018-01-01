@@ -79,10 +79,12 @@
         <activity
             android:name=".Activities.Patient.AppointmentStatusActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
-        <activity android:name=".Activities.Doctor.SelectAppointmentActivity" />
+        <activity android:name=".Activities.Doctor.SelectAppointmentActivity"
+                  android:parentActivityName=".Activities.Doctor.DoctorActivity"/>
         <activity android:name=".Activities.Patient.PatientProfileActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity"/>
-        <activity android:name=".Activities.Doctor.ScheduleAppointmentActivity" />
+        <activity android:name=".Activities.Doctor.ScheduleAppointmentActivity"
+                  android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity"/>
         <activity android:name=".Activities.AppointmentReceiptActivity"></activity>
     </application>
 

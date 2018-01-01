@@ -111,10 +111,10 @@ public class RequestAppointmentFragment extends Fragment {
                                                          Log.d("name :", name + "\n" + bg);
 
                                                          viewHolder.photo.setImageResource(R.drawable.avatar);
-                                                         viewHolder.setStatus(prefDate);
-                                                         viewHolder.setDate(desc);
+                                                         viewHolder.setStatus("");
+                                                         viewHolder.setDate(prefDate);
                                                          viewHolder.setName(name);
-                                                         viewHolder.dateOrDesc.setText("Problem & Pref. Date");
+                                                         viewHolder.dateOrDesc.setText("Pref. Date");
                                                          viewHolder.cancel.setVisibility(View.INVISIBLE);
                                                          viewHolder.view.setOnClickListener(new View.OnClickListener() {
                                                              @Override
