@@ -80,6 +80,7 @@ public class UploadReportActivity extends AppCompatActivity {
                 File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,f);
                 startActivityForResult(intent, 1);
+                Toast.makeText(context, "Photo Uploaded" , Toast.LENGTH_SHORT).show();
             }
 
 
