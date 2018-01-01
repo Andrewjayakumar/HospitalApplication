@@ -1,5 +1,6 @@
 package com.android.hospitalapplication.Activities.Patient;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +40,7 @@ public class UploadReportActivity extends AppCompatActivity {
     ImageButton capturePhoto, choosePhone;
     private Uri fileUri;
     ImageView img;
+    Context context;
     private StorageReference mStorageRef;
 
 
@@ -75,7 +78,7 @@ public class UploadReportActivity extends AppCompatActivity {
                 }
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 File f = new File(android.os.Environment.getExternalStorageDirectory(), "temp.jpg");
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(f));
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,f);
                 startActivityForResult(intent, 1);
             }
 
@@ -122,18 +125,13 @@ public class UploadReportActivity extends AppCompatActivity {
 
                 File f = new File(Environment.getExternalStorageDirectory().toString());
 
-                for (File temp : f.listFiles()) {
 
-                    if (temp.getName().equals("temp.jpg")) {
 
-                        f = temp;
-                        Uri fileUri= Uri.fromFile(f);
+
+                        Uri fileUri= FileProvider.getUriForFile(getBaseContext(), getBaseContext().getApplicationContext().getPackageName() + ".provider", f);;
                         upload(fileUri);
-                        break;
 
-                    }
 
-                }
 
                 try {
 

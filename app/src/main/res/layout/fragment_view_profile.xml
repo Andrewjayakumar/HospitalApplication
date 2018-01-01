@@ -52,6 +52,8 @@
 
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
                 android:enabled="false"
                 android:id="@+id/user_profile_name"
                 android:layout_width="wrap_content"
@@ -64,6 +66,8 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:maxLines="1"
+                android:singleLine="true"
                 android:enabled="false"
                 android:id="@+id/user_profile_short_bio"
                 android:layout_width="wrap_content"
@@ -90,6 +94,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <EditText
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/experience"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -109,6 +115,8 @@
                     android:text="Experience:-"/>
 
                 <EditText
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/exp_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -149,6 +157,8 @@
                     android:paddingLeft="20dp"
                     android:text="Room No.:-"/>
                 <EditText
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textSize="14dp"
                     android:enabled="false"
                     android:id="@+id/room"
@@ -189,6 +199,8 @@
                     android:textSize="14sp"
                     android:text="Registration Id:-"/>
                 <EditText
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:textSize="14dp"
                     android:enabled="false"
                     android:id="@+id/registration_id_doc"
@@ -228,6 +240,7 @@
                     android:paddingLeft="20dp"
                     android:text="Morning:-"/>
                 <EditText
+                    android:editable="false"
                     android:textSize="14dp"
                     android:id="@+id/morning"
                     android:layout_width="0dp"
@@ -266,6 +279,7 @@
                     android:paddingLeft="20dp"
                     android:text="Evening:-"/>
                 <EditText
+                    android:editable="false"
                     android:textSize="14dp"
                     android:id="@+id/evening"
                     android:layout_width="0dp"
@@ -309,7 +323,8 @@
                     />
                 <EditText
                     android:textSize="14dp"
-
+                    android:maxLines="1"
+                    android:singleLine="true"
                     android:id="@+id/mobile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
