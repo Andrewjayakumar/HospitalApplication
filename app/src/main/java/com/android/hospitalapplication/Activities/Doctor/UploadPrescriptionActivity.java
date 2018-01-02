@@ -48,11 +48,11 @@ public class UploadPrescriptionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Upload Prescriptions");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
          mProgressDialog = new ProgressDialog(this);
          mProgressDialog.setMessage("Uploading Image ...");
-        capturePhoto.setOnClickListener(new View.OnClickListener() {
+         capturePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -136,5 +136,15 @@ public class UploadPrescriptionActivity extends AppCompatActivity {
                 Toast.makeText(UploadPrescriptionActivity.this,"Prescription Uploaded Successfully !!",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        String patId = getIntent().getStringExtra("pat_id");
+        Intent i = new Intent(UploadPrescriptionActivity.this,AppointmentDetailsActivity.class);
+        i.putExtra("pat_id",patId);
+        startActivity(i);
+        finish();
     }
 }

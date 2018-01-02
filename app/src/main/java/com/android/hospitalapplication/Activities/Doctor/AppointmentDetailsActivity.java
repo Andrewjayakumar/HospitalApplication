@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.hospitalapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,7 +40,7 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         uploadPresc=findViewById(R.id.upload_pres);
         viewReports=findViewById(R.id.view_reports);
 
-        String docId = getIntent().getStringExtra("doc_id");
+        String docId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final String patId = getIntent().getStringExtra("pat_id");
 
         getDetails(docId,patId);

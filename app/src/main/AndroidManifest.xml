@@ -97,8 +97,10 @@
             android:name=".Activities.Doctor.ScheduleAppointmentActivity"
             android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity" />
         <activity android:name=".Activities.AppointmentReceiptActivity" />
-        <activity android:name=".Activities.Doctor.AppointmentDetailsActivity" />
-        <activity android:name=".Activities.Doctor.UploadPrescriptionActivity"></activity>
+        <activity android:name=".Activities.Doctor.AppointmentDetailsActivity"
+            android:parentActivityName=".Activities.Doctor.DoctorActivity"/>
+        <activity android:name=".Activities.Doctor.UploadPrescriptionActivity"
+            android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity"></activity>
     </application>
 
 </manifest>
