@@ -52,7 +52,7 @@ public class UploadReportActivity extends AppCompatActivity {
         choosePhone = findViewById(R.id.choosePhone);
         img = findViewById(R.id.img);
         mStorageRef = FirebaseStorage.getInstance().getReference();
-
+        context = getApplicationContext();
         Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Upload Reports");

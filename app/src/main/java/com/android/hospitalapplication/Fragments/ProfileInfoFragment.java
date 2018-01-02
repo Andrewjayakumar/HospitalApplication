@@ -153,7 +153,7 @@ public class ProfileInfoFragment extends Fragment {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String phone = dataSnapshot.child("phone").getValue().toString();
                 String Qualify = dataSnapshot.child("qualification").getValue().toString();
-                String expe = dataSnapshot.child("experience").getValue().toString()+" yrs.";
+                String expe = dataSnapshot.child("experience").getValue().toString();
                 String room1 = dataSnapshot.child("room_no").getValue().toString();
                 String regNo = dataSnapshot.child("doctor_reg_id").getValue().toString();
                 String speciality = dataSnapshot.child("speciality").getValue().toString();

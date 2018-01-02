@@ -25,19 +25,27 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-        <service
-            android:name=".UtilityAndNetworkingClasses.MyFirebaseInstanceIdService">
+
+        <provider
+            android:authorities="com.android.hospitalapplication.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
+        <service android:name=".UtilityAndNetworkingClasses.MyFirebaseInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
-        <service
-            android:name=".UtilityAndNetworkingClasses.FirebaseNotificationsService">
+        <service android:name=".UtilityAndNetworkingClasses.FirebaseNotificationsService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
@@ -79,13 +87,18 @@
         <activity
             android:name=".Activities.Patient.AppointmentStatusActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
-        <activity android:name=".Activities.Doctor.SelectAppointmentActivity"
-                  android:parentActivityName=".Activities.Doctor.DoctorActivity"/>
-        <activity android:name=".Activities.Patient.PatientProfileActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity"/>
-        <activity android:name=".Activities.Doctor.ScheduleAppointmentActivity"
-                  android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity"/>
-        <activity android:name=".Activities.AppointmentReceiptActivity"></activity>
+        <activity
+            android:name=".Activities.Doctor.SelectAppointmentActivity"
+            android:parentActivityName=".Activities.Doctor.DoctorActivity" />
+        <activity
+            android:name=".Activities.Patient.PatientProfileActivity"
+            android:parentActivityName=".Activities.Patient.PatientActivity" />
+        <activity
+            android:name=".Activities.Doctor.ScheduleAppointmentActivity"
+            android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity" />
+        <activity android:name=".Activities.AppointmentReceiptActivity" />
+        <activity android:name=".Activities.Doctor.AppointmentDetailsActivity" />
+        <activity android:name=".Activities.Doctor.UploadPrescriptionActivity"></activity>
     </application>
 
 </manifest>

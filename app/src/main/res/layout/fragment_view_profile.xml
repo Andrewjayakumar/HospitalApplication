@@ -1,398 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/md_grey_100">
-
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:background="@drawable/navagation_background"/>
-
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-60dp"
-            android:background="@drawable/rounded_border"
-            android:elevation="5dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/doctor"
-            />
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/update">
 
         <RelativeLayout
-            android:id="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_cover_image"
-            android:background="@color/md_grey_400"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:layout_height="match_parent"
+            android:background="@color/md_grey_100">
 
+            <ImageView
+                android:id="@+id/header_cover_image"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:background="@drawable/navagation_background"
+                android:scaleType="centerCrop" />
 
             <ImageButton
-                android:id="@+id/editProfile"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/ic_action_edit"
-                android:layout_alignParentRight="true"
-                android:backgroundTint="@color/md_grey_100"
-                android:layout_margin="10dp"
-                />
-
-
-            <EditText
-                android:maxLines="1"
-                android:singleLine="true"
-                android:enabled="false"
-                android:id="@+id/user_profile_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/user_profile_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_below="@+id/header_cover_image"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="76dp"
-                android:text="Name"
-                android:textColor="@color/md_black_1000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="-60dp"
+                android:background="@drawable/rounded_border"
+                android:elevation="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/doctor" />
 
-            <EditText
-                android:maxLines="1"
-                android:singleLine="true"
-                android:enabled="false"
-                android:id="@+id/user_profile_short_bio"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/user_profile_name"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                android:text="Qualification"
-                android:textColor="#000"
-                android:textSize="14sp" />
+                android:layout_below="@+id/header_cover_image"
+                android:background="@color/md_grey_400"
+                android:elevation="4dp"
+                android:paddingBottom="24dp">
+
+
+                <ImageButton
+                    android:id="@+id/editProfile"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/ic_action_edit"
+                    android:backgroundTint="@color/md_grey_100" />
+
+
+                <EditText
+                    android:id="@+id/user_profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="76dp"
+                    android:enabled="false"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Name"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/user_profile_short_bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_profile_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:enabled="false"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="Qualification"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profile_layout"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/experience"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:singleLine="true"
+                        android:text="Experience:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/exp_value"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:elevation="4dp"
+                        android:enabled="false"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:padding="20dp"
+                        android:singleLine="true"
+                        android:text="Experience"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Room No.:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/room"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:enabled="false"
+                        android:maxLines="1"
+                        android:padding="20dp"
+                        android:singleLine="true"
+                        android:text="roomno"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Registration Id:-"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/registration_id_doc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:enabled="false"
+                        android:maxLines="1"
+                        android:padding="20dp"
+                        android:singleLine="true"
+                        android:text="regno"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Morning:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/morning"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:elevation="4dp"
+                        android:padding="20dp"
+                        android:text="10:00AM - 01:00PM"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Evening:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/evening"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:elevation="4dp"
+                        android:padding="20dp"
+                        android:text="05:00PM - 08:00PM"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Contact No.:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/mobile"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:enabled="false"
+                        android:maxLines="1"
+                        android:padding="20dp"
+                        android:singleLine="true"
+                        android:text="number"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:clickable="false"
+                        android:elevation="4dp"
+                        android:gravity="end"
+                        android:paddingBottom="20dp"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="20dp"
+                        android:text="Specialization:-"
+                        android:textSize="14dp"
+                        android:textStyle="italic" />
+
+                    <EditText
+                        android:id="@+id/specalize"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="2"
+                        android:background="#fff"
+                        android:elevation="4dp"
+                        android:enabled="false"
+                        android:padding="20dp"
+                        android:text="specalize"
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="14dp" />
+                </LinearLayout>
+            </LinearLayout>
         </RelativeLayout>
+    </ScrollView>
 
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_layout"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:id="@+id/experience"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:gravity="end"
-                    android:clickable="false"
-                    android:textStyle="italic"
-                    android:elevation="4dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:textSize="14dp"
-                    android:text="Experience:-"/>
-
-                <EditText
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:id="@+id/exp_value"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:enabled="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:gravity="start"
-                    android:textSize="14dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="Experience"/>
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:textSize="14dp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:gravity="end"
-                    android:elevation="4dp"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:text="Room No.:-"/>
-                <EditText
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="14dp"
-                    android:enabled="false"
-                    android:id="@+id/room"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="roomno" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:gravity="end"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:textSize="14sp"
-                    android:text="Registration Id:-"/>
-                <EditText
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="14dp"
-                    android:enabled="false"
-                    android:id="@+id/registration_id_doc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="regno" />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:textSize="14dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:gravity="end"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:text="Morning:-"/>
-                <EditText
-                    android:editable="false"
-                    android:textSize="14dp"
-                    android:id="@+id/morning"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="10:00AM - 01:00PM" />
-
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:textSize="14dp"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:gravity="end"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:text="Evening:-"/>
-                <EditText
-                    android:editable="false"
-                    android:textSize="14dp"
-                    android:id="@+id/evening"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="05:00PM - 08:00PM" />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:gravity="end"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:paddingLeft="20dp"
-                    android:text="Contact No.:-"
-                    android:textSize="14dp"
-                    />
-                <EditText
-                    android:textSize="14dp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:id="@+id/mobile"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:enabled="false"
-                    android:textColor="@color/md_black_1000"
-                    android:text="number" />
-
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="5dp"
-                    android:background="#fff"
-                    android:clickable="false"
-                    android:elevation="4dp"
-                    android:gravity="end"
-                    android:textStyle="italic"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="20dp"
-                    android:textSize="14dp"
-                    android:paddingLeft="20dp"
-                    android:text="Specalize:-"/>
-                <EditText
-                    android:enabled="false"
-                    android:id="@+id/specalize"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginRight="5dp"
-                    android:background="#fff"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:textSize="14dp"
-                    android:textColor="@color/md_black_1000"
-                    android:text="specalize" />
-
-            </LinearLayout>
-
-
-
-        </LinearLayout>
-        <Button
-            android:id="@+id/update"
-            android:visibility="gone"
-            android:text="Update"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/md_red_400"
-            android:layout_alignParentBottom="true"/>
-    </RelativeLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/md_red_400"
+        android:text="Update"
+        android:visibility="gone" />
+</RelativeLayout>

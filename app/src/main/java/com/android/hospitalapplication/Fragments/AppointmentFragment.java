@@ -2,6 +2,7 @@ package com.android.hospitalapplication.Fragments;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
+import com.android.hospitalapplication.Activities.Doctor.AppointmentDetailsActivity;
 import com.android.hospitalapplication.ModelClasses.User;
 import com.android.hospitalapplication.UtilityAndNetworkingClasses.OnSwipeListener;
 import com.android.hospitalapplication.R;
@@ -277,7 +280,10 @@ public class AppointmentFragment extends Fragment {
                                             viewHolder.v.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View view) {
-
+                                                    Intent i = new Intent(getActivity(), AppointmentDetailsActivity.class);
+                                                    i.putExtra("doc_id",docId);
+                                                    i.putExtra("pat_id",pat_id);
+                                                    startActivity(i);
                                                 }
                                             });
                                         }

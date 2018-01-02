@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/pat_app_bar_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="150dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageButton
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:id="@+id/capturePhoto"
+                android:text="Capture Photo"
+                android:layout_gravity="center"
+                android:background="@drawable/capture_photo"
+                android:layout_width="120dp"
+                android:layout_height="120dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Take A Picture"
+                android:layout_margin="1dp"
+                android:layout_gravity="bottom|center"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                />
+
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_below="@id/capturePhoto"
+                android:layout_margin="20dp"
+                android:padding="20dp"
+                android:background="@drawable/gallery"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:id="@+id/choosePhone"
+                android:text="Choose From Phone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select From Gallery"
+                android:layout_margin="1dp"
+                android:paddingRight="25dp"
+                android:layout_gravity="bottom|center"
+                android:textStyle="bold"
+                />
+        </FrameLayout>
+
+    </LinearLayout>
+</LinearLayout>
