@@ -1,7 +1,10 @@
 package com.android.hospitalapplication.Activities.Patient;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -62,7 +65,24 @@ public class PatientActivity extends AppCompatActivity {
         dietplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,DietPlanActivity.class));
+                AlertDialog.Builder Emergency= new AlertDialog.Builder(PatientActivity.this);
+                Emergency.setTitle("Do You Want To Call Ambulance ?");
+               Emergency.setPositiveButton("Call Ambulance", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       String doctorNumber ="123456789";
+                       Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", doctorNumber, null));
+                       startActivity(intent);                   }
+               });
+               Emergency.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogs, int which) {
+                       dialogs.dismiss();
+
+                   }
+               });
+                AlertDialog alert= Emergency.create();
+                alert.show();
 
             }
         });

@@ -197,15 +197,14 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_room_service_black_24dp"
+                    android:background="@drawable/ic_airport_shuttle_black_24dp"
                     android:backgroundTint="@color/md_grey_400"
-                    android:text="Profile Info"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Diet Plan"
+                    android:text="Emergency"
                     android:layout_margin="1dp"
                     android:layout_gravity="bottom|center_horizontal"
                     android:textAlignment="center"
