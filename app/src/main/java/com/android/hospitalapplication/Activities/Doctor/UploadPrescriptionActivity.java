@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +16,12 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -27,6 +32,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryIteratorException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 public class UploadPrescriptionActivity extends AppCompatActivity {
 
@@ -123,8 +129,8 @@ public class UploadPrescriptionActivity extends AppCompatActivity {
 
     public void uploadImage(Uri imageUri){
 
-        String patId = getIntent().getStringExtra("pat_id");
-        String fileName = imageUri.getLastPathSegment();
+        final String patId = getIntent().getStringExtra("pat_id");
+        final String fileName = imageUri.getLastPathSegment();
         Log.d("file name :",fileName);
         StorageReference strefPresc = FirebaseStorage.getInstance().getReference("Prescriptions");
 
@@ -133,7 +139,18 @@ public class UploadPrescriptionActivity extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                 mProgressDialog.dismiss();
-                Toast.makeText(UploadPrescriptionActivity.this,"Prescription Uploaded Successfully !!",Toast.LENGTH_SHORT).show();
+                String downloadUrl = taskSnapshot.getDownloadUrl().toString();
+                DatabaseReference dbrefPresc = FirebaseDatabase.getInstance().getReference("Prescriptions");
+                HashMap<String,String> imageDetails = new HashMap<>();
+                imageDetails.put("image_name",fileName);
+                imageDetails.put("image_url",downloadUrl);
+                dbrefPresc.child(docId).child(patId).setValue(imageDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(UploadPrescriptionActivity.this,"Prescription Uploaded Successfully !!",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }

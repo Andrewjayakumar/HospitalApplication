@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
 
-    public FrameLayout set_appointement,profile_info,view_prescription,upload_report,dietplan,appointmentStatus;
+    public FrameLayout set_appointement,profile_info,upload_report,dietplan,appointmentStatus;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
@@ -33,7 +33,6 @@ public class PatientActivity extends AppCompatActivity {
         set_appointement=findViewById(R.id.set_appointment);
         profile_info=findViewById(R.id.profile_info);
         upload_report=findViewById(R.id.upload_report);
-        view_prescription=findViewById(R.id.view_prescription);
         dietplan=findViewById(R.id.dietplan);
         appointmentStatus=findViewById(R.id.view_status);
 
@@ -56,12 +55,7 @@ public class PatientActivity extends AppCompatActivity {
 
             }
         });
-        view_prescription.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,ViewPrescriptionActivity.class));
-            }
-        });
+
         dietplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -91,6 +91,12 @@ public class PatientProfileActivity extends AppCompatActivity {
                                 if(databaseError==null)
                                 {
                                     Toast.makeText(PatientProfileActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                                    Update.setVisibility(View.GONE);
+                                    FnameValue.setEnabled(false);
+                                    FnameValue.setCursorVisible(false);
+                                    AddressValue.setEnabled(false);
+                                    phoneValue.setEnabled(false);
+                                    profileDob.setEnabled(false);
                                 }
                                 else
                                 {

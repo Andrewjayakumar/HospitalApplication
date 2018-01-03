@@ -130,6 +130,14 @@ public class ProfileInfoFragment extends Fragment {
                                 if(databaseError==null)
                                 {
                                     Toast.makeText(getActivity(), "Updated Successfully", Toast.LENGTH_SHORT).show();
+
+                                    user_profile_name.setEnabled(false);
+                                    user_profile_short_bio.setEnabled(false);
+                                    exp_value.setEnabled(false);
+                                    mobile.setEnabled(false);
+                                    room.setEnabled(false);
+                                    specalize.setEnabled(false);
+                                    update.setVisibility(View.INVISIBLE);
                                 }
                                 else
                                 {

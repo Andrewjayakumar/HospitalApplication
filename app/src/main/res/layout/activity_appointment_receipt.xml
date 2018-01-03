@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -229,3 +233,13 @@
         />
 
 </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/md_blue_300"
+        android:text="View Prescription"
+        android:id="@+id/view_prescriptions"
+        android:textColor="@color/md_white_1000"
+        android:visibility="gone"/>
+</RelativeLayout>

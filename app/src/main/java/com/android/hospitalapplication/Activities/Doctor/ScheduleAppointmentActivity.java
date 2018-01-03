@@ -160,7 +160,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                                 notifDetails.put("from",docId);
                                 notifDetails.put("type","confirmed");
                                 dbrefRoot.child("Notifications").child(patId).push().setValue(notifDetails);
-                                Intent i = new Intent(ScheduleAppointmentActivity.this,AppointmentReceiptActivity.class);
+                                Intent i = new Intent(ScheduleAppointmentActivity.this,AppointmentDetailsActivity.class);
                                 i.putExtra("doc_id",docId);
                                 i.putExtra("pat_id",patId);
                                 startActivity(i);
