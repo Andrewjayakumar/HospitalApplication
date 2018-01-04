@@ -7,6 +7,7 @@
     android:background="@color/colorBack"
     tools:context="com.android.hospitalapplication.Activities.SplashActivity"
     android:id="@+id/splash_layout"
+    android:orientation="vertical"
     android:gravity="center">
 
     <ImageView
@@ -14,5 +15,14 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:background="@drawable/logo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A.S.H.A"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/md_red_800"
+        android:textStyle="bold"
+        android:textSize="40dp"/>
 
 </LinearLayout>

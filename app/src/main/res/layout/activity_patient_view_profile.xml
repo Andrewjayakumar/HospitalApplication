@@ -272,7 +272,7 @@
                         android:paddingBottom="20dp"
                         android:paddingLeft="20dp"
                         android:paddingTop="20dp"
-                        android:text="Mobile Number:-"
+                        android:text="Mobile No.:-"
                         android:textStyle="italic" />
 
                     <EditText
