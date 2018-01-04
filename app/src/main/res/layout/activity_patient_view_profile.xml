@@ -24,8 +24,8 @@
                 android:id="@+id/header_cover_image"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
-                android:background="@drawable/navagation_background"
-                android:scaleType="fitXY" />
+                android:src="@drawable/navagation_background"
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/user_profile_photo"
@@ -349,6 +349,7 @@
         android:text="Update"
         android:visibility="gone"
         android:background="@color/md_red_500"
+        android:textColor="@color/md_white_1000"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

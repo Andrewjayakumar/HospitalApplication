@@ -396,6 +396,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/md_red_400"
+        android:textColor="@color/md_white_1000"
         android:text="Update"
         android:visibility="gone" />
 </RelativeLayout>

@@ -59,7 +59,9 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         viewReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(AppointmentDetailsActivity.this,ReportsActivity.class);
+                i.putExtra("pat_id",patId);
+                startActivity(i);
             }
         });
 

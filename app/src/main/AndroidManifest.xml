@@ -19,23 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <provider
-            android:name=".GenericFileProvider"
-            android:authorities="${applicationId}com.android.hospitalapplication.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
-        </provider>
-
-        <provider
-            android:authorities="com.android.hospitalapplication.fileprovider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.android.hospitalapplication.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <service android:name=".UtilityAndNetworkingClasses.MyFirebaseInstanceIdService">
@@ -97,10 +87,15 @@
             android:name=".Activities.Doctor.ScheduleAppointmentActivity"
             android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity" />
         <activity android:name=".Activities.AppointmentReceiptActivity" />
-        <activity android:name=".Activities.Doctor.AppointmentDetailsActivity"
-            android:parentActivityName=".Activities.Doctor.DoctorActivity"/>
-        <activity android:name=".Activities.Doctor.UploadPrescriptionActivity"
-            android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity"></activity>
+        <activity
+            android:name=".Activities.Doctor.AppointmentDetailsActivity"
+            android:parentActivityName=".Activities.Doctor.DoctorActivity" />
+        <activity
+            android:name=".Activities.Doctor.UploadPrescriptionActivity"
+            android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity" />
+        <activity android:name=".Activities.Doctor.ReportsActivity" />
+        <activity android:name=".Activities.Doctor.ViewReportActivity"
+            ></activity>
     </application>
 
 </manifest>
