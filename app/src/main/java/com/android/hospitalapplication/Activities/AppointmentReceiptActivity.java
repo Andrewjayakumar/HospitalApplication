@@ -1,14 +1,13 @@
 package com.android.hospitalapplication.Activities;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.android.hospitalapplication.Activities.Doctor.AppointmentDetailsActivity;
 import com.android.hospitalapplication.Activities.Patient.ViewPrescriptionActivity;
 import com.android.hospitalapplication.R;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +33,7 @@ public class AppointmentReceiptActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Appointment Details");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         aptId=findViewById(R.id.apt_id);
         aptDate=findViewById(R.id.date_time);

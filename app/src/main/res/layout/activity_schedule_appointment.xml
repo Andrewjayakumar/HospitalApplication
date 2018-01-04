@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv1"
+        android:background="@color/md_red_400"
         android:text="Choose Time"
         android:id="@+id/set_time"/>
 
@@ -34,6 +35,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Date"
+        android:background="@color/md_red_400"
         android:layout_below="@+id/tv2"
         android:id="@+id/set_date"/>
 

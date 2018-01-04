@@ -19,21 +19,44 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_centerInParent="true"
-
-        android:indeterminateTint="@color/md_grey_400"
+        android:indeterminateTint="@color/md_red_400"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:text="A.S.H.A"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="77dp"
-        android:background="@drawable/logo"
+        android:layout_marginTop="70dp"
+        android:textColor="@color/md_black_1000"
+        android:textStyle="bold|italic"
         />
+    <TextView
+        android:layout_below="@+id/t"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="A Smart Way To Interact With Your Doctor"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/md_black_1000"
+        android:textStyle="bold|italic"
+        />
+
+    <!--<ImageView-->
+        <!--android:id="@+id/imageview"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="77dp"-->
+        <!--android:background="@drawable/logo"-->
+        <!--/>-->
 
 
     <ScrollView
@@ -46,13 +69,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="5dp"
+            android:padding="10dp"
             android:layout_gravity="center_vertical"
             android:background="@drawable/rounded_corner_button">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/md_black_1000"
                 >
 
                 <AutoCompleteTextView
@@ -63,6 +87,7 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:textColor="@color/md_black_1000"
+                    android:textColorHint="@color/md_black_1000"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -71,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
+                android:textColorHint="@color/md_black_1000"
                 app:passwordToggleContentDescription="Show Password"
                 >
 
@@ -81,8 +107,8 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:textColor="@color/md_black_1000"
+                    android:textColorHint="@color/md_black_1000"
                     android:maxLines="1"
-
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -92,6 +118,8 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/md_red_400"
+                android:textColor="@color/md_black_1000"
                 android:layout_marginTop="16dp"
                 android:text="SIGN IN"
                 android:textStyle="bold" />

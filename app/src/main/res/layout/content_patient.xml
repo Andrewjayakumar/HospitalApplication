@@ -47,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:text="Request Appointment"
                     android:layout_margin="1dp"
-                    android:background="@color/md_red_100"
+                    android:background="#5e6ac8c4"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textAlignment="center"
                     android:paddingLeft="10dp"
@@ -78,14 +78,13 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center_horizontal"
                     android:layout_margin="1dp"
                     android:layout_marginTop="10dp"
-                    android:background="@color/md_red_100"
+                    android:background="#5e6ac8c4"
                     android:textSize="12dp"
-
                     android:paddingLeft="10dp"
                     android:text="View Appointments/Requests"
                     android:textAlignment="center"
@@ -132,7 +131,7 @@
                     android:text="Upload Reports"
                     android:layout_margin="1dp"
                     android:paddingTop="5dp"
-                    android:background="@color/md_red_100"
+                    android:background="#5e6ac8c4"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textAlignment="center"
                     android:paddingLeft="20dp"
@@ -169,8 +168,7 @@
                     android:text="View Profile"
                     android:layout_margin="1dp"
                     android:textAlignment="center"
-                    android:background="@color/md_red_100"
-
+                    android:background="#5e6ac8c4"
                     android:layout_gravity="center_horizontal|bottom"
                     android:textStyle="bold"
                     />
@@ -214,7 +212,7 @@
                     android:layout_margin="1dp"
                     android:layout_gravity="bottom|center_horizontal"
                     android:textAlignment="center"
-                    android:background="@color/md_red_100"
+                    android:background="#5e6ac8c4"
                     android:textStyle="bold"
                     />
             </FrameLayout>

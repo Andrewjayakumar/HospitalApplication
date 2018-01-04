@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:elevation="4dp"
         android:padding="10dp"
         android:spinnerMode="dialog"
         android:textAlignment="center"
@@ -77,21 +78,38 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="3"
+            android:elevation="4dp"
             android:textAlignment="center"
             android:padding="10dp"
             android:background="@drawable/rounded_corner"
             android:spinnerMode="dialog" />
+        <FrameLayout
+            android:id="@+id/more_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:background="@null">
 
-        <ImageButton
-        android:id="@+id/more_info"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/ic_info_outline_black_24dp"
+            android:layout_gravity="center"
+            android:tooltipText="More Info"
         android:padding="5dp"
-        android:foreground="?attr/selectableItemBackground"
         />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="More info"/>
+
+        </FrameLayout>
 
     </LinearLayout>
 
@@ -204,7 +222,8 @@
         android:maxLines="1"
         android:padding="20dp"
         android:singleLine="true"
-        android:background="@color/md_red_200"
+        android:textColorHint="@color/md_white_1000"
+        android:background="@color/md_red_400"
         android:textColor="@color/md_white_1000"/>
 
     <LinearLayout

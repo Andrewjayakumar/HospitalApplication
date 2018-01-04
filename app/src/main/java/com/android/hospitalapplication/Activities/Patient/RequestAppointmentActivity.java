@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -46,7 +47,8 @@ public class RequestAppointmentActivity extends AppCompatActivity {
     View bottomSheet;
     LinearLayout doctordetails;
     Button request_Appointment,  preferred_appointment_date;
-    ImageButton calldoctor,info;
+    ImageButton calldoctor;
+    FrameLayout info;
     String docName;
     TextView doctorcontactnumber, doctoraddress,bsName,bsQualify,bsExperience,bsSpecialize;
     EditText describe_problem;

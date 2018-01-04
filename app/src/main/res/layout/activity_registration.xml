@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#47f9e8e8"
-
+    android:background="@color/md_white_1000"
     tools:context="com.android.hospitalapplication.Activities.RegistrationActivity">
 
     <include
@@ -62,7 +61,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/buttons"
-            android:background="@drawable/rounded_corner_button"
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="gone">
@@ -214,13 +212,11 @@
                     android:id="@+id/dob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBaseline="@+id/preferred_appointment_date"
-                    android:layout_alignBottom="@+id/preferred_appointment_date"
+                    android:layout_alignBaseline="@+id/dob1"
+                    android:layout_alignBottom="@+id/dob1"
                     android:layout_alignEnd="@+id/bg1"
                     android:layout_alignRight="@+id/bg1"
-                    android:layout_below="@+id/bg1"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
                     android:text="Date Of Birth:"
                     android:textColor="@color/md_black_1000"
                     android:textSize="16sp" />
