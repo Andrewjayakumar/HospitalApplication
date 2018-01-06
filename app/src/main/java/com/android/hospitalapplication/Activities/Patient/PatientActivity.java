@@ -6,11 +6,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.Button;
 
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
@@ -18,7 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
 
-    public FrameLayout set_appointement,profile_info,upload_report,dietplan,appointmentStatus;
+    public CardView set_appointement,profile_info,upload_report,appointmentStatus;
+    Button dietplan;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
@@ -61,20 +63,20 @@ public class PatientActivity extends AppCompatActivity {
             public void onClick(View v) {
                 AlertDialog.Builder Emergency= new AlertDialog.Builder(PatientActivity.this);
                 Emergency.setTitle("Do You Want To Call Ambulance ?");
-               Emergency.setPositiveButton("Call Ambulance", new DialogInterface.OnClickListener() {
-                   @Override
-                   public void onClick(DialogInterface dialog, int which) {
-                       String doctorNumber ="123456789";
-                       Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", doctorNumber, null));
-                       startActivity(intent);                   }
-               });
-               Emergency.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+               Emergency.setNegativeButton("No", new DialogInterface.OnClickListener() {
                    @Override
                    public void onClick(DialogInterface dialogs, int which) {
                        dialogs.dismiss();
 
                    }
                });
+                Emergency.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String doctorNumber ="123456789";
+                        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", doctorNumber, null));
+                        startActivity(intent);                   }
+                });
                 AlertDialog alert= Emergency.create();
                 alert.show();
 

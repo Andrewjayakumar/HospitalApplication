@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/md_blue_grey_600">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/update">
+        android:layout_above="@+id/update"
+        android:background="@color/md_blue_grey_600">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/md_grey_100">
+            android:background="@color/md_green_600">
 
             <ImageView
                 android:id="@+id/header_cover_image"
@@ -37,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/header_cover_image"
-                android:background="@color/md_grey_400"
+                android:background="@color/md_green_600"
                 android:elevation="4dp"
                 android:paddingBottom="24dp">
 
@@ -64,7 +66,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="Name"
-                    android:textColor="@color/md_black_1000"
+                    android:textColor="@color/md_white_1000"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -79,7 +81,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:text="Qualification"
-                    android:textColor="#000"
+                    android:textColor="@color/md_white_1000"
                     android:textSize="14sp" />
             </RelativeLayout>
 

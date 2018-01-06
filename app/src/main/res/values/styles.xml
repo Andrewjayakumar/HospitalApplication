@@ -6,7 +6,7 @@
 
 
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/md_red_400</item>
+        <item name="colorPrimaryDark">@color/md_light_blue_A700</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
