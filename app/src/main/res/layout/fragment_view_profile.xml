@@ -19,8 +19,8 @@
                 android:id="@+id/header_cover_image"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:background="@drawable/navagation_background"
-                android:scaleType="centerCrop" />
+                android:src="@drawable/navagation_background"
+                android:scaleType="fitXY" />
 
             <ImageButton
                 android:id="@+id/user_profile_photo"

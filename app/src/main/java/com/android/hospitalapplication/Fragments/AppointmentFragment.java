@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
@@ -101,9 +104,15 @@ public class AppointmentFragment extends Fragment {
         leftNav=v.findViewById(R.id.left_nav);
         date=v.findViewById(R.id.date_cal);
         appointments=v.findViewById(R.id.appointment_list);
+
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(appointments.getContext(), DividerItemDecoration.VERTICAL);
+        itemDecoration.setDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.divider_line));
         appointments.setLayoutManager(new LinearLayoutManager(getContext()));
+        appointments.addItemDecoration(itemDecoration);
+
         String currDate = getCurrentDate();
         date.setText(currDate);
+
         appointments.setOnTouchListener(new OnSwipeListener(getContext()){
             @Override
             public void onSwipeRight() {

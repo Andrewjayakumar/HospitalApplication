@@ -91,13 +91,20 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         String AM_PM ;
+                        String min;
                         if(i < 12) {
                             AM_PM = "AM";
                         } else {
                             AM_PM = "PM";
                         }
+                        if(i1<10){
+                            min="0"+i1;
+                        }
+                        else{
+                            min=""+i1;
+                        }
 
-                        setTime.setText(""+(i%12)+":"+i1+AM_PM);
+                        setTime.setText(""+(i%12)+":"+min+AM_PM);
                     }
                 },hourOfDay,minutes,false);
 

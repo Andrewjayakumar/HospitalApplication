@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -21,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class SplashActivity extends AppCompatActivity {
 
     Animation fadeIn;
@@ -29,16 +32,18 @@ public class SplashActivity extends AppCompatActivity {
 
     LinearLayout LinearLayout;
     ImageView imageView;
+    GifImageView gif;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acitivity_splash);
 
         fadeIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
-        imageView =  findViewById(R.id.imageview);
-
+      //  imageView =  findViewById(R.id.imageview);
+         gif = findViewById(R.id.gif);
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
         fadeIn.setAnimationListener(new Animation.AnimationListener() {
@@ -89,8 +94,8 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
 
-        imageView.setAnimation(fadeIn);
-
+      //  imageView.setAnimation(fadeIn);
+          gif.setAnimation(fadeIn);
 
     }
 }
