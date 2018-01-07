@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:id="@+id/Fname"
                         android:layout_width="0dp"
@@ -86,11 +86,11 @@
                         android:background="#fff"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="23dp"
                         android:text="First Name:-"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:clickable="false"
                         android:textStyle="italic" />
 
@@ -119,22 +119,22 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:id="@+id/Gender"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="5dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="23dp"
                         android:text="Gender:-"
                         android:clickable="false"
                         android:textStyle="italic" />
@@ -164,7 +164,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -175,11 +175,11 @@
                         android:background="#fff"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
                         android:clickable="false"
-                        android:paddingTop="20dp"
-                        android:textSize="15dp"
+                        android:paddingTop="23dp"
+                        android:textSize="12dp"
                         android:text="Date Of Birth:-"
                         android:textStyle="italic" />
 
@@ -210,11 +210,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:id="@+id/Bloodgrp"
                         android:layout_width="0dp"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:clickable="false"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -224,9 +224,9 @@
                         android:background="#fff"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="23dp"
                         android:text="Blood Group:-"
                         android:textStyle="italic" />
 
@@ -255,10 +255,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:id="@+id/Mobile"
-                        android:textSize="14dp"
+                        android:textSize="12dp"
                         android:clickable="false"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -269,9 +269,9 @@
                         android:background="#fff"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="23dp"
                         android:text="Mobile No.:-"
                         android:textStyle="italic" />
 
@@ -300,7 +300,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <EditText
+                    <TextView
                         android:editable="false"
                         android:id="@+id/Address"
                         android:layout_width="0dp"
@@ -309,14 +309,14 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:textSize="15dp"
+                        android:textSize="12dp"
                         android:background="#fff"
                         android:clickable="false"
                         android:elevation="4dp"
                         android:gravity="end"
-                        android:paddingBottom="20dp"
-                        android:paddingLeft="20dp"
-                        android:paddingTop="20dp"
+                        android:paddingBottom="21dp"
+                        android:paddingLeft="23dp"
+                        android:paddingTop="23dp"
                         android:text="Address:-"
                         android:textStyle="italic" />
 
