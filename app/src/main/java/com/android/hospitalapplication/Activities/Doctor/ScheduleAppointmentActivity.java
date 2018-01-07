@@ -36,7 +36,7 @@ import java.util.Map;
 public class ScheduleAppointmentActivity extends AppCompatActivity {
 
     Toolbar mToolbar;
-    Button setDate,setTime,schApt;
+    Button setDate, setTime, schApt;
     EditText remarks;
 
 
@@ -53,7 +53,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
         setDate = findViewById(R.id.set_date);
         setTime = findViewById(R.id.set_time);
         schApt = findViewById(R.id.schedule_apt);
-        remarks=findViewById(R.id.remarks);
+        remarks = findViewById(R.id.remarks);
 
         String prefDate = getIntent().getStringExtra("pref_date");
         final String pat_id = getIntent().getStringExtra("pat_id");
@@ -74,7 +74,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         setDate.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
-                }, year,month,day);
+                }, year, month, day);
                 datepicker.getDatePicker().setMinDate(Calendar.getInstance().getTime().getTime());
                 datepicker.show();
             }
@@ -85,8 +85,8 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Calendar c = Calendar.getInstance();
-                 int hourOfDay = c.get(c.HOUR_OF_DAY);
-                 int minutes = c.get(c.MINUTE);
+                int hourOfDay = c.get(c.HOUR_OF_DAY);
+                int minutes = c.get(c.MINUTE);
 
                /* TimePickerDialog tp = new TimePickerDialog(ScheduleAppointmentActivity.this,new TimePickerDialog.OnTimeSetListener(){
                     @Override
@@ -110,40 +110,41 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                 },hourOfDay,minutes,false);
 
                 tp.show();*/
-                CustomTimePicker customTimePicker =new CustomTimePicker(ScheduleAppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                CustomTimePicker customTimePicker = new CustomTimePicker(ScheduleAppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
-                        String AM_PM ;
-                        String min,hrs;
-                        if(i < 12) {
+                        String AM_PM;
+                        String min, hrs;
+                        if (i < 12) {
                             AM_PM = "AM";
-                            hrs="0"+i;
+                            if (i < 10) {
+                                hrs = "0" + i;
+                            } else {
+                                hrs = "" + i;
+                            }
                         } else {
                             AM_PM = "PM";
-                            if(i>12){
-                            i%=12;
-                            if(i<12) {
-                                hrs = "0" + i;
-                            }
-                            else{
-                                hrs=""+i;
-                            }
-                            }
-                            else {
+                            if (i > 12) {
+                                i %= 12;
+                                if (i < 10) {
+                                    hrs = "0" + i;
+                                } else {
+                                    hrs = "" + i;
+                                }
+                            } else {
                                 i = 12;
-                                hrs=""+i;
+                                hrs = "" + i;
                             }
                         }
 
-                        if(i1<10){
-                            min="0"+i1;
+                        if (i1 < 10) {
+                            min = "0" + i1;
+                        } else {
+                            min = "" + i1;
                         }
-                        else{
-                            min=""+i1;
-                        }
-                        setTime.setText(""+(hrs)+":"+min+AM_PM);
+                        setTime.setText("" + (hrs) + ":" + min + AM_PM);
                     }
-                },hourOfDay,minutes,false);
+                }, hourOfDay, minutes, false);
                 customTimePicker.show();
             }
         });
@@ -159,59 +160,56 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                 String remark = remarks.getText().toString();
                 String doc_id = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                if(!(date.equals(null)) && !(time.equals(null))) {
+                if (!(date.equals(null)) && !(time.equals(null))) {
                     setAppointment(pat_id, doc_id, date, time, remark);
                     finish();
-                }
-                else {
-                    Toast.makeText(ScheduleAppointmentActivity.this,"Please select date & time for the appointment",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ScheduleAppointmentActivity.this, "Please select date & time for the appointment", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
     }
 
-    public void setAppointment(final String patId, final String docId, String date, String time, String remarks){
+    public void setAppointment(final String patId, final String docId, String date, String time, String remarks) {
         final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
 
 
         Map aptDetails = new HashMap();
 
-        aptDetails.put("Appointments/"+patId+"/"+docId+"/"+"apt_date",date);
-        aptDetails.put("Appointments/"+docId+"/"+patId+"/"+"apt_date",date);
-        aptDetails.put("Appointments/"+patId+"/"+docId+"/"+"apt_time",time);
-        aptDetails.put("Appointments/"+docId+"/"+patId+"/"+"apt_time",time);
-        aptDetails.put("Appointments/"+patId+"/"+docId+"/"+"apt_remarks",remarks);
-        aptDetails.put("Appointments/"+docId+"/"+patId+"/"+"apt_remarks",remarks);
-        aptDetails.put("Appointments/"+patId+"/"+docId+"/"+"apt_id",ServerValue.TIMESTAMP);
-        aptDetails.put("Appointments/"+docId+"/"+patId+"/"+"apt_id",ServerValue.TIMESTAMP);
+        aptDetails.put("Appointments/" + patId + "/" + docId + "/" + "apt_date", date);
+        aptDetails.put("Appointments/" + docId + "/" + patId + "/" + "apt_date", date);
+        aptDetails.put("Appointments/" + patId + "/" + docId + "/" + "apt_time", time);
+        aptDetails.put("Appointments/" + docId + "/" + patId + "/" + "apt_time", time);
+        aptDetails.put("Appointments/" + patId + "/" + docId + "/" + "apt_remarks", remarks);
+        aptDetails.put("Appointments/" + docId + "/" + patId + "/" + "apt_remarks", remarks);
+        aptDetails.put("Appointments/" + patId + "/" + docId + "/" + "apt_id", ServerValue.TIMESTAMP);
+        aptDetails.put("Appointments/" + docId + "/" + patId + "/" + "apt_id", ServerValue.TIMESTAMP);
 
 
         dbrefRoot.updateChildren(aptDetails, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if(databaseError==null){
+                if (databaseError == null) {
                     Map remove = new HashMap();
-                    remove.put("Requests/"+patId+"/"+docId,null);
-                    remove.put("Requests/"+docId+"/"+patId,null);
+                    remove.put("Requests/" + patId + "/" + docId, null);
+                    remove.put("Requests/" + docId + "/" + patId, null);
                     dbrefRoot.updateChildren(remove, new DatabaseReference.CompletionListener() {
                         @Override
                         public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            if(databaseError==null){
-                                Toast.makeText(getApplicationContext(),"Appointment Set",Toast.LENGTH_LONG).show();
-                                HashMap<String,String> notifDetails = new HashMap<>();
-                                notifDetails.put("from",docId);
-                                notifDetails.put("type","confirmed");
+                            if (databaseError == null) {
+                                Toast.makeText(getApplicationContext(), "Appointment Set", Toast.LENGTH_LONG).show();
+                                HashMap<String, String> notifDetails = new HashMap<>();
+                                notifDetails.put("from", docId);
+                                notifDetails.put("type", "confirmed");
                                 dbrefRoot.child("Notifications").child(patId).push().setValue(notifDetails);
-                                Intent i = new Intent(ScheduleAppointmentActivity.this,AppointmentDetailsActivity.class);
-                                i.putExtra("doc_id",docId);
-                                i.putExtra("pat_id",patId);
+                                Intent i = new Intent(ScheduleAppointmentActivity.this, AppointmentDetailsActivity.class);
+                                i.putExtra("doc_id", docId);
+                                i.putExtra("pat_id", patId);
                                 startActivity(i);
                                 finish();
-                            }
-                            else
-                            {
-                                Toast.makeText(getApplicationContext(),databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -224,8 +222,8 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
 
     }
 
-    public String formatDate(String date){
-        Log.d("inc date:",date);
+    public String formatDate(String date) {
+        Log.d("inc date:", date);
         Calendar c = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -235,7 +233,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Log.d("new date",df.format(c.getTime()));
+        Log.d("new date", df.format(c.getTime()));
         return df.format(c.getTime());
 
     }

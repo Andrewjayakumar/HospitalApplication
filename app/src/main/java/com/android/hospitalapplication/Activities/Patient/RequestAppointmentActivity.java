@@ -91,6 +91,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         bsExperience=findViewById(R.id.bsExperience);
         bsSpecialize=findViewById(R.id.bsSpecialize);
 
+        request_Appointment.setEnabled(false);
         final Calendar cal = Calendar.getInstance();
         final int year = cal.get(cal.YEAR);
         final int month = cal.get(cal.MONTH);
@@ -119,6 +120,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                 Log.d("Position", "" + position);
                 if (!(position == 0)) {
                     doctordetails.setVisibility(View.VISIBLE);
+                    request_Appointment.setEnabled(true);
                 }
                 switch (position) {
                     case 1:

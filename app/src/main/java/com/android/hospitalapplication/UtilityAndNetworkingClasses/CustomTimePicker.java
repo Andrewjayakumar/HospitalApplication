@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.icu.text.NumberFormat;
+import android.util.Log;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
 
@@ -22,6 +23,9 @@ public class CustomTimePicker extends TimePickerDialog {
     private final static int TIME_PICKER_INTERVAL = 30;
     private TimePicker mTimePicker;
     private final OnTimeSetListener mTimeSetListener;
+    private String amPm;
+    int lastHour;
+
 
     public CustomTimePicker(Context context, OnTimeSetListener listener,
                             int hourOfDay, int minute, boolean is24HourView) {
@@ -32,8 +36,10 @@ public class CustomTimePicker extends TimePickerDialog {
 
     @Override
     public void updateTime(int hourOfDay, int minuteOfHour) {
-        mTimePicker.setCurrentHour(hourOfDay);
-        mTimePicker.setCurrentMinute(minuteOfHour / TIME_PICKER_INTERVAL);
+
+
+    //    mTimePicker.setCurrentHour(hourOfDay);
+    //    mTimePicker.setCurrentMinute(minuteOfHour / TIME_PICKER_INTERVAL);
     }
 
     @Override
@@ -41,14 +47,30 @@ public class CustomTimePicker extends TimePickerDialog {
         switch (which) {
             case BUTTON_POSITIVE:
                 if (mTimeSetListener != null) {
-                    mTimeSetListener.onTimeSet(mTimePicker, mTimePicker.getCurrentHour(),
+                    if(lastHour<10){
+                        lastHour+=12;
+                    }
+                    mTimeSetListener.onTimeSet(mTimePicker,lastHour,
                             mTimePicker.getCurrentMinute() * TIME_PICKER_INTERVAL);
+                    Log.d("Time :",""+mTimePicker.getCurrentHour()+":"+mTimePicker.getCurrentMinute());
                 }
                 break;
             case BUTTON_NEGATIVE:
                 cancel();
                 break;
         }
+    }
+
+    @Override
+    public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+        super.onTimeChanged(view, hourOfDay, minute);
+
+        if(lastHour!=hourOfDay ){
+            view.setCurrentHour(lastHour);
+            view.setCurrentMinute(minute/TIME_PICKER_INTERVAL);
+        }
+        Log.d("Time :",""+lastHour+":"+mTimePicker.getCurrentMinute()+" "+hourOfDay+":"+minute);
+
     }
 
     @Override
@@ -76,20 +98,29 @@ public class CustomTimePicker extends TimePickerDialog {
             minuteSpinner.setDisplayedValues(displayedValues
                     .toArray(new String[displayedValues.size()]));
 
+            Log.d("last hour :",""+lastHour);
+
             if(amPmSpinner.getValue()==0){
                 hourSpinner.setMinValue(10);
                 hourSpinner.setMaxValue(12);
+                amPm="AM";
+                lastHour=hourSpinner.getValue();
 
             }
             else{
+                amPm="PM";
                 hourSpinner.setMinValue(5);
                 hourSpinner.setMaxValue(7);
+                lastHour=hourSpinner.getValue();
+
             }
             hourSpinner.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                 @Override
                 public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+
+                    lastHour=i1;
                     if(i1==12){
-                        amPmSpinner.setValue(2);
+                        amPmSpinner.setValue(1);
                     }
                 }
             });
@@ -99,11 +130,20 @@ public class CustomTimePicker extends TimePickerDialog {
                     if(i1 == 0){ //AM
                         hourSpinner.setMinValue(10);
                         hourSpinner.setMaxValue(12);
+                        amPm="AM";
+                        lastHour=hourSpinner.getValue();
+
+
                     }
                     else{ //Pm
+                        amPm="PM";
                         hourSpinner.setMinValue(5);
                         hourSpinner.setMaxValue(7);
+                        lastHour=hourSpinner.getValue();
+
                     }
+                    Log.d("AM/PM ",amPm+" "+i1);
+
                 }
             });
 
