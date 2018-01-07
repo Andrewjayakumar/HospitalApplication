@@ -70,6 +70,7 @@
                 android:backgroundTint="@color/md_indigo_A700"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
+                app:cardCornerRadius="4dp"
                 android:layout_weight="1"
                 android:textAlignment="center">
 
@@ -115,6 +116,7 @@
                 android:transitionGroup="true"
                 android:layout_margin="10dp"
                 android:layout_gravity="center"
+                app:cardCornerRadius="4dp"
                 android:layout_weight="1"
                 android:textAlignment="center">
 
@@ -152,6 +154,7 @@
                 android:transitionGroup="true"
                 android:backgroundTint="@color/md_pink_300"
                 android:layout_margin="10dp"
+                app:cardCornerRadius="4dp"
                 android:layout_weight="1"
                 android:textAlignment="center">
 
