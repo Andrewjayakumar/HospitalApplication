@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.R;
+import com.android.hospitalapplication.UtilityAndNetworkingClasses.CustomTimePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,7 +88,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                  int hourOfDay = c.get(c.HOUR_OF_DAY);
                  int minutes = c.get(c.MINUTE);
 
-                TimePickerDialog tp = new TimePickerDialog(ScheduleAppointmentActivity.this,new TimePickerDialog.OnTimeSetListener(){
+               /* TimePickerDialog tp = new TimePickerDialog(ScheduleAppointmentActivity.this,new TimePickerDialog.OnTimeSetListener(){
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         String AM_PM ;
@@ -108,11 +109,46 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                     }
                 },hourOfDay,minutes,false);
 
-                tp.show();
+                tp.show();*/
+                CustomTimePicker customTimePicker =new CustomTimePicker(ScheduleAppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int i, int i1) {
+                        String AM_PM ;
+                        String min,hrs;
+                        if(i < 12) {
+                            AM_PM = "AM";
+                            hrs="0"+i;
+                        } else {
+                            AM_PM = "PM";
+                            if(i>12){
+                            i%=12;
+                            if(i<12) {
+                                hrs = "0" + i;
+                            }
+                            else{
+                                hrs=""+i;
+                            }
+                            }
+                            else {
+                                i = 12;
+                                hrs=""+i;
+                            }
+                        }
+
+                        if(i1<10){
+                            min="0"+i1;
+                        }
+                        else{
+                            min=""+i1;
+                        }
+                        setTime.setText(""+(hrs)+":"+min+AM_PM);
+                    }
+                },hourOfDay,minutes,false);
+                customTimePicker.show();
             }
         });
-        setTime.setText("Set Appointment time");
 
+        setTime.setText("Set Appointment time");
 
         schApt.setOnClickListener(new View.OnClickListener() {
             @Override

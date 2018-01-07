@@ -73,7 +73,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         doctordetails = findViewById(R.id.doctordetails);
         Toolbar toolbar = (Toolbar) findViewById(R.id.pat_app_bar_layout);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Set Appointment");
+        getSupportActionBar().setTitle("Request Appointment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 

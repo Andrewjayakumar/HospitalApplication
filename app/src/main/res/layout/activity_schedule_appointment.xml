@@ -6,55 +6,80 @@
     android:layout_height="match_parent"
     tools:context="com.android.hospitalapplication.Activities.Doctor.ScheduleAppointmentActivity">
 
-    <include layout="@layout/app_bar_layout"
-        android:id="@+id/apt_app_bar"/>
+    <include
+        android:id="@+id/apt_app_bar"
+        layout="@layout/app_bar_layout" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schedule Time"
-        android:id="@+id/tv1"
-        android:layout_below="@+id/apt_app_bar"
-        android:layout_margin="8dp"/>
-    <Button
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv1"
-        android:background="@color/md_red_400"
-        android:text="Choose Time"
-        android:id="@+id/set_time"/>
+        android:layout_below="@id/apt_app_bar">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Schedule Date"
-        android:id="@+id/tv2"
-        android:layout_below="@+id/set_time"
-        android:layout_margin="8dp"/>
+            <TextView
+                android:id="@+id/tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Schedule Date" />
+
+            <Button
+                android:id="@+id/set_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv2"
+                android:layout_margin="10dp"
+                android:background="@color/md_red_400"
+                android:text="Choose Date"
+                android:textColor="@color/md_white_1000" />
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/set_date"
+                android:layout_margin="8dp"
+                android:text="Schedule Time" />
+
+            <Button
+                android:id="@+id/set_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv1"
+                android:layout_margin="10dp"
+                android:background="@color/md_red_400"
+                android:text="Choose Time"
+                android:textColor="@color/md_white_1000" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/set_time"
+                android:layout_margin="8dp">
+
+                <EditText
+                    android:id="@+id/remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:hint="Remarks"
+                    android:lines="3" />
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Date"
-        android:background="@color/md_red_400"
-        android:layout_below="@+id/tv2"
-        android:id="@+id/set_date"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Remarks"
-        android:id="@+id/remarks"
-        android:layout_below="@+id/set_date"
-        android:lines="3"
-        android:gravity="top"/>
-
-    <Button
+        android:id="@+id/schedule_apt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/md_blue_600"
         android:text="Schedule Appointment"
-        android:textColor="@color/md_white_1000"
-        android:id="@+id/schedule_apt"
-        android:background="@color/md_blue_600"/>
+        android:textColor="@color/md_white_1000" />
+
 </RelativeLayout>
