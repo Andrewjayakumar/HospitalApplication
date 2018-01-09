@@ -18,17 +18,5 @@
             android:title="Sign Out" />
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/rate_us"
-                android:icon="@drawable/ic_rate_review_black_24dp"
-                android:title="Rate App" />
-        </menu>
-    </item>
 
 </menu>

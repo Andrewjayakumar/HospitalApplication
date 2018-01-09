@@ -74,4 +74,9 @@
         <item >07:00-07:30</item>
         <item >07:30-08:00</item>
     </string-array>
+
+    <string-array name="time_zone">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
 </resources>

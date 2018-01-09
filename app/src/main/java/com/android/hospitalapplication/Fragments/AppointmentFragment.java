@@ -284,6 +284,11 @@ public class AppointmentFragment extends Fragment {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             String name = dataSnapshot.child("name").getValue().toString();
+                                            String gender = dataSnapshot.child("gender").getValue().toString();
+
+                                            if(gender.equals("F")){
+                                                viewHolder.setImage(R.drawable.avatar_fm);
+                                            }
                                             viewHolder.setName(name);
                                             viewHolder.setTime(time);
                                             viewHolder.v.setOnClickListener(new View.OnClickListener() {
@@ -325,6 +330,7 @@ public class AppointmentFragment extends Fragment {
 
         private View v;
         private TextView pName,time;
+        private ImageView photo;
         public PatientViewHolder(View itemView) {
             super(itemView);
             v=itemView;
@@ -338,6 +344,11 @@ public class AppointmentFragment extends Fragment {
         public void setTime(String time){
             this.time=v.findViewById(R.id.appointment_time);
             this.time.setText(time);
+        }
+
+        public void setImage(int resId){
+            photo=v.findViewById(R.id.pat_photo);
+            photo.setImageResource(resId);
         }
     }
 }

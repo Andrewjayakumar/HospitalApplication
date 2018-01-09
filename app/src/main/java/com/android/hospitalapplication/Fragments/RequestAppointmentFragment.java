@@ -108,9 +108,15 @@ public class RequestAppointmentFragment extends Fragment {
                                                      public void onDataChange(DataSnapshot dataSnapshot) {
                                                          String name = dataSnapshot.child("name").getValue().toString();
                                                          final String bg = dataSnapshot.child("blood_group").getValue().toString();
+                                                         String gender = dataSnapshot.child("gender").getValue().toString();
                                                          Log.d("name :", name + "\n" + bg);
 
-                                                         viewHolder.photo.setImageResource(R.drawable.avatar);
+                                                         if(gender.equals("M")) {
+                                                             viewHolder.photo.setImageResource(R.drawable.avatar);
+                                                         }
+                                                         else{
+                                                             viewHolder.photo.setImageResource(R.drawable.avatar_fm);
+                                                         }
                                                          viewHolder.setStatus("");
                                                          viewHolder.setDate(prefDate);
                                                          viewHolder.setName(name);

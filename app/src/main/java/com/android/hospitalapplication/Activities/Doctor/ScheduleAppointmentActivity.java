@@ -1,8 +1,10 @@
 package com.android.hospitalapplication.Activities.Doctor;
 
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,10 +12,16 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -27,9 +35,11 @@ import com.google.firebase.database.ServerValue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ScheduleAppointmentActivity extends AppCompatActivity {
@@ -108,7 +118,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                 },hourOfDay,minutes,false);
 
                 tp.show();*/
-                CustomTimePicker customTimePicker = new CustomTimePicker(ScheduleAppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
+               /* CustomTimePicker customTimePicker = new CustomTimePicker(ScheduleAppointmentActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int i, int i1) {
                         String AM_PM;
@@ -143,7 +153,89 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                         setTime.setText("" + (hrs) + ":" + min + AM_PM);
                     }
                 }, hourOfDay, minutes, false);
-                customTimePicker.show();
+                customTimePicker.show(); */
+                AlertDialog.Builder b = new AlertDialog.Builder(ScheduleAppointmentActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View v = inflater.inflate(R.layout.alert_dialog_time_picker,null);
+                final NumberPicker hrs = v.findViewById(R.id.hours);
+                final NumberPicker min = v.findViewById(R.id.minutes);
+
+                min.setMinValue(0);
+                min.setMaxValue(1);
+                List<String> displayedValue = new ArrayList<>();
+                displayedValue.add(String.format("%02d", 0));
+                displayedValue.add(String.format("%02d", 30));
+                min.setDisplayedValues(displayedValue.toArray(new String[displayedValue.size()]));
+
+                Spinner amPm = v.findViewById(R.id.am_pm);
+                amPm = initSpinner(amPm,R.array.time_zone);
+                amPm.setBackgroundColor(getResources().getColor(R.color.md_blue_grey_300));
+
+                final Spinner finalAmPm1 = amPm;
+                hrs.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+                    @Override
+                    public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                        if(i1==12){
+                            finalAmPm1.setSelection(1);
+                        }
+                    }
+                });
+                amPm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        switch (i){ //AM
+                            case 0 : hrs.setMaxValue(12);
+                                     hrs.setMinValue(10);
+                                     if(hrs.getValue()==12){
+                                         adapterView.setSelection(1);
+                                     }
+                                     break;
+                            case 1 : if(hrs.getValue()!=12) {
+                                hrs.setMaxValue(7);
+                                hrs.setMinValue(5);
+                            }
+                            break;
+
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+                               adapterView.setSelection(0);
+                    }
+                });
+                b.setView(v);
+                b.setTitle("Choose Time");
+                b.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        int hr = hrs.getValue();
+                        String hour,minute;
+                        if(hr<10){
+                            hour = "0"+hr;
+                        }
+                        else{
+                            hour=""+hr;
+                        }
+                        if(min.getValue()==0){
+                            minute="00";
+                        }
+                        else{
+                            minute="30";
+                        }
+                        String ampm = finalAmPm1.getSelectedItem().toString();
+                        setTime.setText(hour+":"+minute+ampm);
+
+                    }
+                });
+                b.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                AlertDialog alertDialog = b.create();
+                alertDialog.show();
             }
         });
 
@@ -167,6 +259,13 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public Spinner initSpinner(Spinner s, int arrayId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), arrayId, R.layout.spinner_style);
+        adapter.setDropDownViewResource(R.layout.spinner_style);
+        s.setAdapter(adapter);
+        return s;
     }
 
     public void setAppointment(final String patId, final String docId, String date, String time, String remarks) {

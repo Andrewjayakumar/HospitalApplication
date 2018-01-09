@@ -2,6 +2,7 @@ package com.android.hospitalapplication.Activities.Patient;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,17 +16,28 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.hospitalapplication.Activities.AboutUs;
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class PatientActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public CardView set_appointement,profile_info,upload_report,appointmentStatus,dietplan;
+    private ImageView navPhoto;
     FirebaseAuth auth = FirebaseAuth.getInstance();
+    DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
 
+    TextView pName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +45,15 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_patient);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Patient");
+        getSupportActionBar().setTitle("Patient DashBoard");
 
         set_appointement=findViewById(R.id.set_appointment);
 //        profile_info=findViewById(R.id.profile_info);
         upload_report=findViewById(R.id.upload_report);
         dietplan=findViewById(R.id.dietplan);
         appointmentStatus=findViewById(R.id.view_status);
+        String patId = auth.getCurrentUser().getUid();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,6 +64,26 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View v = navigationView.getHeaderView(0);
+        pName= v.findViewById(R.id.textView2);
+        navPhoto=v.findViewById(R.id.imageView);
+
+        dbrefUser.child(patId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               String name = dataSnapshot.child("name").getValue().toString();
+               String gender = dataSnapshot.child("gender").getValue().toString();
+               pName.setText(name);
+               if(gender.equals("F")) {
+                   navPhoto.setImageResource(R.drawable.avatar_fm);
+               }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         set_appointement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,10 +172,6 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
             auth.signOut();
             startActivity(new Intent(PatientActivity.this,LoginActivity.class));
             finish();
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.rate_us) {
 
         }
 

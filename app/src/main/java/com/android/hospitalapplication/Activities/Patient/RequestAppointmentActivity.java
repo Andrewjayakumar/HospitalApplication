@@ -21,6 +21,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -50,6 +51,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
     ImageButton calldoctor;
     FrameLayout info;
     String docName;
+    ImageView bPhoto;
     TextView doctorcontactnumber, doctoraddress,bsName,bsQualify,bsExperience,bsSpecialize;
     EditText describe_problem;
     private BottomSheetBehavior mBottomSheetBehavior1;
@@ -90,6 +92,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         bsQualify=findViewById(R.id.bsQualify);
         bsExperience=findViewById(R.id.bsExperience);
         bsSpecialize=findViewById(R.id.bsSpecialize);
+        bPhoto=findViewById(R.id.user_profile_photo);
 
         request_Appointment.setEnabled(false);
         final Calendar cal = Calendar.getInstance();
@@ -121,6 +124,10 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                 if (!(position == 0)) {
                     doctordetails.setVisibility(View.VISIBLE);
                     request_Appointment.setEnabled(true);
+                }
+                else {
+                    doctordetails.setVisibility(View.GONE);
+                    request_Appointment.setEnabled(false);
                 }
                 switch (position) {
                     case 1:
@@ -177,18 +184,23 @@ public class RequestAppointmentActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
-                final String docName = adapterView.getItemAtPosition(i).toString().trim();
-
+                String docName = adapterView.getItemAtPosition(i).toString().trim();
+                Log.d("doc name :",docName+" "+i);
                 dbrefUser.orderByChild("name").equalTo(docName).addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        String name = dataSnapshot.child("name").getValue().toString();
                         String contact = dataSnapshot.child("phone").getValue().toString();
                         String address = dataSnapshot.child("room_no").getValue().toString();
                         String bQualify=dataSnapshot.child("qualification").getValue().toString();
                         String bSpeciality=dataSnapshot.child("speciality").getValue().toString();
                         String bExp=dataSnapshot.child("experience").getValue().toString();
+                        String gender = dataSnapshot.child("gender").getValue().toString();
 
-                        bsName.setText(docName);
+                        if(gender.equals("F")){
+                            bPhoto.setImageResource(R.drawable.rounded_border);
+                        }
+                        bsName.setText(name);
                         bsExperience.setText(bExp);
                         bsQualify.setText(bQualify);
                         bsSpecialize.setText(bSpeciality);
@@ -416,5 +428,15 @@ public class RequestAppointmentActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mBottomSheetBehavior1.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            mBottomSheetBehavior1.setState(BottomSheetBehavior.STATE_HIDDEN);
+        }
+        else {
+            finish();
+        }
     }
 }

@@ -250,12 +250,18 @@ public class RegistrationActivity extends AppCompatActivity {
 
                     FirebaseUser currentUser = auth.getCurrentUser();
                     String uid = currentUser.getUid();
-
+                    String prefix;
+                    if(gender=="M"){
+                        prefix="Mr. ";
+                    }
+                    else{
+                        prefix="Mrs. ";
+                    }
                     dbref = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
                     HashMap<String, String> userDetails = new HashMap<String, String>();
 
-                    userDetails.put("name", name);
+                    userDetails.put("name",prefix+name);
                     userDetails.put("phone", phone);
                     userDetails.put("address", address);
                     userDetails.put("d_o_b",dob2);
