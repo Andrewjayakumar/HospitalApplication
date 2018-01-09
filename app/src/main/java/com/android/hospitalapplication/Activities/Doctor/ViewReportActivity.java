@@ -47,6 +47,8 @@ public class ViewReportActivity extends AppCompatActivity {
         });
         String url = getIntent().getStringExtra("img_url");
 
+        Picasso.with(this).setLoggingEnabled(true);
+
         Picasso.with(this).load(url).fit().into(showReport);
     }
 }

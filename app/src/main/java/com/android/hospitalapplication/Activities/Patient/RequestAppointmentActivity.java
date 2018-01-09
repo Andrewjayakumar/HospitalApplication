@@ -43,7 +43,7 @@ import java.util.Map;
 
 public class RequestAppointmentActivity extends AppCompatActivity {
 
-    Spinner typeofproblem, doctor_list;
+    Spinner typeofproblem , doctor_list;
     View bottomSheet;
     LinearLayout doctordetails;
     Button request_Appointment,  preferred_appointment_date;

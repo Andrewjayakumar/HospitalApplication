@@ -100,6 +100,7 @@ public class ProfileInfoFragment extends Fragment {
             public void onClick(View v) {
                 update.setVisibility(View.VISIBLE);
                 user_profile_name.setEnabled(true);
+                user_profile_name.setCursorVisible(true);
                 user_profile_short_bio.setEnabled(true);
                 exp_value.setEnabled(true);
                 mobile.setEnabled(true);

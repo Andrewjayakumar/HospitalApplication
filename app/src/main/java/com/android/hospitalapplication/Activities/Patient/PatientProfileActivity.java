@@ -1,5 +1,6 @@
 package com.android.hospitalapplication.Activities.Patient;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
@@ -26,7 +28,7 @@ import java.util.Map;
  * Created by hp on 24-12-2017.
  */
 public class PatientProfileActivity extends AppCompatActivity {
-
+    TextView gender,bg;
     EditText FnameValue,GenderValue,bloodgrpValue,AddressValue,phoneValue,profileDob;
     ImageButton EditProfile;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
@@ -49,6 +51,8 @@ public class PatientProfileActivity extends AppCompatActivity {
         AddressValue=findViewById(R.id.AddressValue);
         phoneValue=findViewById(R.id.MobileValue);
         Update=findViewById(R.id.Update);
+        gender=findViewById(R.id.Gender);
+        bg=findViewById(R.id.Bloodgrp);
         profileDob=findViewById(R.id.profileDob);
         String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
         fetchData(uid);
@@ -70,6 +74,12 @@ public class PatientProfileActivity extends AppCompatActivity {
                 AddressValue.setEnabled(true);
                 phoneValue.setEnabled(true);
                 profileDob.setEnabled(true);
+                gender.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
+                bg.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
+                GenderValue.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
+                GenderValue.setTextColor(Color.GRAY);
+                bloodgrpValue.setTextColor(Color.GRAY);
+                bloodgrpValue.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
                 Update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -97,6 +107,7 @@ public class PatientProfileActivity extends AppCompatActivity {
                                     AddressValue.setEnabled(false);
                                     phoneValue.setEnabled(false);
                                     profileDob.setEnabled(false);
+
                                 }
                                 else
                                 {

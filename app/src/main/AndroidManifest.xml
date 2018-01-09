@@ -40,6 +40,7 @@
         </service>
 
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -49,52 +50,70 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.PatientActivity"
             android:label="@string/title_activity_patient"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.DoctorActivity"
             android:label="@string/title_activity_doctor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.RegistrationActivity"
             android:parentActivityName=".Activities.LoginActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.RequestAppointmentActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.UploadReportActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.ViewPrescriptionActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.DietPlanActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.AppointmentStatusActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.SelectAppointmentActivity"
             android:parentActivityName=".Activities.Doctor.DoctorActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Patient.PatientProfileActivity"
             android:parentActivityName=".Activities.Patient.PatientActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.ScheduleAppointmentActivity"
             android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity" />
         <activity android:name=".Activities.AppointmentReceiptActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.AppointmentDetailsActivity"
             android:parentActivityName=".Activities.Doctor.DoctorActivity" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.UploadPrescriptionActivity"
             android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity" />
-        <activity android:name=".Activities.Doctor.ReportsActivity" />
-        <activity android:name=".Activities.Doctor.ViewReportActivity"
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Activities.Doctor.ReportsActivity" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Activities.Doctor.ViewReportActivity"
             ></activity>
     </application>
 

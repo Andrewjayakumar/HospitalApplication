@@ -10,8 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profileAppBar"
-        android:layout_above="@+id/Update">
+        android:layout_above="@+id/Update"
+        android:layout_below="@+id/profileAppBar">
 
 
         <RelativeLayout
@@ -24,8 +24,8 @@
                 android:id="@+id/header_cover_image"
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
-                android:src="@drawable/navagation_background"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/navagation_background" />
 
             <ImageButton
                 android:id="@+id/user_profile_photo"
@@ -75,7 +75,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:id="@+id/Fname"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -84,6 +83,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
@@ -91,11 +92,9 @@
                         android:paddingTop="23dp"
                         android:text="First Name:-"
                         android:textSize="12dp"
-                        android:clickable="false"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
                         android:id="@+id/FnameValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -103,13 +102,16 @@
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="2"
-                        android:textSize="15dp"
                         android:background="#fff"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
+                        android:maxLines="1"
                         android:padding="20dp"
+                        android:singleLine="true"
                         android:text="Name"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -120,28 +122,26 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:id="@+id/Gender"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="5dp"
-                        android:textSize="12dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
                         android:paddingLeft="23dp"
                         android:paddingTop="23dp"
                         android:text="Gender:-"
-                        android:clickable="false"
+                        android:textSize="12dp"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
-                        android:textSize="15dp"
                         android:id="@+id/genderValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -151,10 +151,12 @@
                         android:layout_weight="2"
                         android:background="#fff"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
                         android:padding="20dp"
                         android:text="Gender"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -165,7 +167,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -173,18 +174,20 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
                         android:paddingLeft="23dp"
-                        android:clickable="false"
                         android:paddingTop="23dp"
-                        android:textSize="12dp"
                         android:text="Date Of Birth:-"
+                        android:textSize="12dp"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/profileDob"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -193,13 +196,14 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="2"
                         android:background="#fff"
-                        android:inputType="none"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
-                        android:textSize="15dp"
+                        android:inputType="none"
                         android:padding="20dp"
                         android:text="dob"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -211,41 +215,41 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:id="@+id/Bloodgrp"
                         android:layout_width="0dp"
-                        android:textSize="12dp"
-                        android:clickable="false"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
                         android:paddingLeft="23dp"
                         android:paddingTop="23dp"
                         android:text="Blood Group:-"
+                        android:textSize="12dp"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
                         android:id="@+id/bloodgrpValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginRight="5dp"
-                        android:textSize="15dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="2"
                         android:background="#fff"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
                         android:padding="20dp"
                         android:text="BG"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -256,10 +260,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:id="@+id/Mobile"
-                        android:textSize="12dp"
-                        android:clickable="false"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
@@ -267,16 +268,20 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:background="#fff"
+                        android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
                         android:paddingLeft="23dp"
                         android:paddingTop="23dp"
                         android:text="Mobile No.:-"
+                        android:textSize="12dp"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/MobileValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -286,11 +291,12 @@
                         android:layout_weight="2"
                         android:background="#fff"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
                         android:padding="20dp"
-                        android:textSize="15dp"
                         android:text="Mobile Number"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -301,7 +307,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:editable="false"
                         android:id="@+id/Address"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -309,19 +314,21 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1"
-                        android:textSize="12dp"
                         android:background="#fff"
                         android:clickable="false"
+                        android:editable="false"
                         android:elevation="4dp"
                         android:gravity="end"
                         android:paddingBottom="21dp"
                         android:paddingLeft="23dp"
                         android:paddingTop="23dp"
                         android:text="Address:-"
+                        android:textSize="12dp"
                         android:textStyle="italic" />
 
                     <EditText
-                        android:enabled="false"
+                        android:singleLine="true"
+                        android:maxLines="1"
                         android:id="@+id/AddressValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -331,11 +338,12 @@
                         android:layout_weight="2"
                         android:background="#fff"
                         android:elevation="4dp"
+                        android:enabled="false"
                         android:gravity="start"
                         android:padding="20dp"
-                        android:textSize="15dp"
                         android:text="Address"
-                        android:textColor="@color/md_black_1000" />
+                        android:textColor="@color/md_black_1000"
+                        android:textSize="15dp" />
 
 
                 </LinearLayout>
@@ -344,14 +352,15 @@
         </RelativeLayout>
 
     </ScrollView>
+
     <Button
         android:id="@+id/Update"
-        android:text="Update"
-        android:visibility="gone"
-        android:background="@color/md_red_500"
-        android:textColor="@color/md_white_1000"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/md_red_500"
+        android:text="Update"
+        android:textColor="@color/md_white_1000"
+        android:visibility="gone" />
 
 </RelativeLayout>

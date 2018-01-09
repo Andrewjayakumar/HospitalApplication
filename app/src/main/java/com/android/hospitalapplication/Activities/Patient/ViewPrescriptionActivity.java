@@ -1,9 +1,9 @@
 package com.android.hospitalapplication.Activities.Patient;
 
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
@@ -41,6 +41,7 @@ public class ViewPrescriptionActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String downloadUrl = dataSnapshot.child("image_url").getValue().toString();
                 Log.d("image_url :",downloadUrl);
+
                 Picasso.with(ViewPrescriptionActivity.this).load(downloadUrl).fit().into(presView);
             }
 
