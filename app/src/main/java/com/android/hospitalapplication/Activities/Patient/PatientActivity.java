@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
@@ -19,8 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PatientActivity extends AppCompatActivity {
 
-    public CardView set_appointement,profile_info,upload_report,appointmentStatus;
-    Button dietplan;
+    public CardView set_appointement,profile_info,upload_report,appointmentStatus,dietplan;
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
 
@@ -33,7 +31,7 @@ public class PatientActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Patient");
 
         set_appointement=findViewById(R.id.set_appointment);
-        profile_info=findViewById(R.id.profile_info);
+//        profile_info=findViewById(R.id.profile_info);
         upload_report=findViewById(R.id.upload_report);
         dietplan=findViewById(R.id.dietplan);
         appointmentStatus=findViewById(R.id.view_status);
@@ -44,12 +42,12 @@ public class PatientActivity extends AppCompatActivity {
                 startActivity(new Intent(PatientActivity.this,RequestAppointmentActivity.class));
             }
         });
-        profile_info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(PatientActivity.this,PatientProfileActivity.class));
-            }
-        });
+//        profile_info.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(PatientActivity.this,PatientProfileActivity.class));
+//            }
+//        });
         upload_report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +103,9 @@ public class PatientActivity extends AppCompatActivity {
                 auth.signOut();
                 startActivity(new Intent(PatientActivity.this,LoginActivity.class));
                 finish();
+
+            case R.id.view_profile :
+                startActivity(new Intent(PatientActivity.this,PatientProfileActivity.class));
         }
         return true;
     }
