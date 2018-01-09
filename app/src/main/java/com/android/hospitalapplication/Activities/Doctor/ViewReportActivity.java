@@ -23,7 +23,6 @@ public class ViewReportActivity extends AppCompatActivity {
         final Toolbar toolbar =  findViewById(R.id.view_report_app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Report");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this,R.color.transparent)));
 
         showReport=findViewById(R.id.view_report);

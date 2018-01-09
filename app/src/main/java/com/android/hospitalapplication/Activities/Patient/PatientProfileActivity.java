@@ -42,7 +42,6 @@ public class PatientProfileActivity extends AppCompatActivity {
         Toolbar toolbar =  findViewById(R.id.profileAppBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("View profile");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         FnameValue=findViewById(R.id.FnameValue);
         EditProfile=findViewById(R.id.EditProfile);

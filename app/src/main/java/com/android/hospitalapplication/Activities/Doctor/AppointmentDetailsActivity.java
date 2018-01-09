@@ -31,7 +31,6 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Appointment Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         aptId=findViewById(R.id.apt_id);
         aptDate=findViewById(R.id.date_time);

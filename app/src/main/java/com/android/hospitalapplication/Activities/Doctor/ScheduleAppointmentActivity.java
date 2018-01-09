@@ -5,9 +5,9 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.R;
 import com.android.hospitalapplication.UtilityAndNetworkingClasses.CustomTimePicker;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +47,6 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
         mToolbar = findViewById(R.id.apt_app_bar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Schedule Appointment");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setDate = findViewById(R.id.set_date);
         setTime = findViewById(R.id.set_time);

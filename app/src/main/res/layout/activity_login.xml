@@ -1,3 +1,8 @@
+<ScrollView android:id="@+id/login_form"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,15 +33,15 @@
         android:id="@+id/t"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:text="A.S.H.A"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="35dp"
+        android:text="A.S.H.A"
         android:textColor="@color/md_black_1000"
-        android:textStyle="bold|italic"
-        />
+        android:textSize="40dp"
+        android:textStyle="bold|italic" />
     <TextView
+        android:id="@+id/tv"
         android:layout_below="@+id/t"
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -60,18 +65,17 @@
         <!--/>-->
 
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <LinearLayout
+            android:layout_below="@+id/tv"
+            android:layout_marginTop="15dp"
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp"
-            android:layout_gravity="center_vertical"
+            android:layout_gravity="center"
             android:background="@drawable/rounded_corner_button">
 
             <android.support.design.widget.TextInputLayout
@@ -122,6 +126,26 @@
                 android:layout_marginTop="16dp"
                 android:text="SIGN IN"
                 android:textStyle="bold" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:text="Forget Password"
+                android:layout_gravity="center"
+                android:textColor="@color/md_black_1000"
+                android:id="@+id/ForgetPass"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:textStyle="bold|italic"
+                android:textColor="@color/md_black_1000"/>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -131,19 +155,12 @@
                 android:textColor="@color/md_black_1000"
                 android:id="@+id/register"
                 />
-            <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="Forget Password ???"
-            android:layout_gravity="center"
-            android:textColor="@color/md_black_1000"
-            android:id="@+id/ForgetPass"
-            />
+
 
 
         </LinearLayout>
 
-    </ScrollView>
 
 </RelativeLayout>
+</ScrollView>
+
