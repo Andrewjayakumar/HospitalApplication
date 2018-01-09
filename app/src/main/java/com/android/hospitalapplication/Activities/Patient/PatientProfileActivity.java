@@ -74,12 +74,12 @@ public class PatientProfileActivity extends AppCompatActivity {
                 AddressValue.setEnabled(true);
                 phoneValue.setEnabled(true);
                 profileDob.setEnabled(true);
-                gender.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
-                bg.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
-                GenderValue.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
+                gender.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                bg.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                GenderValue.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
                 GenderValue.setTextColor(Color.GRAY);
                 bloodgrpValue.setTextColor(Color.GRAY);
-                bloodgrpValue.setBackgroundColor(getResources().getColor(R.color.md_grey_200));
+                bloodgrpValue.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
                 Update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -107,6 +107,12 @@ public class PatientProfileActivity extends AppCompatActivity {
                                     AddressValue.setEnabled(false);
                                     phoneValue.setEnabled(false);
                                     profileDob.setEnabled(false);
+                                    gender.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    bg.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    GenderValue.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    GenderValue.setTextColor(Color.BLACK);
+                                    bloodgrpValue.setTextColor(Color.BLACK);
+                                    bloodgrpValue.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
 
                                 }
                                 else

@@ -1,6 +1,7 @@
 package com.android.hospitalapplication.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
@@ -38,7 +40,8 @@ public class ProfileInfoFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     View v;
-    EditText user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,mobile,specalize;
+    TextView time,time1,id;
+    EditText user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,morning,evening,mobile,specalize;
     ImageButton editProfile;
     Button update;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
@@ -93,19 +96,33 @@ public class ProfileInfoFragment extends Fragment {
         specalize=v.findViewById(R.id.specalize);
         update=v.findViewById(R.id.update);
         editProfile=v.findViewById(R.id.editProfile);
+        id=v.findViewById(R.id.id);
+        time=v.findViewById(R.id.time);
+        time1=v.findViewById(R.id.time1);
+        morning=v.findViewById(R.id.morning);
+        evening=v.findViewById(R.id.evening);
         String u_id= FirebaseAuth.getInstance().getCurrentUser().getUid();
         fetchData(u_id);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 update.setVisibility(View.VISIBLE);
-                user_profile_name.setEnabled(true);
                 user_profile_name.setCursorVisible(true);
+                user_profile_name.setEnabled(true);
                 user_profile_short_bio.setEnabled(true);
                 exp_value.setEnabled(true);
                 mobile.setEnabled(true);
                 room.setEnabled(true);
                 specalize.setEnabled(true);
+                registration_id_doc.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                id.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                evening.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                morning.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                time.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                time1.setBackgroundColor(getResources().getColor(R.color.md_grey_300));
+                evening.setTextColor(Color.GRAY);
+                morning.setTextColor(Color.GRAY);
+                registration_id_doc.setTextColor(Color.GRAY);
                 update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -139,6 +156,15 @@ public class ProfileInfoFragment extends Fragment {
                                     room.setEnabled(false);
                                     specalize.setEnabled(false);
                                     update.setVisibility(View.INVISIBLE);
+                                    registration_id_doc.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    id.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    evening.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    morning.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    time.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    time1.setBackgroundColor(getResources().getColor(R.color.md_white_1000));
+                                    evening.setTextColor(Color.BLACK);
+                                    morning.setTextColor(Color.BLACK);
+                                    registration_id_doc.setTextColor(Color.BLACK);
                                 }
                                 else
                                 {
