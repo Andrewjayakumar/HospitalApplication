@@ -40,8 +40,8 @@
         </service>
 
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,71 +50,71 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.PatientActivity"
             android:label="@string/title_activity_patient"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.DoctorActivity"
             android:label="@string/title_activity_doctor"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.RegistrationActivity"
-            android:parentActivityName=".Activities.LoginActivity" />
+            android:parentActivityName=".Activities.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.RequestAppointmentActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.UploadReportActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.ViewPrescriptionActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.DietPlanActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.AppointmentStatusActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.SelectAppointmentActivity"
-            android:parentActivityName=".Activities.Doctor.DoctorActivity" />
+            android:parentActivityName=".Activities.Doctor.DoctorActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Patient.PatientProfileActivity"
-            android:parentActivityName=".Activities.Patient.PatientActivity" />
+            android:parentActivityName=".Activities.Patient.PatientActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.ScheduleAppointmentActivity"
-            android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity" />
+            android:parentActivityName=".Activities.Doctor.SelectAppointmentActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".Activities.AppointmentReceiptActivity" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.AppointmentDetailsActivity"
-            android:parentActivityName=".Activities.Doctor.DoctorActivity" />
+            android:parentActivityName=".Activities.Doctor.DoctorActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.UploadPrescriptionActivity"
-            android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity" />
+            android:parentActivityName=".Activities.Doctor.AppointmentDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
-            android:name=".Activities.Doctor.ReportsActivity" />
+            android:name=".Activities.Doctor.ReportsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:screenOrientation="portrait"
             android:name=".Activities.Doctor.ViewReportActivity"
-            ></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.ForgetPassActivity"></activity>
     </application>
 
 </manifest>

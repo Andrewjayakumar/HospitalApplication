@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity  {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView registerLink;
+    private TextView registerLink,Forget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +81,18 @@ public class LoginActivity extends AppCompatActivity  {
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
         registerLink = findViewById(R.id.register);
-
+        Forget=findViewById(R.id.ForgetPass);
         registerLink.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this,RegistrationActivity.class));
+            }
+        });
+        Forget.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                   Intent intent=new Intent(LoginActivity.this,ForgetPassActivity.class);
+                    startActivity(intent);
             }
         });
     }

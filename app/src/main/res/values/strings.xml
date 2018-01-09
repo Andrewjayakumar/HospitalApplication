@@ -54,19 +54,19 @@
     </string-array>
 
     <string-array name="time_slots">
-        <item >10:00-10:30</item>
-        <item >10:30-11:00</item>
-        <item >11:00-11:30</item>
-        <item >11:30-12:00</item>
-        <item >12:00-12:30</item>
-        <item >12:30-01:00</item>
+        <item>10:00-10:30</item>
+        <item>10:30-11:00</item>
+        <item>11:00-11:30</item>
+        <item>11:30-12:00</item>
+        <item>12:00-12:30</item>
+        <item>12:30-01:00</item>
 
 
-        <item >05:00-05:30</item>
-        <item >05:30-06:00</item>
-        <item >06:00-06:30</item>
-        <item >06:30-07:00</item>
-        <item >07:00-07:30</item>
-        <item >07:30-08:00</item>
+        <item>05:00-05:30</item>
+        <item>05:30-06:00</item>
+        <item>06:00-06:30</item>
+        <item>06:30-07:00</item>
+        <item>07:00-07:30</item>
+        <item>07:30-08:00</item>
     </string-array>
 </resources>
