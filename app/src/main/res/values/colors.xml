@@ -8,7 +8,9 @@
 
 
         <color name="transparent">#00ff0000</color>
-        <!--reds-->
+    <color name="button">#F6BB42</color>
+
+    <!--reds-->
         <color name="md_red_50">#FFEBEE</color>
         <color name="md_red_100">#FFCDD2</color>
         <color name="md_red_200">#EF9A9A</color>
