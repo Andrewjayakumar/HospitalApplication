@@ -49,6 +49,24 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
             PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
             createNotification(titleNotif,contentNotif,resultingIntent);
         }
+        else if(typeNotif.equals("rescheduled")){
+            Intent i = new Intent(this, AppointmentReceiptActivity.class);
+            String docId = from;
+            String patId = remoteMessage.getData().get("to_user_id");
+            i.putExtra("doc_id",docId);
+            i.putExtra("pat_id",patId);
+            PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+            createNotification(titleNotif,contentNotif,resultingIntent);
+        }
+        else if(typeNotif.equals("follow")){
+            Intent i = new Intent(this, AppointmentReceiptActivity.class);
+            String docId = from;
+            String patId = remoteMessage.getData().get("to_user_id");
+            i.putExtra("doc_id",docId);
+            i.putExtra("pat_id",patId);
+            PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+            createNotification(titleNotif,contentNotif,resultingIntent);
+        }
         else if(typeNotif.equals("declined")){
             Intent i = new Intent(this, AppointmentStatusActivity.class);
             PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);

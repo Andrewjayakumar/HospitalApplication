@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,32 +16,64 @@
     <!--android:inputType="textEmailAddress"-->
     <!--android:hint="Recovery Email Id"/>-->
 
+
+
     <include
+        android:id="@+id/toolbar"
         layout="@layout/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/imagelaunch"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/launcher_icon" />
 
-    <android.support.design.widget.TextInputLayout
+
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagelaunch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="A.S.H.A"
+        android:textColor="@color/md_black_1000"
+        android:textSize="40dp"
+        android:textStyle="bold|italic" />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_below="@+id/t"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12dp"
+        android:text="A Smart Way To Interact With Your Doctor"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/md_black_1000"
+        android:textStyle="bold|italic"
+        />
+
+
+    <AutoCompleteTextView
+        android:id="@+id/RecoveryEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColorHint="@color/md_red_400"
-        >
-
-        <AutoCompleteTextView
-            android:id="@+id/RecoveryEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Registered Email ID"
-            android:inputType="textEmailAddress"
-            android:layout_margin="5dp"
-
-            android:maxLines="1"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/md_black_1000"
-            android:singleLine="true" />
-
-    </android.support.design.widget.TextInputLayout>
+        android:layout_below="@+id/tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="27dp"
+        android:hint="Registered Email ID"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/md_black_1000" />
 
 
     <!--<Button-->
@@ -51,13 +83,15 @@
         <!--android:layout_height="wrap_content" />-->
 
     <Button
+        android:id="@+id/RequestMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_teal_400"
-
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/RecoveryEmail"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="25dp"
+        android:background="@color/md_red_400"
         android:text="Request Mail"
-        android:layout_gravity="center"
-        android:textColor="@color/md_black_1000"
-        android:id="@+id/RequestMail"
-        />
-</LinearLayout>
+        android:textColor="@color/md_black_1000" />
+</RelativeLayout>

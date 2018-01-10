@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/md_grey_100"
-   >
+    android:background="@color/md_grey_100">
 
     <include layout="@layout/app_bar_layout"
         android:id="@+id/apt_receipt_toolbar"/>
@@ -269,7 +268,8 @@
         android:layout_above="@+id/ll6"
         android:id="@+id/view_reports"
         android:scaleType="centerCrop"
-        android:src="@drawable/view_report"
+        app:backgroundTint="@color/button"
+        android:src="@drawable/view_report3"
         android:layout_margin="16dp"
         />
 </RelativeLayout>
