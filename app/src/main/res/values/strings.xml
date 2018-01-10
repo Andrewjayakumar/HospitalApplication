@@ -40,7 +40,6 @@
         <item>Orthopedics</item>
     </string-array>
     <string-array name="sort">
-        <item>Sort By Name</item>
         <item>Sort By Date</item>
         <item>Sort By Time</item>
     </string-array>

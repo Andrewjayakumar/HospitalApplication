@@ -71,20 +71,14 @@ public class AppointmentStatusActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i)
                 {
+
                     case 0:
-                        q=dbrefApt.orderByChild("name");
+                        q=dbrefApt.orderByChild("apt_date");
                         getConfirmedAppointments(q);
-                        Toast.makeText(AppointmentStatusActivity.this, "sort by name", Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        q=dbrefApt.orderByChild("date");
+                        q=dbrefApt.orderByChild("apt_time");
                         getConfirmedAppointments(q);
-                        Toast.makeText(AppointmentStatusActivity.this, "sort by date", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        q=dbrefApt.orderByChild("time");
-                        getConfirmedAppointments(q);
-                        Toast.makeText(AppointmentStatusActivity.this, "sort by time", Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -290,6 +284,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
                              });
                     }
                 };
+                adapter.notifyDataSetChanged();
                 aptList.setAdapter(adapter);
 
     }
