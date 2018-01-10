@@ -131,6 +131,7 @@ public class SelectAppointmentActivity extends AppCompatActivity {
                 i.putExtra("pref_date",getIntent().getStringExtra("pref_date"));
                 i.putExtra("type_apt","confirmed");
                 startActivity(i);
+
             }
         });
     }
