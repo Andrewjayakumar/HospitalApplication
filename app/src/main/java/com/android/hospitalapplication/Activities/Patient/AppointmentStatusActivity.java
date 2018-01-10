@@ -94,6 +94,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
     }
     public Spinner initSpinner(Spinner s, int arrayId) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), arrayId, R.layout.spinner_style);
+
         adapter.setDropDownViewResource(R.layout.spinner_style);
         s.setAdapter(adapter);
         return s;
