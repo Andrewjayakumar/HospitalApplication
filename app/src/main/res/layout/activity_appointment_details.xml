@@ -267,7 +267,10 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_above="@+id/ll6"
+        android:scaleType="centerCrop"
+        
         android:id="@+id/view_reports"
+        android:src="@drawable/view_report"
         android:layout_margin="16dp"
         />
 </RelativeLayout>

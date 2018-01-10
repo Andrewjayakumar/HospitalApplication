@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:text="Forget Password"
+                android:text="Forgot Password?"
                 android:layout_gravity="center"
                 android:textColor="@color/md_black_1000"
                 android:id="@+id/ForgetPass"

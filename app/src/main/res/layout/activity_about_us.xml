@@ -31,12 +31,17 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_blue_400"
-            android:layout_margin="10dp"
+            app:cardBackgroundColor="@color/md_white_1000"
             android:layout_gravity="center"
             android:layout_weight="1"
             app:cardCornerRadius="4dp"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:src="@drawable/pat_back"/>
 
 
 
@@ -54,6 +59,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/md_red_300"
                 android:text="Jatin Arora"
                 android:paddingBottom="4dp"
                 android:textColor="@color/md_white_1000"
@@ -71,12 +77,16 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_green_400"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
             android:layout_weight="1"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/pat_back"/>
 
 
             <ImageView
@@ -95,6 +105,7 @@
                 android:layout_gravity="bottom|center_horizontal"
                 android:paddingBottom="4dp"
                 android:text="Manan Gupta"
+                android:background="@color/md_indigo_400"
                 android:textColor="@color/md_white_1000"
                 android:textAlignment="center"
                 android:textStyle="bold" />
@@ -117,12 +128,16 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_yellow_400"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             app:cardCornerRadius="4dp"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/pat_back"/>
 
 
 
@@ -142,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="Prateek Vijay"
                 android:paddingBottom="4dp"
+                android:background="@color/md_teal_400"
                 android:textColor="@color/md_white_1000"
                 android:layout_gravity="center_horizontal|bottom"
                 android:textAlignment="center"
@@ -157,12 +173,17 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_red_500"
             android:layout_margin="10dp"
             android:layout_gravity="center"
+
             app:cardCornerRadius="4dp"
             android:layout_weight="1"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/pat_back"/>
 
 
             <ImageView
@@ -178,6 +199,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/md_orange_400"
                 android:layout_gravity="bottom|center_horizontal"
                 android:paddingBottom="4dp"
                 android:text="Hitesh Yadav"
@@ -203,12 +225,16 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_indigo_400"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             app:cardCornerRadius="4dp"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/pat_back"/>
 
 
 
@@ -226,6 +252,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
                 android:text="Pratibha Jain"
                 android:paddingBottom="4dp"
                 android:textColor="@color/md_white_1000"
@@ -243,12 +270,16 @@
             android:clickable="true"
             android:elevation="8dp"
             android:transitionGroup="true"
-            android:backgroundTint="@color/md_teal_400"
             android:layout_margin="10dp"
             android:layout_gravity="center"
             app:cardCornerRadius="4dp"
             android:layout_weight="1"
             android:textAlignment="center">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/pat_back"/>
 
 
             <ImageView
@@ -264,6 +295,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/md_green_500"
                 android:layout_gravity="bottom|center_horizontal"
                 android:paddingBottom="4dp"
                 android:text="Kunal Sarna"
