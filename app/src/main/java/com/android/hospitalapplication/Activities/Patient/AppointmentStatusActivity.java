@@ -2,9 +2,9 @@ package com.android.hospitalapplication.Activities.Patient;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +33,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
 {
 
     Toolbar mToolBar;
+
     RecyclerView reqList,aptList;
     final String pat = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DatabaseReference dbrefRequests = FirebaseDatabase.getInstance().getReference("Requests").child(pat);
