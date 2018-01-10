@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -50,7 +51,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private String email, name, password, confirmPassword, address, phone, gender, registrationId, bloodGroup,dob2, specialisation,qualfiy,exper,room;
     private TextInputEditText e_mail, name_user, pass, confirmPass, contact, add, regId,qualification,experience,roomNo;
     private Button register,dob;
+    ImageButton verify;
     private RadioButton doctor, patient;
+    private FirebaseUser user;
     private FirebaseAuth auth = FirebaseAuth.getInstance();
     private DatabaseReference dbref;
 
@@ -110,8 +113,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 datepicker.show();
             }
         });
-
-
         blood_group.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

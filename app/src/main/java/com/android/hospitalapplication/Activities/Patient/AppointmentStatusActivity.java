@@ -39,6 +39,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
 
     Toolbar mToolBar;
      Spinner Filter;
+     TextView text;
     RecyclerView reqList,aptList;
     final String pat = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DatabaseReference dbrefRequests = FirebaseDatabase.getInstance().getReference("Requests").child(pat);
@@ -62,6 +63,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
         reqList.setLayoutManager(new LinearLayoutManager(this));
         aptList.setLayoutManager(new LinearLayoutManager(this));
         Filter=findViewById(R.id.Filterbtn);
+        text = findViewById(R.id.req_app);
 
         getStatus();
 
@@ -101,6 +103,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
     }
 
     public  void getStatus(){
+
 
         FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter= new FirebaseRecyclerAdapter<User,RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,dbrefRequests){
             @Override

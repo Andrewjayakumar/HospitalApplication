@@ -5,15 +5,27 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.Activities.Doctor.DoctorActivity;
 import com.android.hospitalapplication.Activities.Patient.AppointmentStatusActivity;
+import com.android.hospitalapplication.Activities.Patient.PatientActivity;
 import com.android.hospitalapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Gaurav on 31-12-2017.
@@ -152,7 +164,7 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
 
     }
 
-    public long getTimeInMillis(String date) throws ParseException{
+    public long getTimeInMillis(String date) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
         long millis;
 
