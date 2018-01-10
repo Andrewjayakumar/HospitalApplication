@@ -10,8 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -33,13 +37,14 @@ public class AppointmentStatusActivity extends AppCompatActivity
 {
 
     Toolbar mToolBar;
-
+     Spinner Filter;
     RecyclerView reqList,aptList;
     final String pat = FirebaseAuth.getInstance().getCurrentUser().getUid();
     DatabaseReference dbrefRequests = FirebaseDatabase.getInstance().getReference("Requests").child(pat);
     DatabaseReference dbrefApt = FirebaseDatabase.getInstance().getReference("Appointments").child(pat);
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
+    Query q;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +61,35 @@ public class AppointmentStatusActivity extends AppCompatActivity
         aptList=findViewById(R.id.cnf_apt_list);
         reqList.setLayoutManager(new LinearLayoutManager(this));
         aptList.setLayoutManager(new LinearLayoutManager(this));
-
+        Filter=findViewById(R.id.Filterbtn);
 
         getStatus();
         getConfirmedAppointments();
+         Filter=initSpinner(Filter,R.array.sort);
+         Filter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+             @Override
+             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                 switch(i)
+                 {
+                     case 0:
+                         q=dbrefApt.orderByChild("name");
+                         break;
+                     case 1:
+                        q= dbrefApt.orderByChild("Date");
+                         break;
+                     case 2:
+                         q=dbrefApt.orderByChild("Time");
+                         break;
+                 }
+             }
+         });
+    }
 
+    public Spinner initSpinner(Spinner s, int arrayId) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), arrayId, R.layout.spinner_style);
+        adapter.setDropDownViewResource(R.layout.spinner_style);
+        s.setAdapter(adapter);
+        return s;
     }
 
     public  void getStatus(){
@@ -197,7 +226,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
 
 
     public void getConfirmedAppointments(){
-                FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter = new FirebaseRecyclerAdapter<User, RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,dbrefApt) {
+                FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter = new FirebaseRecyclerAdapter<User, RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,q) {
                     @Override
                     protected void populateViewHolder(final RequestsViewHolder viewHolder, User model, int position) {
                              final String doc_id = getRef(position).getKey();
