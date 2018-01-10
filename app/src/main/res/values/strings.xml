@@ -39,6 +39,10 @@
         <item>Urology</item>
         <item>Orthopedics</item>
     </string-array>
+    <string-array name="sort">
+        <item>Sort By Date</item>
+        <item>Sort By Time</item>
+    </string-array>
 
     <string-array name="problem">
         <item>Select Your Problem</item>

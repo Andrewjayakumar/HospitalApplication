@@ -5,27 +5,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.Activities.Doctor.DoctorActivity;
 import com.android.hospitalapplication.Activities.Patient.AppointmentStatusActivity;
-import com.android.hospitalapplication.Activities.Patient.PatientActivity;
 import com.android.hospitalapplication.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Gaurav on 31-12-2017.
@@ -53,6 +41,24 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
 
         }
         else if(typeNotif.equals("confirmed") || typeNotif.equals("follow") || typeNotif.equals("rescheduled")){
+            Intent i = new Intent(this, AppointmentReceiptActivity.class);
+            String docId = from;
+            String patId = remoteMessage.getData().get("to_user_id");
+            i.putExtra("doc_id",docId);
+            i.putExtra("pat_id",patId);
+            PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+            createNotification(titleNotif,contentNotif,resultingIntent);
+        }
+        else if(typeNotif.equals("rescheduled")){
+            Intent i = new Intent(this, AppointmentReceiptActivity.class);
+            String docId = from;
+            String patId = remoteMessage.getData().get("to_user_id");
+            i.putExtra("doc_id",docId);
+            i.putExtra("pat_id",patId);
+            PendingIntent resultingIntent = PendingIntent.getActivity(this,0,i,PendingIntent.FLAG_UPDATE_CURRENT);
+            createNotification(titleNotif,contentNotif,resultingIntent);
+        }
+        else if(typeNotif.equals("follow")){
             Intent i = new Intent(this, AppointmentReceiptActivity.class);
             String docId = from;
             String patId = remoteMessage.getData().get("to_user_id");
