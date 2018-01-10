@@ -3,7 +3,6 @@ package com.android.hospitalapplication.Activities.Doctor;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -21,12 +20,9 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
-import android.widget.Switch;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.hospitalapplication.R;
-import com.android.hospitalapplication.UtilityAndNetworkingClasses.CustomTimePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -154,6 +150,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                     }
                 }, hourOfDay, minutes, false);
                 customTimePicker.show(); */
+
                 AlertDialog.Builder b = new AlertDialog.Builder(ScheduleAppointmentActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View v = inflater.inflate(R.layout.alert_dialog_time_picker,null);

@@ -1,8 +1,9 @@
 package com.android.hospitalapplication.Activities.Doctor;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -16,11 +17,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class AppointmentDetailsActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private TextView aptId,docName,patName,aptDate,aptRemarks;
-    private Button uploadPresc,viewReports;
+    private Button uploadPresc,reschedule;
+    private FloatingActionButton viewReports;
+     String currDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +47,12 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
         patName=findViewById(R.id.pat_name);
         uploadPresc=findViewById(R.id.upload_pres);
         viewReports=findViewById(R.id.view_reports);
+        reschedule=findViewById(R.id.resched_apt);
 
         String docId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         final String patId = getIntent().getStringExtra("pat_id");
+        currDate = getCurrentDate();
+
 
         getDetails(docId,patId);
 
@@ -64,7 +75,25 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
             }
         });
 
+        reschedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AppointmentDetailsActivity.this,ScheduleAppointmentActivity.class);
+                i.putExtra("pref_date",currDate);
+                i.putExtra("pat_id",patId);
+                startActivity(i);
+            }
+        });
+
     }
+
+    public String getCurrentDate(){
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar c =Calendar.getInstance();
+        Date d = c.getTime();
+        return df.format(d);
+    }
+
 
     public void getDetails(final String docId, final String patID){
         final DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
@@ -91,6 +120,14 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                                 aptRemarks.setText(remark);
                                 docName.setText(doctorName);
                                 patName.setText(patientName);
+                                try {
+                                    if(compareDates(date,currDate)){
+                                        reschedule.setText("Set Follow Up Appointment");
+                                    }
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
                             }
 
                             @Override
@@ -113,5 +150,11 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public boolean compareDates(String dateBefore,String dateAfter) throws ParseException {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+
+        return (df.parse(dateBefore).before(df.parse(dateAfter)));
     }
 }
