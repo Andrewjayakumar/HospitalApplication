@@ -119,7 +119,7 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
                 Emergency.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String doctorNumber ="123456789";
+                        String doctorNumber ="108";
                         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", doctorNumber, null));
                         startActivity(intent);                   }
                 });

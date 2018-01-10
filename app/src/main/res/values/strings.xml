@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hospital Application</string>
+    <string name="app_name">A.S.H.A</string>
     <string name="title_activity_patient">PatientActivity</string>
     <string name="title_activity_doctor">DoctorActivity</string>
     <string name="title_activity_login">Sign in</string>
