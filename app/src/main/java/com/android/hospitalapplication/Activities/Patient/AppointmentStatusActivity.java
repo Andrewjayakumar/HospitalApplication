@@ -35,6 +35,7 @@ import java.util.Map;
 
 public class AppointmentStatusActivity extends AppCompatActivity
 {
+    Query q;
 
     Toolbar mToolBar;
      Spinner Filter;
@@ -44,7 +45,6 @@ public class AppointmentStatusActivity extends AppCompatActivity
     DatabaseReference dbrefApt = FirebaseDatabase.getInstance().getReference("Appointments").child(pat);
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     DatabaseReference dbrefRoot = FirebaseDatabase.getInstance().getReference();
-    Query q;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,27 +64,40 @@ public class AppointmentStatusActivity extends AppCompatActivity
         Filter=findViewById(R.id.Filterbtn);
 
         getStatus();
-        getConfirmedAppointments();
-         Filter=initSpinner(Filter,R.array.sort);
-         Filter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                 switch(i)
-                 {
-                     case 0:
-                         q=dbrefApt.orderByChild("name");
-                         break;
-                     case 1:
-                        q= dbrefApt.orderByChild("Date");
-                         break;
-                     case 2:
-                         q=dbrefApt.orderByChild("Time");
-                         break;
-                 }
-             }
-         });
-    }
 
+        Filter=initSpinner(Filter,R.array.sort);
+        Filter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i)
+                {
+                    case 0:
+                        q=dbrefApt.orderByChild("name");
+                        getConfirmedAppointments(q);
+                        Toast.makeText(AppointmentStatusActivity.this, "sort by name", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        q=dbrefApt.orderByChild("date");
+                        getConfirmedAppointments(q);
+                        Toast.makeText(AppointmentStatusActivity.this, "sort by date", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        q=dbrefApt.orderByChild("time");
+                        getConfirmedAppointments(q);
+                        Toast.makeText(AppointmentStatusActivity.this, "sort by time", Toast.LENGTH_SHORT).show();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
+    }
     public Spinner initSpinner(Spinner s, int arrayId) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getApplicationContext(), arrayId, R.layout.spinner_style);
         adapter.setDropDownViewResource(R.layout.spinner_style);
@@ -225,7 +238,7 @@ public class AppointmentStatusActivity extends AppCompatActivity
     }
 
 
-    public void getConfirmedAppointments(){
+    public void getConfirmedAppointments(Query q){
                 FirebaseRecyclerAdapter<User,RequestsViewHolder> adapter = new FirebaseRecyclerAdapter<User, RequestsViewHolder>(User.class,R.layout.user_apt_list,RequestsViewHolder.class,q) {
                     @Override
                     protected void populateViewHolder(final RequestsViewHolder viewHolder, User model, int position) {

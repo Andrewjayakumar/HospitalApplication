@@ -40,7 +40,7 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
         createNotification(titleNotif,contentNotif,resultingIntent);
 
         }
-        else if(typeNotif.equals("confirmed")){
+        else if(typeNotif.equals("confirmed") || typeNotif.equals("follow") || typeNotif.equals("rescheduled")){
             Intent i = new Intent(this, AppointmentReceiptActivity.class);
             String docId = from;
             String patId = remoteMessage.getData().get("to_user_id");
