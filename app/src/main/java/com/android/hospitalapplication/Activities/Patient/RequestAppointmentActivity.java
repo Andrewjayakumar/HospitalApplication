@@ -198,7 +198,7 @@ public class RequestAppointmentActivity extends AppCompatActivity {
                         String gender = dataSnapshot.child("gender").getValue().toString();
 
                         if(gender.equals("F")){
-                            bPhoto.setImageResource(R.drawable.rounded_border);
+                            bPhoto.setImageResource(R.drawable.f_doctor_avatar);
                         }
                         bsName.setText(name);
                         bsExperience.setText(bExp);

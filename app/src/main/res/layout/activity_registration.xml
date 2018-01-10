@@ -340,7 +340,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Room No."
-                        android:inputType="textCapWords"
+                        android:inputType="number"
                         android:textColorHint="@color/md_black_1000" />
                 </android.support.design.widget.TextInputLayout>
 

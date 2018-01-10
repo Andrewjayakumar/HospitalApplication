@@ -35,7 +35,7 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
     FirebaseAuth auth = FirebaseAuth.getInstance();
     DatabaseReference dbrefUser = FirebaseDatabase.getInstance().getReference("Users");
 
-    TextView pName;
+    TextView pName,pEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,13 +65,15 @@ public class PatientActivity extends AppCompatActivity implements NavigationView
         View v = navigationView.getHeaderView(0);
         pName= v.findViewById(R.id.textView2);
         navPhoto=v.findViewById(R.id.imageView);
-
+        pEmail = v.findViewById(R.id.email_navigation);
         dbrefUser.child(patId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                String name = dataSnapshot.child("name").getValue().toString();
                String gender = dataSnapshot.child("gender").getValue().toString();
+               String email = auth.getCurrentUser().getEmail();
                pName.setText(name);
+               pEmail.setText(email);
                if(gender.equals("F")) {
                    navPhoto.setImageResource(R.drawable.avatar_fm);
                }

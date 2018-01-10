@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ProfileInfoFragment extends Fragment {
     EditText user_profile_name,user_profile_short_bio,exp_value,room,registration_id_doc,morning,evening,mobile,specalize;
     ImageButton editProfile;
     Button update;
+    ImageView photo;
     DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users");
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -97,6 +99,7 @@ public class ProfileInfoFragment extends Fragment {
         update=v.findViewById(R.id.update);
         editProfile=v.findViewById(R.id.editProfile);
         id=v.findViewById(R.id.id);
+        photo=v.findViewById(R.id.user_profile_photo);
         time=v.findViewById(R.id.time);
         time1=v.findViewById(R.id.time1);
         morning=v.findViewById(R.id.morning);
@@ -134,6 +137,7 @@ public class ProfileInfoFragment extends Fragment {
                         String experience=exp_value.getText().toString();
                         String number=mobile.getText().toString();
                         String room1=room.getText().toString();
+
                         String specalizisation=specalize.getText().toString();
                         Map info = new HashMap();
                         info.put("name",name);
@@ -192,7 +196,11 @@ public class ProfileInfoFragment extends Fragment {
                 String room1 = dataSnapshot.child("room_no").getValue().toString();
                 String regNo = dataSnapshot.child("doctor_reg_id").getValue().toString();
                 String speciality = dataSnapshot.child("speciality").getValue().toString();
+                String gender = dataSnapshot.child("gender").getValue().toString();
 
+                if(gender.equals("F")){
+                    photo.setImageResource(R.drawable.f_doctor_avatar);
+                }
                 user_profile_name.setText(name);
                 user_profile_short_bio.setText(Qualify);
                 mobile.setText(phone);

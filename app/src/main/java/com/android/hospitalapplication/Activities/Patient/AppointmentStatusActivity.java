@@ -80,6 +80,10 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         String name = dataSnapshot.child("name").getValue().toString();
+                                        String gender = dataSnapshot.child("gender").getValue().toString();
+                                        if(gender.equals("F")){
+                                            viewHolder.setImage(R.drawable.f_doctor_avatar);
+                                        }
                                         viewHolder.setName(name);
                                         viewHolder.dateOrDesc.setText("Preferred Date :");
                                         viewHolder.setDate(date);
@@ -137,6 +141,10 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                     @Override
                                     public void onDataChange(DataSnapshot Snapshot) {
                                         String name = Snapshot.child("name").getValue().toString();
+                                        String gender = Snapshot.child("gender").getValue().toString();
+                                        if(gender.equals("F")){
+                                            viewHolder.setImage(R.drawable.f_doctor_avatar);
+                                        }
                                         viewHolder.setName(name);
                                         viewHolder.setDate(reason);
                                         viewHolder.setStatus(reqStat);
@@ -203,6 +211,10 @@ public class AppointmentStatusActivity extends AppCompatActivity
                                              @Override
                                              public void onDataChange(DataSnapshot Snapshot) {
                                                  String docName = Snapshot.child("name").getValue().toString();
+                                                 String gender = Snapshot.child("gender").getValue().toString();
+                                                 if(gender.equals("F")){
+                                                     viewHolder.setImage(R.drawable.f_doctor_avatar);
+                                                 }
                                                  Log.d("name of doc :",docName);
                                                  viewHolder.setName(docName);
                                                  viewHolder.setDate(aptDate+" "+aptTime);
@@ -267,6 +279,10 @@ public class AppointmentStatusActivity extends AppCompatActivity
         public void setStatus(String status) {
             TextView stat = view.findViewById(R.id.req_status);
             stat.setText(status);
+        }
+
+        public void setImage(int resId){
+            photo.setImageResource(resId);
         }
 
     }
