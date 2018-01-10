@@ -5,15 +5,27 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.android.hospitalapplication.Activities.AppointmentReceiptActivity;
 import com.android.hospitalapplication.Activities.Doctor.DoctorActivity;
 import com.android.hospitalapplication.Activities.Patient.AppointmentStatusActivity;
+import com.android.hospitalapplication.Activities.Patient.PatientActivity;
 import com.android.hospitalapplication.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Gaurav on 31-12-2017.
@@ -40,7 +52,7 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
         createNotification(titleNotif,contentNotif,resultingIntent);
 
         }
-        else if(typeNotif.equals("confirmed")){
+        else if(typeNotif.equals("confirmed") || typeNotif.equals("follow") || typeNotif.equals("rescheduled")){
             Intent i = new Intent(this, AppointmentReceiptActivity.class);
             String docId = from;
             String patId = remoteMessage.getData().get("to_user_id");
@@ -80,5 +92,67 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
         NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
 
+    }
+
+    public void addReminder(final String docID, final String patId){
+
+
+        DatabaseReference dbrefUsers = FirebaseDatabase.getInstance().getReference("Users").child(docID);
+        dbrefUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String name = dataSnapshot.child("name").getValue().toString();
+
+                DatabaseReference dbrefApt = FirebaseDatabase.getInstance().getReference("Appointments").child(docID).child(patId);
+
+                dbrefApt.addValueEventListener(new ValueEventListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String date = dataSnapshot.child("apt_date").getValue().toString();
+                        String time = dataSnapshot.child("apt_time").getValue().toString();
+                        long eventTime = 0;
+                        try {
+                            eventTime = getTimeInMillis(date+" "+time);
+                            Log.d("time in mils :",""+eventTime);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
+                        time =df.format(time);
+                        String s[] = time.split(":");
+                        int hr = Integer.parseInt(s[0]);
+                        int min = Integer.parseInt(s[1]);
+                        NotificationScheduler.setReminder(getApplicationContext(), PatientActivity.class,hr,min);
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+//this means reminder is added
+
+    }
+
+    public long getTimeInMillis(String date) throws ParseException{
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss a");
+        long millis;
+
+        Date d = sdf.parse(date);
+        millis= d.getTime();
+        Log.d("date , millis:",date+" "+millis);
+        return millis;
     }
 }

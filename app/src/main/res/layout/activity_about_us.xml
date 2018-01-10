@@ -46,16 +46,16 @@
 
 
 
-            <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                <!--android:layout_width="110dp"-->
-                <!--android:layout_height="110dp"-->
-                <!--android:layout_above="@+id/upload_report"-->
-                <!--android:padding="10dp"-->
-                <!--android:layout_margin="5dp"-->
-                <!--android:src="@drawable/jatin"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:text="Profile Info"-->
-                <!--/>-->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_above="@+id/upload_report"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/avatar"
+                android:layout_gravity="center"
+                android:text="Profile Info"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,6 +100,16 @@
                 <!--android:layout_marginLeft="5dp"-->
                 <!--/>-->
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_above="@+id/upload_report"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                android:src="@drawable/avatar"
+                android:layout_gravity="center"
+                android:text="Profile Info"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

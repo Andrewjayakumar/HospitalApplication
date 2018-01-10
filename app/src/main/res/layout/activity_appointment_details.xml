@@ -253,7 +253,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Reschdule Appointments"
+            android:text="Reschdule Appointment"
             android:textColor="@color/md_white_1000"
             android:background="@color/md_blue_600"
             android:id="@+id/resched_apt"

@@ -81,6 +81,11 @@ public class AppointmentDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(AppointmentDetailsActivity.this,ScheduleAppointmentActivity.class);
                 i.putExtra("pref_date",currDate);
                 i.putExtra("pat_id",patId);
+                if(reschedule.getText().toString().equals("Set Follow Up Appointment")){
+                    i.putExtra("type_apt", "follow");
+                }else {
+                    i.putExtra("type_apt", "rescheduled");
+                }
                 startActivity(i);
             }
         });

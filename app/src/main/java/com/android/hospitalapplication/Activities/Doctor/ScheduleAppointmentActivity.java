@@ -43,7 +43,7 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
     Toolbar mToolbar;
     Button setDate, setTime, schApt;
     EditText remarks;
-
+    String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +59,11 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
         schApt = findViewById(R.id.schedule_apt);
         remarks = findViewById(R.id.remarks);
 
+
         String prefDate = getIntent().getStringExtra("pref_date");
         final String pat_id = getIntent().getStringExtra("pat_id");
+        type=getIntent().getStringExtra("type_apt");
+        Log.d("type :",""+type);
 
         setDate.setText(prefDate);
         setDate.setOnClickListener(new View.OnClickListener() {
@@ -295,7 +298,9 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Appointment Set", Toast.LENGTH_LONG).show();
                                 HashMap<String, String> notifDetails = new HashMap<>();
                                 notifDetails.put("from", docId);
-                                notifDetails.put("type", "confirmed");
+
+                                notifDetails.put("type", type);
+
                                 dbrefRoot.child("Notifications").child(patId).push().setValue(notifDetails);
                                 Intent i = new Intent(ScheduleAppointmentActivity.this, AppointmentDetailsActivity.class);
                                 i.putExtra("doc_id", docId);
