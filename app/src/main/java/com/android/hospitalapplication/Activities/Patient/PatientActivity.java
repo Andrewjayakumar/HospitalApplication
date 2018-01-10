@@ -2,7 +2,6 @@ package com.android.hospitalapplication.Activities.Patient;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import com.android.hospitalapplication.Activities.AboutUs;
 import com.android.hospitalapplication.Activities.LoginActivity;
 import com.android.hospitalapplication.R;
-import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
