@@ -175,22 +175,18 @@ public class ScheduleAppointmentActivity extends AppCompatActivity {
                 hrs.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
                     @Override
                     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                        if(i1==12){
-                            finalAmPm1.setSelection(1);
-                        }
+
                     }
                 });
                 amPm.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                         switch (i){ //AM
-                            case 0 : hrs.setMaxValue(12);
-                                     hrs.setMinValue(10);
-                                     if(hrs.getValue()==12){
-                                         adapterView.setSelection(1);
-                                     }
+                            case 0 : hrs.setMaxValue(11);
+                                     hrs.setMinValue(9);
+
                                      break;
-                            case 1 : if(hrs.getValue()!=12) {
+                            case 1 :  {
                                 hrs.setMaxValue(7);
                                 hrs.setMinValue(5);
                             }
