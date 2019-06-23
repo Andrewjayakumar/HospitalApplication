@@ -1,6 +1,7 @@
 package com.android.hospitalapplication.UtilityAndNetworkingClasses;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -33,6 +34,7 @@ import java.util.Date;
 
 public class FirebaseNotificationsService extends FirebaseMessagingService {
 
+    public static final String CHANNEL_ID = "HospitalApp Notification Channel" ;
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -92,10 +94,21 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
     private void createNotification(String titleNotif, String contentNotif, PendingIntent resultPendingIntent) {
 
         Notification notification = new Notification();
+        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notification.defaults |= Notification.DEFAULT_SOUND;
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel, but only on API 26+ because
+            // the NotificationChannel class is new and not in the support library
+            CharSequence name = "Channel 1";
+            String description = "Channel for notifications";
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(description);
+            // Register the channel with the system
+            mNotifyMgr.createNotificationChannel(channel);
+        }
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this,CHANNEL_ID);
         mBuilder.setDefaults(notification.defaults);
         mBuilder.setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(titleNotif)
@@ -107,7 +120,6 @@ public class FirebaseNotificationsService extends FirebaseMessagingService {
 
         int mNotificationId = (int) System.currentTimeMillis();
 
-        NotificationManager mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         mNotifyMgr.notify(mNotificationId, mBuilder.build());
 
     }
